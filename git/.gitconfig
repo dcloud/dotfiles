@@ -1,0 +1,20 @@
+
+[core]
+    excludesfile = /Users/dcloud/.gitignore_global
+    attributesfile = /Users/dcloud/.gitattributes_global
+    editor = subl -n -w
+[color]
+    ui = true
+[alias]
+    s = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    who = shortlog -s --
+    lc = log ORIG_HEAD.. --stat --no-merges
+    changes = diff --name-status -r
+    diffstat = diff --stat -r
+[push]
+    default = simple
