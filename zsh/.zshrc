@@ -52,13 +52,16 @@ fi
 
 # Set up PROJECT_HOME so mkproject works
 export PROJECT_HOME=$HOME/code/python
+# Set WORKON_HOME so virtualenvs have a home
+export WORKON_HOME=$HOME/.virtualenvs
+# See below for source /usr/local/bin/virtualenvwrapper.sh
 
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(brew brew-cask catimg colorize django docker fabric git heroku node npm pip pod \
- postgres pylint python rbenv sublime vagrant virtualenv virtualenvwrapper wd xcode \
+ postgres pylint python rbenv sublime vagrant virtualenv wd xcode \
  zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
@@ -78,12 +81,26 @@ if [[ -d /usr/local/texlive/2014basic/bin/x86_64-darwin ]]; then
   PATH=/usr/local/texlive/2014basic/bin/x86_64-darwin:$PATH
 fi
 
+# Go
+# You may wish to add the GOROOT-based install location to your PATH:
+# if [[ -d /usr/local/opt/go/libexec/bin ]]; then
+#   PATH=$PATH:/usr/local/opt/go/libexec/bin
+# fi
+export GOPATH=$HOME/.go
+if [[ -d $GOPATH/bin ]]; then
+  PATH=$GOPATH/bin:$PATH
+fi
+
 # User configuration
-if [[ -d $HOME/bin ]]; then
-  PATH=$HOME/bin:$PATH
+if [[ -d $HOME/.local/bin ]]; then
+  PATH=$HOME/.local/bin:$PATH
 fi
 
 export PATH
+
+if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 # MANPATH
 
@@ -135,6 +152,8 @@ fi
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Aliases
 
@@ -173,7 +192,8 @@ alias -s png='open -a Preview'
 
 
 # For teaching bash, don't load customizations
-alias plainbash='bash --noprofile --rcfile /etc/bashrc'
+alias teachbash='bash --noprofile --rcfile /etc/bashrc'
+alias 💩=teachbash
 
 # Turn this info a function
 # alias unspacify='for a in ./**/*\ *(Dod); do mv $a ${a:h}/${a:t:gs/ /_}; done'
@@ -189,4 +209,13 @@ alias httpserver=www
 function httpless {
     # `httpless example.org'
     http --pretty=all "$@" | less -R;
+}
+
+function pynit {
+    if [ "x$1" = "x" ]; then
+        DIR="./"
+    else
+        DIR="$1"
+    fi
+    touch ${DIR}/__init__.py
 }
