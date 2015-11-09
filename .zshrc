@@ -7,9 +7,11 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="dcloud"
 
+LOCAL_EDITOR='atom'
+ATOMN="$LOCAL_EDITOR -n"
 # Example aliases
-alias zshconfig="subl ~/.zshrc"
-alias ohmyzsh="subl ~/.oh-my-zsh"
+alias zshconfig="$EDITOR ~/.zshrc"
+alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -42,16 +44,10 @@ alias ohmyzsh="subl ~/.oh-my-zsh"
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Update homebrew paths
-if [[ -d /usr/local/bin ]]; then
-  PATH=/usr/local/bin:$PATH
-fi
-if [[ -d /usr/local/sbin ]]; then
-  PATH=/usr/local/sbin:$PATH
-fi
-
 # Set up PROJECT_HOME so mkproject works
 export PROJECT_HOME=$HOME/code/python
+# Set WORKON_HOME so virtualenvs have a home
+export WORKON_HOME=$HOME/.virtualenvs
 
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -62,6 +58,14 @@ plugins=(brew brew-cask catimg colorize django docker fabric git heroku node npm
  zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+# Update homebrew paths
+if [[ -d /usr/local/bin ]]; then
+  PATH=/usr/local/bin:$PATH
+fi
+if [[ -d /usr/local/sbin ]]; then
+  PATH=/usr/local/sbin:$PATH
+fi
 
 # Node binaries
 if [[ -d /usr/local/share/npm/bin ]]; then
@@ -78,9 +82,19 @@ if [[ -d /usr/local/texlive/2014basic/bin/x86_64-darwin ]]; then
   PATH=/usr/local/texlive/2014basic/bin/x86_64-darwin:$PATH
 fi
 
+# Go
+# You may wish to add the GOROOT-based install location to your PATH:
+# if [[ -d /usr/local/opt/go/libexec/bin ]]; then
+#   PATH=$PATH:/usr/local/opt/go/libexec/bin
+# fi
+export GOPATH=$HOME/.go
+if [[ -d $GOPATH/bin ]]; then
+  PATH=$GOPATH/bin:$PATH
+fi
+
 # User configuration
-if [[ -d $HOME/bin ]]; then
-  PATH=$HOME/bin:$PATH
+if [[ -d $HOME/.local/bin ]]; then
+  PATH=$HOME/.local/bin:$PATH
 fi
 
 export PATH
@@ -107,7 +121,7 @@ if [[ -f $HOME/.sunlight.key ]]; then
 fi
 
 #Java
-JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+# JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 # NLTK
 export NLTK_DATA=/usr/local/share/nltk_data
@@ -124,12 +138,10 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 # Uncrustify
 export UNCRUSTIFY_CONFIG="$HOME/.uncrustify/uncrustify.cfg"
 
-
-# # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='subl'
+# Lunchy
+LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+    . $LUNCHY_DIR/lunchy-completion.zsh
 fi
 
 # Compilation flags
@@ -163,17 +175,17 @@ alias lr='ls -lR'          # recursive ls
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 
 # Suffix aliases
-alias -s txt=subl
-alias -s md=subl
-alias -s html=subl
-alias -s js=subl
+alias -s txt=$LOCAL_EDITOR
+alias -s md=$LOCAL_EDITOR
+alias -s html=$LOCAL_EDITOR
+alias -s js=$LOCAL_EDITOR
 alias -s jpeg='open -a Preview'
 alias -s jpg=jpeg
 alias -s png='open -a Preview'
 
 
 # For teaching bash, don't load customizations
-alias plainbash='bash --noprofile --rcfile /etc/bashrc'
+alias teachbash='bash --noprofile --rcfile /etc/bashrc'
 
 # Turn this info a function
 # alias unspacify='for a in ./**/*\ *(Dod); do mv $a ${a:h}/${a:t:gs/ /_}; done'
@@ -189,4 +201,13 @@ alias httpserver=www
 function httpless {
     # `httpless example.org'
     http --pretty=all "$@" | less -R;
+}
+
+function pynit {
+    if [ "x$1" = "x" ]; then
+        DIR="./"
+    else
+        DIR="$1"
+    fi
+    touch ${DIR}/__init__.py
 }
