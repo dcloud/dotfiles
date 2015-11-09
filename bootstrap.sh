@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 cd "$(dirname "${BASH_SOURCE}")";
 
@@ -6,7 +6,7 @@ git pull origin master;
 
 function doIt() {
     rsync --exclude ".git/"  --filter ". rsync.rules" -avh --no-perms --dry-run . ~;
-    source ~/.zsrhrc;
+    source ~/.zshrc;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
