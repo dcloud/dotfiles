@@ -1,8 +1,8 @@
 
 [core]
-    excludesfile = /Users/dcloud/.gitignore_global
-    attributesfile = /Users/dcloud/.gitattributes_global
-    editor = subl -n -w
+    excludesfile = ~/.gitignore_global
+    attributesfile = ~/.gitattributes_global
+    editor = vim -c 'startinsert'
 [color]
     ui = true
 [alias]
