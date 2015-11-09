@@ -5,7 +5,7 @@ cd "$(dirname "${BASH_SOURCE}")";
 git pull origin master;
 
 function doIt() {
-    rsync --exclude ".git/"  --filter ". rsync.rules" -avh --no-perms --dry-run . ~;
+    rsync --exclude ".git/"  --filter ". rsync.rules" -avh --no-perms . ~;
     source ~/.zshrc;
 }
 
