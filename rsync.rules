@@ -1,0 +1,8 @@
+- .git/
+- .DS_Store
+- bootstrap.sh
+- LICENSE
+- README.md
+- sublime/
+- iterm2/
+- rsync.rules
