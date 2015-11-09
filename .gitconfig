@@ -18,3 +18,5 @@
     diffstat = diff --stat -r
 [push]
     default = simple
+[include]
+    path = .gitconfig.user
