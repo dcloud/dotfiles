@@ -1,0 +1,3 @@
+# rcm configuration
+
+EXCLUDES="README* LICENSE sublime iterm2"
