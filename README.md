@@ -1,3 +1,3 @@
 # dotfiles
 
-All those configuration things. Currently this is just a barebones set of files that I want to make portable. Crazy symlinking/installing/scripting can come later.
+All those configuration things. Clone this repo into `~/.dotfiles` and then use [rcm](http://thoughtbot.github.io/rcm/)'s `rcup` to symlink files into their appropriate locations.
