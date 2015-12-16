@@ -10,8 +10,8 @@ export LOCAL_EDITOR='atom'
 ATOMN="$LOCAL_EDITOR -n"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(brew brew-cask catimg colorize django docker fabric git heroku node pip pod \
- postgres pylint python sublime vagrant virtualenv wd xcode zsh-syntax-highlighting)
+plugins=(brew-cask catimg colorize django docker git heroku pip pod \
+ python sublime vagrant wd xcode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -19,21 +19,11 @@ export BREW_PREFIX=$(brew --prefix)
 
 # MANPATH
 
-if [[ -d /Library/TeX/Distributions/.DefaultTeX/Contents/Man ]]; then
-    MANPATH=/Library/TeX/Distributions/.DefaultTeX/Contents/Man:$MANPATH
-fi
-
-if [[ -d $BREW_PREFIX/man ]]; then
-    MANPATH=$BREW_PREFIX/man:$MANPATH
+if [[ -d $BREW_PREFIX/share/man ]]; then
+    MANPATH=$BREW_PREFIX/share/man:$MANPATH
 fi
 
 export MANPATH
-
-# Node path
-if [[ -d $BREW_PREFIX/share/npm/lib/node_modules ]]; then
-    NODE_PATH=$BREW_PREFIX/share/npm/lib/node_modules:$NODE_PATH
-fi
-export NODE_PATH
 
 
 if [[ -f $HOME/.sunlight.key ]]; then
@@ -68,7 +58,7 @@ export ARCHFLAGS="-arch x86_64"
 typeset -U config_files
 config_files=($DOTFILES/zsh/**/*.zsh)
 # load config files
-for file in ${config_files:#*/path.zsh}
+for file in ${config_files}
 do
   source $file
 done
