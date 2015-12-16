@@ -7,69 +7,34 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="dcloud"
 
+EDITOR='vim'
 LOCAL_EDITOR='atom'
 ATOMN="$LOCAL_EDITOR -n"
 # Example aliases
-alias zshconfig="$EDITOR ~/.zshrc"
-alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Uncomment this to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment following line if you want to  shown in the command execution time stamp
-# in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
-# yyyy-mm-dd
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Set up PROJECT_HOME so mkproject works
-export PROJECT_HOME=$HOME/code/python
-# Set WORKON_HOME so virtualenvs have a home
-export WORKON_HOME=$HOME/.virtualenvs
-
+alias zshconfig="$LOCAL_EDITOR ~/.zshrc"
+alias ohmyzsh="$LOCAL_EDITOR ~/.oh-my-zsh"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew brew-cask catimg colorize django docker fabric git heroku node npm pip pod \
- postgres pylint python rbenv sublime vagrant virtualenv virtualenvwrapper wd xcode \
- zsh-syntax-highlighting)
+plugins=(brew brew-cask catimg colorize django docker fabric git heroku node pip pod \
+ postgres pylint python sublime vagrant virtualenv wd xcode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
+BREW_PREFIX=$(brew --prefix)
+
 # Update homebrew paths
-if [[ -d /usr/local/bin ]]; then
-  PATH=/usr/local/bin:$PATH
+if [[ -d $BREW_PREFIX/bin ]]; then
+  PATH=$BREW_PREFIX/bin:$PATH
 fi
-if [[ -d /usr/local/sbin ]]; then
-  PATH=/usr/local/sbin:$PATH
+if [[ -d $BREW_PREFIX/sbin ]]; then
+  PATH=$BREW_PREFIX/sbin:$PATH
 fi
 
 # Node binaries
-if [[ -d /usr/local/share/npm/bin ]]; then
-  PATH=/usr/local/share/npm/bin:$PATH
+if [[ -d $BREW_PREFIX/share/npm/bin ]]; then
+  PATH=$BREW_PREFIX/share/npm/bin:$PATH
 fi
 
 # haskell
@@ -78,14 +43,14 @@ if [[ -d $HOME/.cabal/bin ]]; then
 fi
 
 # MacTex BasicTex http://www.tug.org/mactex/morepackages.html
-if [[ -d /usr/local/texlive/2014basic/bin/x86_64-darwin ]]; then
-  PATH=/usr/local/texlive/2014basic/bin/x86_64-darwin:$PATH
+if [[ -d $BREW_PREFIX/texlive/2014basic/bin/x86_64-darwin ]]; then
+  PATH=$BREW_PREFIX/texlive/2014basic/bin/x86_64-darwin:$PATH
 fi
 
 # Go
 # You may wish to add the GOROOT-based install location to your PATH:
-# if [[ -d /usr/local/opt/go/libexec/bin ]]; then
-#   PATH=$PATH:/usr/local/opt/go/libexec/bin
+# if [[ -d $BREW_PREFIX/opt/go/libexec/bin ]]; then
+#   PATH=$PATH:$BREW_PREFIX/opt/go/libexec/bin
 # fi
 export GOPATH=$HOME/.go
 if [[ -d $GOPATH/bin ]]; then
@@ -105,14 +70,14 @@ if [[ -d /Library/TeX/Distributions/.DefaultTeX/Contents/Man ]]; then
     MANPATH=/Library/TeX/Distributions/.DefaultTeX/Contents/Man:$MANPATH
 fi
 
-if [[ -d /usr/local/man ]]; then
-    MANPATH=/usr/local/man:$MANPATH
+if [[ -d $BREW_PREFIX/man ]]; then
+    MANPATH=$BREW_PREFIX/man:$MANPATH
 fi
 
 export MANPATH
 
-if [[ -d /usr/local/share/npm/lib/node_modules ]]; then
-    NODE_PATH=/usr/local/share/npm/lib/node_modules:$NODE_PATH
+if [[ -d $BREW_PREFIX/share/npm/lib/node_modules ]]; then
+    NODE_PATH=$BREW_PREFIX/share/npm/lib/node_modules:$NODE_PATH
 fi
 export NODE_PATH
 
@@ -124,13 +89,13 @@ fi
 # JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 # NLTK
-export NLTK_DATA=/usr/local/share/nltk_data
+export NLTK_DATA=$BREW_PREFIX/share/nltk_data
 
 # rbenv
-export RBENV_ROOT=/usr/local/opt/rbenv
+export RBENV_ROOT=$BREW_PREFIX/opt/rbenv
 
 # Android
-export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_HOME=$BREW_PREFIX/opt/android-sdk
 
 # Homebrew
 # export HOMEBREW_GITHUB_API_TOKEN=
@@ -138,10 +103,30 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 # Uncrustify
 export UNCRUSTIFY_CONFIG="$HOME/.uncrustify/uncrustify.cfg"
 
+
+# Set up PROJECT_HOME so mkproject works
+export PROJECT_HOME=$HOME/code/python
+# Set WORKON_HOME so virtualenvs have a home
+export WORKON_HOME=$HOME/.virtualenvs
+
+# Virtualenvwrapper, lazily
+if [[ -f $BREW_PREFIX/bin/virtualenvwrapper.sh ]]; then
+    export VIRTUALENVWRAPPER_SCRIPT=$BREW_PREFIX/bin/virtualenvwrapper.sh
+    source $BREW_PREFIX/bin/virtualenvwrapper_lazy.sh
+fi
+
+#  rbenv
+eval "$(rbenv init -)"
+
 # Lunchy
 LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
 if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
     . $LUNCHY_DIR/lunchy-completion.zsh
+fi
+
+#  npm completion
+if [ -f $BREW_PREFIX/etc/bash_completion.d/npm ]; then
+    . $BREW_PREFIX/etc/bash_completion.d/npm
 fi
 
 # Compilation flags
