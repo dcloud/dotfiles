@@ -28,3 +28,6 @@
 
 'atom-text-editor':
     'alt-cmd-w': 'editor:toggle-soft-wrap'
+
+'atom-text-editor:not([mini])':
+    'cmd-;': 'turbo-javascript:end-line'
