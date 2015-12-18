@@ -1,0 +1,6 @@
+flake8
+ipython
+jupyter
+virtualenv
+virtualenv-clone
+virtualenvwrapper

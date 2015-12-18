@@ -1,0 +1,3 @@
+csvkit
+httpie
+pgcli
