@@ -1,5 +1,6 @@
 # Aliases
 alias zshconfig="$LOCAL_EDITOR ~/.zshrc"
+alias dotfiles="$LOCAL_EDITOR ~/.dotfiles"
 alias ohmyzsh="$LOCAL_EDITOR ~/.oh-my-zsh"
 
 alias reload!='. ~/.zshrc'
