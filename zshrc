@@ -25,11 +25,6 @@ fi
 
 export MANPATH
 
-
-if [[ -f $HOME/.sunlight.key ]]; then
-  export SUNLIGHT_KEY=$(cat $HOME/.sunlight.key)
-fi
-
 #Java
 # JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
@@ -41,9 +36,6 @@ export RBENV_ROOT=$BREW_PREFIX/opt/rbenv
 
 # Android
 export ANDROID_HOME=$BREW_PREFIX/opt/android-sdk
-
-# Homebrew
-# export HOMEBREW_GITHUB_API_TOKEN=
 
 # Uncrustify
 export UNCRUSTIFY_CONFIG="$HOME/.uncrustify/uncrustify.cfg"
@@ -62,3 +54,9 @@ for file in ${config_files}
 do
   source $file
 done
+
+# Personal environmental variables
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
