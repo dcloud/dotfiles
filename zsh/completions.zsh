@@ -1,9 +1,11 @@
 # Completions
 
 # Lunchy
-LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
-    . $LUNCHY_DIR/lunchy-completion.zsh
+if gem which lunchy &> /dev/null; then
+    LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+    if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+        . $LUNCHY_DIR/lunchy-completion.zsh
+    fi
 fi
 
 #  npm completion
