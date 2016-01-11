@@ -17,7 +17,7 @@ alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/
 # and exclude grepping through .svn folders.
 alias grep='grep --color=always --exclude=\.svn'
 
-alias pd="echo ${PWD##*/}"
+alias pd='basename $(pwd)'
 
 alias rm='rm -i'
 alias cp='cp -i'
