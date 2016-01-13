@@ -10,7 +10,7 @@ export LOCAL_EDITOR='atom'
 ATOMN="$LOCAL_EDITOR -n"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(brew-cask catimg colorize django docker git heroku pip pod \
+plugins=(brew-cask catimg colorize django docker heroku pip pod \
  python sublime vagrant wd xcode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
