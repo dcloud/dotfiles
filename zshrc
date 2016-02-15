@@ -41,7 +41,7 @@ export ANDROID_HOME=$BREW_PREFIX/opt/android-sdk
 export UNCRUSTIFY_CONFIG="$HOME/.uncrustify/uncrustify.cfg"
 
 #  rbenv
-eval "$(rbenv init -)"
+eval "$(rbenv init - --no-rehash)"
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
