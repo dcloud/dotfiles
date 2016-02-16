@@ -28,6 +28,9 @@
 
 'atom-text-editor':
     'alt-cmd-w': 'editor:toggle-soft-wrap'
+    'home': 'core:move-to-top'
+    'end': 'core:move-to-bottom'
+    'ctrl-shift-d': 'date:date'
 
 'atom-text-editor:not([mini])':
     'cmd-;': 'turbo-javascript:end-line'
