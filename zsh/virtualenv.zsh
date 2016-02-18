@@ -6,6 +6,8 @@ export PROJECT_HOME=$HOME/code/python
 export WORKON_HOME=$HOME/.virtualenvs
 # Disable virtualenv prompt override so we can do custom RPS1 instead
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+# Set virtualenvwrapper to use python3
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
 # Virtualenvwrapper, lazily
 if [[ -f $BREW_PREFIX/bin/virtualenvwrapper.sh ]]; then
