@@ -34,3 +34,6 @@
 
 'atom-text-editor:not([mini])':
     'cmd-;': 'turbo-javascript:end-line'
+
+'atom-text-editor[data-grammar="text html django"]:not([mini])':
+    'tab': 'emmet:expand-abbreviation-with-tab'
