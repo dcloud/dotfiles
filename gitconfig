@@ -18,9 +18,9 @@
     diffstat = diff --stat -r
 [push]
     default = simple
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
 [include]
     path = ~/.gitconfig.user
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
