@@ -10,8 +10,8 @@ export LOCAL_EDITOR='atom'
 ATOMN="$LOCAL_EDITOR -n"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(aws brew-cask catimg colorize django docker heroku pip pod \
- python sublime thefuck vagrant wd xcode zsh-syntax-highlighting)
+plugins=(catimg colorize django docker pip \
+ python thefuck vagrant wd xcode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -41,7 +41,7 @@ export ANDROID_HOME=$BREW_PREFIX/opt/android-sdk
 export UNCRUSTIFY_CONFIG="$HOME/.uncrustify/uncrustify.cfg"
 
 #  rbenv
-eval "$(rbenv init - --no-rehash)"
+eval "$(rbenv init --no-rehash - zsh)"
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
