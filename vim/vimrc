@@ -7,11 +7,15 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()            " required
 
 filetype plugin indent on    " required
 syntax on                  " Enable syntax highlighting.
+
+colorscheme Tomorrow-Night-Eighties
 
 set autoindent             " Indent according to previous line.
 set expandtab              " Use spaces instead of tabs.
