@@ -24,3 +24,5 @@
     smudge = git-lfs smudge %f
 [include]
     path = ~/.gitconfig.user
+[hub]
+	protocol = https
