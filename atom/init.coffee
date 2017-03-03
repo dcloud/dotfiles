@@ -10,4 +10,4 @@
 #   editor.onDidSave ->
 #     console.log "Saved! #{editor.getPath()}"
 
-document.body.classList.add('an-old-hope-modify-ui')
+# document.body.classList.add('an-old-hope-modify-ui')
