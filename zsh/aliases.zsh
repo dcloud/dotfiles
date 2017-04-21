@@ -13,6 +13,19 @@ alias use_xcode="sudo xcode-select -switch /Applications/Xcode.app/Contents/Deve
 # of duplicates in the Open With submenu.
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
+if hash tmux 2> /dev/null; then
+    alias tma='tmux attach -t'
+    alias tmad='tmux attach -d -t'
+    alias tms='tmux new-session -s'
+    alias tml='tmux list-sessions'
+    alias tmksv='tmux kill-server'
+    alias tmkss='tmux kill-session -t'
+fi
+
+if hash tmuxinator 2> /dev/null; then
+    alias mux="tmuxinator"
+fi
+
 # Make grep more user friendly by highlighting matches
 # and exclude grepping through .svn folders.
 alias grep='grep --color=always --exclude=\.svn'
