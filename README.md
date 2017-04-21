@@ -16,6 +16,10 @@ This was created on a computer running macOS, so many pieces are macOS-specific.
 8. Set up [Vundle](https://github.com/VundleVim/Vundle.vim) for VIM:
     1. `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
     2. `vim +PluginInstall +qall`
-9. Optionally, create `~/.gitconfig.user` and add your user.name, user.email, etc.
+9. Install the [`tmux` plugin manager](https://github.com/tmux-plugins/tpm):
+    1. `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+    2. `tmux source ~/.tmux.conf`
+    3. In a session, run `Ctrl-A` <kbd>I</kbd> (capital I)
+10. Create `~/.gitconfig.user` and add your user.name, user.email, etc.
 
 You will probably want to exit your session and begin a new one.
