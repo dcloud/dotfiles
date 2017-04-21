@@ -1,6 +1,6 @@
 function httpless {
     # `httpless example.org'
-    http --pretty=all "$@" | less -R;
+    http --pretty=all --verbose "$@" | less -R;
 }
 
 function pynit {
