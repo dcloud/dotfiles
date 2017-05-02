@@ -27,6 +27,7 @@ linter
 linter-eslint
 linter-flake8
 linter-proselint
+linter-rubocop
 linter-tidy
 marked
 minimap
@@ -39,4 +40,3 @@ sequential-number
 tabs-to-spaces
 todo-show
 toggle-quotes
-
