@@ -8,7 +8,7 @@ function virtualenv_name(){
 
 PROMPT='%{$fg[magenta]%}%m%{$reset_color%} > %{$fg[green]%}%1~ \
 $(git_prompt_info)\
-🐵 %{$reset_color%} '
+🐵 %{$reset_color%}'
 PROMPT2='%{$fg_bold[red]%}\ %{$reset_color%}'
 RPS1='%{$fg[red]%}$(virtualenv_name)%{$reset_color%}%{$fg[blue]%}%T%{$reset_color%} ${return_code}'
 
