@@ -10,3 +10,9 @@ trim_trailing_whitespace = true
 
 [*.{js,jsx,json}]
 indent_size = 2
+
+[*.rb]
+indent_size = 2
+
+[*.scss]
+indent_size = 2
