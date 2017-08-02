@@ -1,0 +1,6 @@
+fountain
+language-markdown
+linter
+linter-ui-default
+linter-markdown
+linter-proselint

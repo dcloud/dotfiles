@@ -1,0 +1,7 @@
+MagicPython
+atom-django
+autocomplete-python-jedi
+django-templates
+linter
+linter-ui-default
+linter-flake8
