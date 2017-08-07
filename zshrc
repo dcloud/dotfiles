@@ -17,13 +17,16 @@ source $ZSH/oh-my-zsh.sh
 
 export BREW_PREFIX=$(brew --prefix)
 
-# MANPATH
-
-if [[ -d $BREW_PREFIX/share/man ]]; then
-    MANPATH=$BREW_PREFIX/share/man:$MANPATH
+if [[ -d $BREW_PREFIX/sbin ]]; then
+    PATH=$BREW_PREFIX/sbin:$PATH
+    export PATH
 fi
 
-export MANPATH
+# MANPATH
+if [[ -d $BREW_PREFIX/share/man ]]; then
+    MANPATH=$BREW_PREFIX/share/man:$MANPATH
+    export MANPATH
+fi
 
 #Java
 # JAVA_HOME=`/usr/libexec/java_home -v 1.8`
