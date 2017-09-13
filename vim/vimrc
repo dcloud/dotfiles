@@ -70,5 +70,5 @@ set undofile
 set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 
-" editodconfig compatibility with fugitive
+" editorconfig compatibility with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
