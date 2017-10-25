@@ -28,7 +28,7 @@ fi
 
 # Make grep more user friendly by highlighting matches
 # and exclude grepping through .svn folders.
-alias grep='grep --color=always --exclude=\.svn'
+alias grepc='grep --color=always --exclude=\.svn'
 
 alias pd='basename $(pwd)'
 
