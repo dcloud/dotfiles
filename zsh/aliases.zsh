@@ -26,9 +26,10 @@ if hash tmuxinator 2> /dev/null; then
     alias mux="tmuxinator"
 fi
 
-# Make grep more user friendly by highlighting matches
-# and exclude grepping through .svn folders.
-alias grepc='grep --color=always --exclude=\.svn'
+# Make sure we have vanilla grep
+alias grep='\grep'
+# grepc can be fun grep
+alias grepc='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 
 alias pd='basename $(pwd)'
 
