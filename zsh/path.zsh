@@ -16,8 +16,7 @@ if [[ -d $CABAL_BIN && ":$PATH:" != ":$CABAL_BIN:" ]]; then
 fi
 
 # MacTex BasicTex http://www.tug.org/mactex/morepackages.html
-TEXLIVE_VERSION="2015basic"
-TEXLIVE_PATH=$BREW_PREFIX/texlive/$TEXLIVE_VERSION/bin/x86_64-darwin
+TEXLIVE_PATH=/Library/TeX/texbin
 if [[ -d $TEXLIVE_PATH && ":$PATH:" != ":$TEXLIVE_PATH:" ]]; then
   PATH=$TEXLIVE_PATH:$PATH
 fi
