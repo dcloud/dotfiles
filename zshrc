@@ -9,6 +9,14 @@ export EDITOR='vim'
 export LOCAL_EDITOR='atom'
 ATOMN="$LOCAL_EDITOR -n"
 
+if [[ -f /etc/paths ]]; then
+    # Store default value of PATH
+    DEFAULT_PATH=${"$(tr '\n' ':' < /etc/paths)":0:-1}
+    if [[ $PATH != $DEFAULT_PATH ]]; then
+        export PATH=$DEFAULT_PATH
+    fi
+fi
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(catimg colorize django docker pip \
  python thefuck tmuxinator vagrant wd xcode)
@@ -17,7 +25,7 @@ source $ZSH/oh-my-zsh.sh
 
 export BREW_PREFIX=$(brew --prefix)
 
-if [[ -d $BREW_PREFIX/sbin ]]; then
+if [[ -d $BREW_PREFIX/sbin && ":$PATH:" != *":$BREW_PREFIX/sbin:"* ]]; then
     PATH=$BREW_PREFIX/sbin:$PATH
     export PATH
 fi
