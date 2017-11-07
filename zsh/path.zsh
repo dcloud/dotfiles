@@ -11,15 +11,14 @@ path_prepend() {
 
 # haskell
 CABAL_BIN=$HOME/.cabal/bin
-if [[ -d $CABAL_BIN && ":$PATH:" != *":$CABAL_BIN:"* ]]; then
-  PATH=$CABAL_BIN:$PATH
-fi
+path_prepend $CABAL_BIN
 
 # MacTex BasicTex http://www.tug.org/mactex/morepackages.html
 TEXLIVE_PATH=/Library/TeX/texbin
-if [[ -d $TEXLIVE_PATH && ":$PATH:" != *":$TEXLIVE_PATH:"* ]]; then
-  PATH=$TEXLIVE_PATH:$PATH
-fi
+path_prepend $TEXLIVE_PATH
+
+MACGPG_PATH=/usr/local/MacGPG2/bin
+path_prepend $MACGPG_PATH
 
 # Go
 # You may wish to add the GOROOT-based install location to your PATH:
