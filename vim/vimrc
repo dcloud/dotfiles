@@ -7,7 +7,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'flazz/vim-colorschemes'
+Plugin 'nanotech/jellybeans.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
@@ -17,13 +17,15 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'sbdchd/neoformat'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'pangloss/vim-javascript'
 
 call vundle#end()            " required
 
 filetype plugin indent on    " required
 syntax on                  " Enable syntax highlighting.
 
-colorscheme Tomorrow-Night-Eighties
+set background=dark
+colorscheme jellybeans
 
 set autoindent             " Indent according to previous line.
 set expandtab              " Use spaces instead of tabs.
@@ -73,5 +75,18 @@ set undofile
 set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 
+" airline config
+let g:airline_theme='wombat'
+
 " editorconfig compatibility with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" Syntastic settings
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" vim-javascript settings
+let g:javascript_plugin_flow = 1
