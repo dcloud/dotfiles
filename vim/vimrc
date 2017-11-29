@@ -14,6 +14,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'sbdchd/neoformat'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-syntastic/syntastic'
@@ -82,7 +83,6 @@ let g:airline_theme='wombat'
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " Syntastic settings
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -90,3 +90,10 @@ let g:syntastic_check_on_wq = 0
 
 " vim-javascript settings
 let g:javascript_plugin_flow = 1
+
+" NERDTree
+"   open NERDTree automatically when opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" NERDTree keystroke
+map <C-n> :NERDTreeToggle<CR>
