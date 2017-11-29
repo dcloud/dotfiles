@@ -19,7 +19,8 @@ Plugin 'sbdchd/neoformat'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'pangloss/vim-javascript'
-
+Plugin 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
