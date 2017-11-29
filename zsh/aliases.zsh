@@ -22,10 +22,6 @@ if hash tmux 2> /dev/null; then
     alias tmkss='tmux kill-session -t'
 fi
 
-if hash tmuxinator 2> /dev/null; then
-    alias mux="tmuxinator"
-fi
-
 # Make sure we have vanilla grep
 alias grep='\grep'
 # grepc can be fun grep

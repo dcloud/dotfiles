@@ -19,7 +19,7 @@ fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(catimg colorize django docker pip \
- python thefuck tmuxinator vagrant wd xcode)
+ python thefuck vagrant wd xcode)
 
 source $ZSH/oh-my-zsh.sh
 
