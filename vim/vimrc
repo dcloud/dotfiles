@@ -7,7 +7,6 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'nanotech/jellybeans.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
@@ -16,6 +15,8 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'sbdchd/neoformat'
+Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'pangloss/vim-javascript'
@@ -27,7 +28,7 @@ filetype plugin indent on    " required
 syntax on                  " Enable syntax highlighting.
 
 set background=dark
-colorscheme jellybeans
+colorscheme starkiller
 
 set autoindent             " Indent according to previous line.
 set expandtab              " Use spaces instead of tabs.
