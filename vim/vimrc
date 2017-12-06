@@ -81,6 +81,9 @@ set undofile
 set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 
+" enable fzf
+set rtp+=/usr/local/opt/fzf
+
 " airline config
 let g:airline_theme='wombat'
 
