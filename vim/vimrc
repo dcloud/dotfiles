@@ -24,6 +24,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'ervandew/supertab'
 Plugin 'ap/vim-css-color'
+Plugin 'itspriddle/vim-marked'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
