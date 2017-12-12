@@ -27,7 +27,6 @@ brew 'python3'
 brew 'postgresql', restart_service: true
 brew 'proselint'
 brew 'rbenv'
-brew 'reattach-to-user-namespace'
 brew 'ruby'
 brew 'swiftlint'
 brew 'the_silver_searcher'
