@@ -5,6 +5,10 @@ VIMFILES="$HOME/.vim/files"
 typeset -a SUBDIRS
 SUBDIRS=("backup" "swap" "undo" "info")
 
+if type vim > /dev/null; then
+    alias vi=vim
+fi
+
 
 if [[ ! -d $VIMFILES ]]; then
     mkdir -p $VIMFILES;
