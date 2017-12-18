@@ -15,6 +15,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'blueyed/vim-diminactive'
+Plugin 'mileszs/ack.vim'
 Plugin 'sbdchd/neoformat'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
@@ -83,6 +84,10 @@ set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 
 " enable fzf
 set rtp+=/usr/local/opt/fzf
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " airline config
 let g:airline_theme='wombat'
