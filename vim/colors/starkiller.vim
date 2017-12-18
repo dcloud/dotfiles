@@ -96,7 +96,7 @@ hi Directory guifg=#536991 guibg=NONE guisp=NONE gui=bold ctermfg=60 ctermbg=NON
 hi Structure guifg=#536991 guibg=NONE guisp=NONE gui=bold ctermfg=60 ctermbg=NONE cterm=bold
 hi Macro guifg=#BD9800 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi Underlined guifg=#F9F9FF guibg=#192224 guisp=#192224 gui=underline ctermfg=189 ctermbg=235 cterm=underline
-hi TabLine guifg=#192224 guibg=#e7cf57 guisp=#e7cf57 gui=bold ctermfg=235 ctermbg=179 cterm=bold
+hi TabLine guifg=#192224 guibg=#e7cf57 guisp=#e7cf57 gui=bold ctermfg=235 ctermbg=7 cterm=bold
 hi cursorim guifg=#192224 guibg=#536991 guisp=#536991 gui=NONE ctermfg=235 ctermbg=60 cterm=NONE
 
 hi DiffText guifg=NONE guibg=#492224 guisp=#492224 gui=NONE ctermfg=4 ctermbg=NONE cterm=NONE
