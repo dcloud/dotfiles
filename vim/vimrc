@@ -55,6 +55,11 @@ set wildmenu               " Enhanced command-line completion
 set incsearch              " Highlight while searching with / or ?.
 set hlsearch               " Keep matches highlighted.
 
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+    nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+
 set ttyfast                " Faster redrawing.
 set lazyredraw             " Only redraw when necessary.
 
