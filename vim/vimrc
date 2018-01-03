@@ -20,14 +20,15 @@ Plugin 'mileszs/ack.vim'
 Plugin 'sbdchd/neoformat'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ervandew/supertab'
+Plugin 'godlygeek/tabular'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'ervandew/supertab'
-Plugin 'ap/vim-css-color'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'itspriddle/vim-marked'
+Plugin 'ap/vim-css-color'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -69,7 +70,7 @@ set splitright             " Open new windows right of the current window.
 set cursorline             " Find the current line quickly.
 set wrapscan               " Searches wrap around end-of-file.
 set report      =0         " Always report changed lines.
-set synmaxcol   =600       " Only highlight the first 600 columns.
+set synmaxcol   =400       " Only highlight the first 600 columns.
 
 set list                   " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
@@ -118,3 +119,6 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 " NERDTree keystroke
 map <C-n> :NERDTreeToggle<CR>
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
