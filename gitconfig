@@ -5,6 +5,8 @@
     editor = vim
 [color]
     ui = true
+[color "diff"]
+    whitespace = red reverse dim
 [alias]
     s = status
     ci = commit
@@ -28,4 +30,4 @@
 [include]
     path = ~/.gitconfig.user
 [hub]
-	protocol = https
+    protocol = https
