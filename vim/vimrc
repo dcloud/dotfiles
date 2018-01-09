@@ -104,6 +104,11 @@ let g:airline_theme='wombat'
 " editorconfig compatibility with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
+" git gutter
+if exists('&signcolumn')
+    set signcolumn=yes
+endif
+    "
 " Syntastic settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
