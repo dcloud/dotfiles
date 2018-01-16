@@ -23,16 +23,15 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'itspriddle/vim-marked'
 Plugin 'ap/vim-css-color'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
 syntax on                  " Enable syntax highlighting.
+set omnifunc=syntaxcomplete#Complete " Enable syntax completions
 
 set background=dark
 colorscheme starkiller
