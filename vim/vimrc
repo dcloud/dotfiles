@@ -15,6 +15,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-commentary'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'blueyed/vim-diminactive'
 Plugin 'junegunn/fzf.vim'
 Plugin 'mileszs/ack.vim'
@@ -108,7 +109,10 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 if exists('&signcolumn')
     set signcolumn=yes
 endif
-    "
+
+" diminactive
+let g:diminactive_enable_focus = 1
+
 " Syntastic settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
