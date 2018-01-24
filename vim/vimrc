@@ -92,6 +92,13 @@ set undofile
 set undodir     =$HOME/.vim/files/undo/
 set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 
+" Keymappings for :term
+tnoremap <silent> <C-h> <C-W>h
+tnoremap <silent> <C-j> <C-W>j
+tnoremap <silent> <C-k> <C-W>k
+tnoremap <silent> <C-l> <C-W>l
+tnoremap <leader><Esc> <C-w>N
+
 " enable fzf
 set rtp+=/usr/local/opt/fzf
 
