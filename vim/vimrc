@@ -118,6 +118,7 @@ endif
 let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " editorconfig compatibility with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
