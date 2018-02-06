@@ -24,7 +24,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
-Plugin 'vim-syntastic/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'fatih/vim-go'
 Plugin 'davidhalter/jedi-vim'
@@ -119,6 +119,7 @@ let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#ale#enabled = 1
 
 " editorconfig compatibility with fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
@@ -128,14 +129,14 @@ if exists('&signcolumn')
     set signcolumn=yes
 endif
 
+" Neoformat
+augroup fmt
+    autocmd!
+    autocmd BufWritePre *.js undojoin | Neoformat
+augroup END
+
 " diminactive
 let g:diminactive_enable_focus = 1
-
-" Syntastic settings
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['flake8']
 
 " vim-javascript settings
 let g:javascript_plugin_flow = 1
