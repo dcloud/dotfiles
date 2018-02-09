@@ -12,7 +12,7 @@
     ci = commit
     br = branch
     co = checkout
-    df = diff
+    df = difftool -y
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     who = shortlog -s --
     lc = log ORIG_HEAD.. --stat --no-merges
@@ -27,6 +27,7 @@
     smudge = git-lfs smudge %f
 [diff]
     tool = vimdiff
+    wsErrorHighlight = all
 [include]
     path = ~/.gitconfig.user
 [hub]
