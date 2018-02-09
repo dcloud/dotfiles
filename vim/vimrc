@@ -135,6 +135,12 @@ augroup fmt
     autocmd BufWritePre *.js undojoin | Neoformat
 augroup END
 
+" ALE
+let g:ale_javascript_eslint_suppress_missing_config = 10
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+
 " diminactive
 let g:diminactive_enable_focus = 1
 
@@ -153,6 +159,10 @@ let g:vim_markdown_folding_disabled = 1
 
 " Other customizations
 " Many stolen from https://github.com/mhinz/vim-galore
+
+" Turn on spellcheck for certain filetypes/situations
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd FileType gitcommit setlocal spell
 
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
