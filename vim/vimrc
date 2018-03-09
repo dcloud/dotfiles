@@ -138,7 +138,7 @@ augroup END
 " ALE
 let g:ale_javascript_eslint_suppress_missing_config = 10
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'flow'],
 \}
 
 " diminactive
@@ -177,3 +177,6 @@ else
     let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 endif
 
+" Autocmd
+
+autocmd FileType json setlocal foldmethod=syntax foldlevel=2
