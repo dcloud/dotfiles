@@ -3,6 +3,7 @@
     excludesfile = ~/.gitignore_global
     attributesfile = ~/.gitattributes_global
     editor = vim
+    precomposeunicode = false
 [color]
     ui = true
 [color "diff"]
@@ -19,12 +20,14 @@
     changes = diff --name-status -r
     diffstat = diff --stat -r
     dt = difftool -y
+    puff = pull --ff-only
 [push]
     default = simple
 [filter "lfs"]
     required = true
-    clean = git-lfs clean %f
-    smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [diff]
     tool = vimdiff
     wsErrorHighlight = all
