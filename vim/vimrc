@@ -30,6 +30,7 @@ Plugin 'fatih/vim-go'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'itspriddle/vim-marked'
 Plugin 'ap/vim-css-color'
+Plugin 'Yggdroot/indentLine'
 call vundle#end()            " required
 
 filetype plugin indent on    " required
@@ -38,6 +39,7 @@ set omnifunc=syntaxcomplete#Complete " Enable syntax completions
 
 set background=dark
 colorscheme starkiller
+let g:indentLine_setColors = 0
 
 set autoindent             " Indent according to previous line.
 set expandtab              " Use spaces instead of tabs.
