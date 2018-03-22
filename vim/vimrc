@@ -144,6 +144,7 @@ augroup END
 let g:ale_javascript_eslint_suppress_missing_config = 10
 let g:ale_linters = {
 \   'javascript': ['eslint', 'flow'],
+\   'markdown': [],
 \}
 
 " diminactive
@@ -151,6 +152,9 @@ let g:diminactive_enable_focus = 1
 
 " vim-javascript settings
 let g:javascript_plugin_flow = 1
+
+" vim-markdown
+let g:vim_markdown_conceal = 0
 
 " NERDTree
 "   open NERDTree automatically when opening a directory
