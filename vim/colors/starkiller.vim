@@ -53,7 +53,7 @@ hi LineNr guifg=#767676 guibg=#242424 guisp=#242424 gui=NONE ctermfg=243 ctermbg
 hi StatusLine guifg=#192224 guibg=#e7cf57 guisp=#e7cf57 gui=bold ctermfg=235 ctermbg=179 cterm=bold
 hi Label guifg=#BD9800 guibg=NONE guisp=NONE gui=bold ctermfg=1 ctermbg=NONE cterm=bold
 hi PMenuSel guifg=#192224 guibg=#fee781 guisp=#fee781 gui=NONE ctermfg=235 ctermbg=222 cterm=NONE
-hi Search guifg=#192224 guibg=#BD9800 guisp=#BD9800 gui=NONE ctermfg=235 ctermbg=1 cterm=NONE
+hi Search guifg=#192224 guibg=#BD9800 guisp=#BD9800 gui=NONE ctermfg=235 ctermbg=9 cterm=NONE
 hi Delimiter guifg=#BD9800 guibg=NONE guisp=NONE gui=NONE ctermfg=1 ctermbg=NONE cterm=NONE
 hi Statement guifg=#fee781 guibg=NONE guisp=NONE gui=NONE ctermfg=222 ctermbg=NONE cterm=NONE
 hi SpellRare guifg=#F9F9FF guibg=#192224 guisp=#192224 gui=underline ctermfg=189 ctermbg=235 cterm=underline
