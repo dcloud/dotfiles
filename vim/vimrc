@@ -41,6 +41,7 @@ set omnifunc=syntaxcomplete#Complete " Enable syntax completions
 set background=dark
 colorscheme starkiller
 let g:indentLine_setColors = 0
+let g:indentLine_char = '▏'
 
 set autoindent             " Indent according to previous line.
 set expandtab              " Use spaces instead of tabs.
