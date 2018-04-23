@@ -6,8 +6,6 @@ DOTFILES=$HOME/.dotfiles
 ZSH_THEME="dcloud"
 
 export EDITOR='vim'
-export LOCAL_EDITOR='atom'
-ATOMN="$LOCAL_EDITOR -n"
 
 if [[ -f /etc/paths ]]; then
     # Store default value of PATH

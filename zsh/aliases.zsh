@@ -1,7 +1,7 @@
 # Aliases
-alias zshconfig="$LOCAL_EDITOR ~/.zshrc"
-alias dotfiles="$LOCAL_EDITOR ~/.dotfiles"
-alias ohmyzsh="$LOCAL_EDITOR ~/.oh-my-zsh"
+alias zshconfig="$EDITOR ~/.zshrc"
+alias dotfiles="$EDITOR ~/.dotfiles"
+alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 
 alias reload!='. ~/.zshrc'
 
@@ -42,10 +42,10 @@ alias lr='ls -lR'          # recursive ls
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 
 # Suffix aliases
-alias -s txt=$LOCAL_EDITOR
-alias -s md=$LOCAL_EDITOR
-alias -s html=$LOCAL_EDITOR
-alias -s js=$LOCAL_EDITOR
+alias -s txt=$EDITOR
+alias -s md=$EDITOR
+alias -s html=$EDITOR
+alias -s js=$EDITOR
 alias -s jpeg='open -a Preview'
 alias -s jpg=jpeg
 alias -s png='open -a Preview'
@@ -56,3 +56,5 @@ alias teachbash='bash --noprofile --rcfile /etc/bashrc'
 
 alias www='browser-sync start --server'
 alias httpserver=www
+
+alias jrnl='vi $(date +%F).md'
