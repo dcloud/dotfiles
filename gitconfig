@@ -9,6 +9,7 @@
 [color "diff"]
     whitespace = red reverse dim
 [alias]
+    d = --no-pager diff
     s = status
     ci = commit
     br = branch
@@ -16,11 +17,13 @@
     df = difftool -y
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     who = shortlog -s --
+    last = --no-pager log -1 HEAD
     lc = log ORIG_HEAD.. --stat --no-merges
     changes = diff --name-status -r
     diffstat = diff --stat -r
     dt = difftool -y
     puff = pull --ff-only
+    sha = rev-parse --short
 [push]
     default = simple
 [filter "lfs"]
