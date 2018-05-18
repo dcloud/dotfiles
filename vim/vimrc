@@ -139,7 +139,7 @@ endif
 " Neoformat
 augroup fmt
     autocmd!
-    autocmd BufWritePre *.js undojoin | Neoformat
+    autocmd BufWritePre *.js,*.scss undojoin | Neoformat
 augroup END
 
 " ALE
