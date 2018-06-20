@@ -9,6 +9,10 @@ path_prepend() {
     fi
 }
 
+#python3
+PYTHON3_PATH=/usr/local/opt/python/libexec/bin
+path_prepend $PYTHON3_PATH
+
 # haskell
 CABAL_BIN=$HOME/.cabal/bin
 path_prepend $CABAL_BIN
