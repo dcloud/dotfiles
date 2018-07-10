@@ -58,3 +58,7 @@ alias www='browser-sync start --server'
 alias httpserver=www
 
 alias jrnl='vi $(date +%F).md'
+
+
+# Find running copies of vi/vim
+alias vimrunning='pgrep -l "^vim?$"'
