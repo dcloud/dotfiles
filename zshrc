@@ -1,3 +1,6 @@
+# Generate a menu of matches when globbing (rather than auto-inserting all matches)
+setopt GLOB_COMPLETE
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 DOTFILES=$HOME/.dotfiles
