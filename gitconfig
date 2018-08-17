@@ -16,6 +16,7 @@
     co = checkout
     df = difftool -y
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    bl = blame
     who = --no-pager shortlog -sne
     last = --no-pager log -1 HEAD
     lc = log ORIG_HEAD.. --stat --no-merges
@@ -24,6 +25,8 @@
     dt = difftool -y
     puff = pull --ff-only
     sha = rev-parse --short
+[blame]
+    date = short
 [push]
     default = simple
 [filter "lfs"]
