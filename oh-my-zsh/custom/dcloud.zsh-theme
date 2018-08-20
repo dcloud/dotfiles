@@ -6,7 +6,19 @@ function virtualenv_name(){
   fi
 }
 
-PROMPT='%{$fg[magenta]%}%m%{$reset_color%} > %{$fg[green]%}%1~ \
+function machine_name(){
+  local machine_name="%m";
+  if hash scutil 2>/dev/null; then
+    machine_name=$(scutil --get ComputerName);
+  elif hash hostname 2>/dev/null; then
+    machine_name="${$(hostname -f)/-<0->/}";
+  fi
+  printf "$machine_name";
+}
+
+name=$(machine_name)
+
+PROMPT='%{$fg[magenta]%}$name%{$reset_color%} > %{$fg[green]%}%1~ \
 $(git_prompt_info)\
 🐵 %{$reset_color%}'
 PROMPT2='%{$fg_bold[red]%}\ %{$reset_color%}'
