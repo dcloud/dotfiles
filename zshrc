@@ -19,8 +19,7 @@ if [[ -f /etc/paths ]]; then
 fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(catimg colorize django docker pip \
- python thefuck vagrant wd xcode)
+plugins=(catimg docker pip python thefuck vagrant wd xcode)
 
 source $ZSH/oh-my-zsh.sh
 

@@ -2,4 +2,4 @@
 
 export NVM_DIR="$HOME/.nvm"
 NVM_BIN="/usr/local/opt/nvm/nvm.sh"
-[ -s $NVM_BIN ] && \. $NVM_BIN  # This loads nvm
+[ -s $NVM_BIN ] && \. $NVM_BIN --no-use  # This loads nvm
