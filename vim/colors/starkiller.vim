@@ -15,7 +15,7 @@ let g:colors_name = "starkiller"
 "hi CTagsGlobalConstant -- no settings --
 "hi Ignore -- no settings --
 hi Normal guifg=#f0f0f0 guisp=#1a1a1a gui=NONE ctermfg=15 cterm=NONE
-hi ColorColumn guibg=#e7cf57 ctermbg=235 gui=NONE
+hi ColorColumn guibg=#111111 ctermbg=235 gui=NONE ctermfg=241
 hi Conceal ctermbg=NONE ctermfg=237
 
 "hi CTagsImport -- no settings --
