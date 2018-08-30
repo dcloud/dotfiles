@@ -17,6 +17,8 @@
     df = difftool -y
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     bl = blame
+    start = checkout -b
+    publish = "!f() { branch=${2-$(git rev-parse --abbrev-ref HEAD)}; remote=${2-$(git remote)}; git push -u $remote $branch; }; f"
     who = --no-pager shortlog -sne
     last = --no-pager log -1 HEAD
     lc = log ORIG_HEAD.. --stat --no-merges
