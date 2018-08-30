@@ -190,3 +190,9 @@ endif
 " Autocmd
 
 autocmd FileType json setlocal foldmethod=syntax foldlevel=2
+
+" Abbreviations
+
+iab dts strftime("%F")
+
+iab #! #!/usr/bin/env
