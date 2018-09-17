@@ -45,7 +45,6 @@ alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 alias -s txt=$EDITOR
 alias -s md=$EDITOR
 alias -s html=$EDITOR
-alias -s js=$EDITOR
 alias -s jpeg='open -a Preview'
 alias -s jpg=jpeg
 alias -s png='open -a Preview'
