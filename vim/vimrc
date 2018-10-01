@@ -142,6 +142,7 @@ augroup fmt
 augroup END
 
 " ALE
+let g:ale_sign_error = '🔥'
 let g:ale_javascript_eslint_suppress_missing_config = 10
 let g:ale_linters = {
 \   'javascript': ['eslint', 'flow'],
@@ -194,6 +195,6 @@ autocmd FileType json setlocal foldmethod=syntax foldlevel=2
 
 " Abbreviations
 
-iab dts strftime("%F")
+iab <expr> dts strftime("%F")
 
 iab #! #!/usr/bin/env
