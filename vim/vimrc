@@ -191,7 +191,14 @@ endif
 
 " Autocmd
 
-autocmd FileType json setlocal foldmethod=syntax foldlevel=2
+augroup jsonformat
+    au!
+    au FileType json setlocal foldmethod=syntax foldlevel=2
+augroup END
+
+if &diff
+    au! jsonformat
+endif
 
 " Abbreviations
 
