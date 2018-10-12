@@ -7,7 +7,33 @@
 [color]
     ui = true
 [color "diff"]
+    meta = cyan bold
+    frag = cyan bold
+    func = cyan bold
+    old = white red
+    new = green reverse
+    ; commit =
     whitespace = red reverse dim
+    oldMoved = red yellow
+    newMoved = black yellow
+    ; -- See --color-moved in git-diff(1) --
+    ; oldMovedDimmed =
+    ; oldMovedAlternative =
+    ; oldMovedAlternativeDimmed
+    ; newMovedDimmed
+    ; newMovedAlternative
+    ; newMovedAlternativeDimmed
+    ; -- See git-range-diff(1) --
+    ; contextDimmed
+    ; oldDimmed
+    ; newDimmed
+    ; contextBold
+    ; oldBold
+    ; newBold
+[diff]
+    tool = vimdiff
+    wsErrorHighlight = all
+    colorMoved = zebra
 [alias]
     d = --no-pager diff
     s = status
@@ -36,9 +62,6 @@
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
-[diff]
-    tool = vimdiff
-    wsErrorHighlight = all
 [include]
     path = ~/.gitconfig.user
 [hub]
