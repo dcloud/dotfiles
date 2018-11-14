@@ -30,7 +30,8 @@ path_prepend $MACGPG_PATH
 #   PATH=$PATH:$BREW_PREFIX/opt/go/libexec/bin
 # fi
 export GOPATH=$HOME/.go
-path_prepend $GOPATH/bin
+export GOBIN=$GOPATH/bin
+path_prepend $GOBIN
 
 # yarn
 if hash yarn 2>/dev/null; then
