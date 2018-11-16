@@ -24,8 +24,8 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'w0rp/ale'
+Plugin 'fatih/vim-go', { 'do': '::GoUpdateBinaries' }
 Plugin 'sheerun/vim-polyglot'
-Plugin 'fatih/vim-go'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'itspriddle/vim-marked'
@@ -148,6 +148,9 @@ let g:ale_linters = {
 \   'javascript': ['eslint', 'flow'],
 \   'markdown': [],
 \}
+
+" Use vim-go
+let g:polyglot_disabled = ['go']
 
 " diminactive
 let g:diminactive_use_syntax = 1
