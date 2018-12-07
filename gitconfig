@@ -45,7 +45,6 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     bl = blame
     new = checkout -b
-    start = create
     publish = "!f() { branch=${2-$(git rev-parse --abbrev-ref HEAD)}; remote=${2-$(git remote)}; git push -u $remote $branch; }; f"
     pub = publish
     fix = "!f() { ${EDITOR} $(git diff --name-only); }; f"
