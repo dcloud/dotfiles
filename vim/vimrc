@@ -192,17 +192,6 @@ else
     let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 endif
 
-" Autocmd
-
-augroup jsonformat
-    au!
-    au FileType json setlocal foldmethod=syntax foldlevel=2
-augroup END
-
-if &diff
-    au! jsonformat
-endif
-
 " Abbreviations
 
 iab <expr> dts strftime("%F")
