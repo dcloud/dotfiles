@@ -1,0 +1,4 @@
+" Markdown files
+
+setlocal spell
+

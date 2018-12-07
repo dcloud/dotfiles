@@ -166,10 +166,6 @@ let g:vim_markdown_folding_disabled = 1
 " Other customizations
 " Many stolen from https://github.com/mhinz/vim-galore
 
-" Turn on spellcheck for certain filetypes/situations
-autocmd BufRead,BufNewFile *.md setlocal spell
-autocmd FileType gitcommit setlocal spell
-
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
 
