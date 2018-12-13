@@ -32,9 +32,15 @@
     ; newBold
 [diff]
     ; -- vim+fugitive is preferred over vimdiff. See 'fix' alias --
-    ; tool = vimdiff
+    tool = fugitive
     wsErrorHighlight = all
     colorMoved = zebra
+[difftool "fugitive"]
+    cmd = vim -f -c "Gdiff" "$MERGED"
+[merge]
+    tool = fugitive
+[mergtool "fugitive"]
+    cmd = vim -f -c "Gdiff" "$MERGED"
 [alias]
     d = --no-pager diff
     s = status
