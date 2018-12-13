@@ -1,0 +1,8 @@
+# reset escape key to the default
+escape ^Aa
+
+# auxiliary register
+register S ^A
+
+# Alt + x as escape key
+bindkey "^[x" process S
