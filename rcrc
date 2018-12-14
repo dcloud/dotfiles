@@ -1,3 +1,5 @@
 # rcm configuration
 
 EXCLUDES="README* LICENSE Brewfile iterm2"
+
+SYMLINK_DIRS="vim/pack/dcloud vim/ftplugin zsh"

@@ -1,39 +1,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'tmux-plugins/vim-tmux-focus-events'
-Plugin 'blueyed/vim-diminactive'
-Plugin 'junegunn/fzf.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'ervandew/supertab'
-Plugin 'godlygeek/tabular'
-Plugin 'w0rp/ale'
-Plugin 'fatih/vim-go', { 'do': '::GoUpdateBinaries' }
-Plugin 'sheerun/vim-polyglot'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'itspriddle/vim-marked'
-Plugin 'ap/vim-css-color'
-Plugin 'Yggdroot/indentLine'
-call vundle#end()            " required
-
 filetype plugin indent on    " required
-syntax on                  " Enable syntax highlighting.
+syntax on                    " Enable syntax highlighting.
 set omnifunc=syntaxcomplete#Complete " Enable syntax completions
 
 set background=dark
