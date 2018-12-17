@@ -43,23 +43,24 @@
     cmd = vim -f -c "Gdiff" "$MERGED"
 [alias]
     d = --no-pager diff
+    dw = --no-pager diff --color-words
+    dt = difftool -y
     s = status
     ci = commit
     br = branch
     co = checkout
-    df = difftool -y
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     bl = blame
     new = checkout -b
     publish = "!f() { branch=${2-$(git rev-parse --abbrev-ref HEAD)}; remote=${2-$(git remote)}; git push -u $remote $branch; }; f"
     pub = publish
     fix = "!f() { ${EDITOR} $(git diff --name-only); }; f"
+    words = diff --color-words
     who = --no-pager shortlog -sne
     last = --no-pager log -1 HEAD
     lc = log ORIG_HEAD.. --stat --no-merges
     changes = diff --name-status -r
     diffstat = --no-pager diff --stat -r
-    dt = difftool -y
     puff = pull --ff-only
     sha = "!f() { rev=${1-HEAD}; git rev-parse --short $rev; }; f"
 [blame]
