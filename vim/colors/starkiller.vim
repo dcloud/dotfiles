@@ -102,5 +102,5 @@ hi cursorim guifg=#192224 guibg=#536991 guisp=#536991 gui=NONE ctermfg=235 cterm
 
 hi DiffText guifg=NONE guibg=#492224 guisp=#492224 gui=NONE ctermfg=4 ctermbg=NONE cterm=NONE
 hi DiffDelete guifg=NONE guibg=#192224 guisp=#192224 gui=NONE ctermfg=7 ctermbg=1 cterm=NONE
-hi DiffChange guifg=NONE guibg=#492224 guisp=#492224 gui=NONE ctermfg=16 ctermbg=3 cterm=NONE
+hi DiffChange guifg=NONE guibg=#492224 guisp=#492224 gui=NONE ctermfg=NONE ctermbg=237 cterm=NONE
 hi DiffAdd guifg=NONE guibg=#193224 guisp=#193224 gui=NONE ctermfg=16 ctermbg=10 cterm=NONE
