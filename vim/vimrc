@@ -81,12 +81,6 @@ tnoremap <leader><Esc> <C-w>N
 " enable fzf
 set rtp+=/usr/local/opt/fzf
 
-if executable('rg')
-  let g:ackprg = 'rg --vimgrep'
-elseif executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
 " airline config
 let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled = 1
