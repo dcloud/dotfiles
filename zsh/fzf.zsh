@@ -1,4 +1,5 @@
 if [[ -f ~/.fzf.zsh  ]]; then
+    export FZF_CTRL_R_OPTS="-e"
     source ~/.fzf.zsh;
     alias vif='vim $(fzf)'
     if command -v fd &> /dev/null; then
