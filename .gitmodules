@@ -64,3 +64,6 @@
 [submodule "vim/pack/dcloud/start/indentLine"]
 	path = vim/pack/dcloud/start/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
+[submodule "vim/pack/dcloud/start/tagbar"]
+	path = vim/pack/dcloud/start/tagbar
+	url = https://github.com/majutsushi/tagbar
