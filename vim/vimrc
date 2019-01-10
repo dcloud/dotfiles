@@ -1,6 +1,4 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
+set nocompatible             " be iMproved, required
 filetype plugin indent on    " required
 syntax on                    " Enable syntax highlighting.
 set omnifunc=syntaxcomplete#Complete " Enable syntax completions
@@ -38,7 +36,7 @@ set splitright             " Open new windows right of the current window.
 set cursorline             " Find the current line quickly.
 set wrapscan               " Searches wrap around end-of-file.
 set report      =0         " Always report changed lines.
-set synmaxcol   =400       " Only highlight the first 600 columns.
+set synmaxcol   =400       " Only highlight the first ### columns.
 
 set list                   " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
@@ -84,7 +82,7 @@ set rtp+=/usr/local/opt/fzf
 " airline config
 let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#formatter= 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
