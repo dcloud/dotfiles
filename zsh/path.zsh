@@ -17,6 +17,10 @@ path_prepend $PYTHON3_PATH
 CABAL_BIN=$HOME/.cabal/bin
 path_prepend $CABAL_BIN
 
+# jenv for java
+JENV_BIN=$HOME/.jenv/bin
+path_prepend $JENV_BIN
+
 # MacTex BasicTex http://www.tug.org/mactex/morepackages.html
 TEXLIVE_PATH=/Library/TeX/texbin
 path_prepend $TEXLIVE_PATH

@@ -36,8 +36,8 @@ if [[ -d $BREW_PREFIX/share/man ]]; then
     export MANPATH
 fi
 
-#Java
-# JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+# jenv for Java
+eval "$(jenv init -)"
 
 # NLTK
 export NLTK_DATA=$BREW_PREFIX/share/nltk_data
