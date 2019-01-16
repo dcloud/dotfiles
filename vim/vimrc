@@ -149,3 +149,11 @@ endif
 iab <expr> dts strftime("%F")
 
 iab #! #!/usr/bin/env
+
+
+" After everything else, load all plugins and load all helptags
+" Thanks to https://github.com/w0rp/ale#generating-vim-help-files
+
+packloadall
+
+silent! helptags ALL
