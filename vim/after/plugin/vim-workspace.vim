@@ -1,6 +1,6 @@
 " Configure vim-workspace
 
-let g:workspace_session_directory = $HOME . '/.vim/sessions/'
+let g:workspace_session_directory = $HOME . '/.vim/files/sessions/'
 let g:workspace_undodir = $HOME . '/.vim/files/undo'
 
 " Don't autosave files in workspaces
