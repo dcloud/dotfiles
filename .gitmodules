@@ -73,3 +73,4 @@
 [submodule "vim/pack/dcloud/start/vim-workspace"]
 	path = vim/pack/dcloud/start/vim-workspace
 	url = https://github.com/thaerkh/vim-workspace
+    ignore = dirty
