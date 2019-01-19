@@ -37,7 +37,8 @@ if [[ -d $BREW_PREFIX/share/man ]]; then
 fi
 
 # jenv for Java
-eval "$(jenv init -)"
+export JENV_ROOT=/usr/local/opt/jenv
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # NLTK
 export NLTK_DATA=$BREW_PREFIX/share/nltk_data
