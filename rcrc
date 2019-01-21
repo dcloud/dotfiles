@@ -3,3 +3,5 @@
 EXCLUDES="README* LICENSE Brewfile iterm2"
 
 SYMLINK_DIRS="ctags.d vim/pack/dcloud vim/plugin vim/ftplugin vim/after zsh"
+
+COPY_ALWAYS="git_templates/**/*"

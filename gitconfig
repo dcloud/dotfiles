@@ -30,6 +30,8 @@
     ; contextBold
     ; oldBold
     ; newBold
+[init]
+    templateDir = ~/.git_templates
 [diff]
     ; -- vim+fugitive is preferred over vimdiff. See 'fix' alias --
     tool = fugitive
@@ -63,6 +65,7 @@
     diffstat = --no-pager diff --stat -r
     puff = pull --ff-only
     sha = "!f() { rev=${1-HEAD}; git rev-parse --short $rev; }; f"
+    ctags = "!.git/hooks/ctags"
 [blame]
     date = short
 [push]
