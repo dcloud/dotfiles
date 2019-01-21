@@ -58,9 +58,6 @@
 [submodule "vim/pack/dcloud/start/vim-marked"]
 	path = vim/pack/dcloud/start/vim-marked
 	url = https://github.com/itspriddle/vim-marked.git
-[submodule "vim/pack/dcloud/start/vim-css-color"]
-	path = vim/pack/dcloud/start/vim-css-color
-	url = https://github.com/ap/vim-css-color.git
 [submodule "vim/pack/dcloud/start/indentLine"]
 	path = vim/pack/dcloud/start/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
