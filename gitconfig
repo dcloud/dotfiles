@@ -59,7 +59,7 @@
     who = --no-pager shortlog -sne
     last = --no-pager log -1 HEAD
     lc = log ORIG_HEAD.. --stat --no-merges
-    changes = diff --name-status -r
+    changes = diff --stat
     diffstat = --no-pager diff --stat -r
     puff = pull --ff-only
     sha = "!f() { rev=${1-HEAD}; git rev-parse --short $rev; }; f"
