@@ -53,9 +53,6 @@ alias -s png='open -a Preview'
 # For teaching bash, don't load customizations
 alias teachbash='bash --noprofile --rcfile /etc/bashrc'
 
-alias www='browser-sync start --server'
-alias httpserver=www
-
 alias jrnl='vi $(date +%F).md'
 
 
