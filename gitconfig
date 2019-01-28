@@ -44,6 +44,8 @@
 [alias]
     bl = blame
     br = branch
+    biff = "!f() { base=${1-master}; rev=${2-HEAD}; git diff $(git merge-base $base $rev) $rev; }; f"
+    bog = "!f() { base=${1-master}; rev=${2-HEAD}; git log $(git merge-base $base $rev)..$rev; }; f"
     changes = diff --stat
     ci = commit
     co = checkout
