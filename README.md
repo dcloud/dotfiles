@@ -21,3 +21,17 @@ This was created on a computer running macOS, so many pieces are macOS-specific.
 10. Create `~/.gitconfig.user` and add your user.name, user.email, etc.
 
 You will probably want to exit your session and begin a new one.
+
+## Updating submodules
+
+Per the [git book chapter on submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules), the simplest way to update submodules is:
+
+```
+git submodule update --remote
+```
+
+That will fetch remote changes and merge all of your submodules. You may specify a path if you want to update a single submodule:
+
+```
+git submodule update --remote vim/pack/dcloud/start/vim-airline
+```
