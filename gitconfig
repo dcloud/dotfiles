@@ -59,7 +59,7 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     new = checkout -b
     pub = publish
-    publish = "!f() { branch=${2-$(git rev-parse --abbrev-ref HEAD)}; remote=${2-$(git remote)}; git push -u $remote $branch; }; f"
+    publish = "!f() { branch=${2-$(git rev-parse --abbrev-ref HEAD)}; remote=${1-$(git remote)}; git push -u $remote $branch; }; f"
     puff = pull --ff-only
     s = status
     sha = "!f() { rev=${1-HEAD}; git rev-parse --short $rev; }; f"
