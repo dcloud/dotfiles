@@ -26,6 +26,8 @@ set wildmenu               " Enhanced command-line completion
 
 set incsearch              " Highlight while searching with / or ?.
 set hlsearch               " Keep matches highlighted.
+set ignorecase             " Case insensitive search by default, but see smartcase
+set smartcase              " Make mixed case patterns case sensitive
 
 set ttyfast                " Faster redrawing.
 set lazyredraw             " Only redraw when necessary.
