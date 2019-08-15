@@ -68,9 +68,9 @@ set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 " Add fzf to runtimepath
 set runtimepath+=/usr/local/opt/fzf
 
-" Keymaps in vim/plugins/keymaps.vim
+" Keymaps in vim/plugin/keymaps.vim
 
-" Plugin configs in vim/pluging, vim/after/plugins
+" Plugin configs in vim/plugin, vim/after/plugin
 
 " git gutter
 if exists('&signcolumn')
