@@ -45,7 +45,7 @@
 	url = https://github.com/godlygeek/tabular.git
 [submodule "vim/pack/dcloud/start/ale"]
 	path = vim/pack/dcloud/start/ale
-	url = https://github.com/w0rp/ale.git
+	url = https://github.com/dense-analysis/ale.git
 [submodule "vim/pack/dcloud/start/vim-polyglot"]
 	path = vim/pack/dcloud/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
