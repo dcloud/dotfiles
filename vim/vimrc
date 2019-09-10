@@ -93,6 +93,9 @@ else
     let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 endif
 
+" Add a ~/.vim.user path for local settings we don't want in dotfiles
+set runtimepath+=$HOME/.vim.user
+
 " After everything else, load all plugins and load all helptags
 " Thanks to https://github.com/w0rp/ale#generating-vim-help-files
 
