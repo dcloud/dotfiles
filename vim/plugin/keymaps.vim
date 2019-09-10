@@ -30,3 +30,7 @@ nmap <silent> <F8> :TagbarToggle<CR>
 nmap <silent> <c-k> <plug>(ale_previous_wrap)
 nmap <silent> <c-j> <plug>(ale_next_wrap)
 
+
+" Mappings for increment and decrement
+nnoremap <leader>i <C-a>
+nnoremap <leader>d <C-x>
