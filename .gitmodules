@@ -65,3 +65,6 @@
 	path = vim/pack/dcloud/start/vim-workspace
 	url = https://github.com/thaerkh/vim-workspace
     ignore = dirty
+[submodule "vim/pack/dcloud/start/vim-rhubarb"]
+	path = vim/pack/dcloud/start/vim-rhubarb
+	url = https://github.com/tpope/vim-rhubarb.git
