@@ -22,7 +22,7 @@ theme_precmd() {
     local mname="%{$fg[magenta]%}${SHORT_HOST:-$HOST}%{$reset_color%}";
     local pathname="%{$fg[green]%}%1~%{$reset_color%}";
     vcs_info
-    print -rP "$mname  $pathname ${vcs_info_msg_0_}";
+    print -rP "$mname  $pathname  ${vcs_info_msg_0_}";
 }
 
 PROMPT='❯ '
