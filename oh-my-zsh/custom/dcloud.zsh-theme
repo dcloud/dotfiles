@@ -6,6 +6,8 @@ function virtualenv_name(){
   fi
 }
 
+CACHED_HOSTNAME=$(scutil --get HostName 2>/dev/null) || "$HOST"
+
 # Use zsh's built in vcs_info support
 # http://zsh.sourceforge.net/Doc/Release/User-Contributions.html#Version-Control-Information
 # %b = branch, %c = stagedstr, %u = unstagedstr, %a = action identifier (for actionformats)
@@ -19,7 +21,7 @@ zstyle ':vcs_info:*' formats '%{$reset_color%}%{$fg[yellow]%}%b%{$reset_color%}%
 zstyle ':vcs_info:*' enable git cvs svn
 
 theme_precmd() {
-    local mname="%{$fg[magenta]%}${SHORT_HOST:-$HOST}%{$reset_color%}";
+    local mname="%{$fg[magenta]%}${CACHED_HOSTNAME:-$HOST}%{$reset_color%}";
     local pathname="%{$fg[green]%}%1~%{$reset_color%}";
     vcs_info
     print -rP "$mname  $pathname  ${vcs_info_msg_0_}";
