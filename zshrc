@@ -36,24 +36,14 @@ if [[ -d $BREW_PREFIX/share/man ]]; then
     export MANPATH
 fi
 
-# jenv for Java
-export JENV_ROOT=/usr/local/opt/jenv
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-
 # NLTK
 export NLTK_DATA=$BREW_PREFIX/share/nltk_data
-
-# rbenv
-export RBENV_ROOT=$BREW_PREFIX/opt/rbenv
 
 # Android
 export ANDROID_HOME=$BREW_PREFIX/opt/android-sdk
 
 # Uncrustify
 export UNCRUSTIFY_CONFIG="$HOME/.uncrustify/uncrustify.cfg"
-
-#  rbenv
-eval "$(rbenv init --no-rehash - zsh)"
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
