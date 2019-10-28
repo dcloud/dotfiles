@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 # Generate a menu of matches when globbing (rather than auto-inserting all matches)
 setopt GLOB_COMPLETE
 
@@ -62,3 +64,5 @@ if [[ -a ~/.localrc ]]
 then
   source ~/.localrc
 fi
+
+# zprof
