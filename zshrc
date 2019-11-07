@@ -65,4 +65,12 @@ then
   source ~/.localrc
 fi
 
+# Enable starship.rs prompt, if available
+if hash starship 2>/dev/null; then
+    # Disable ZSH_THEME precmd hook
+    add-zsh-hook -d precmd theme_precmd
+    # Initialize starship prompt
+    eval "$(starship init zsh)"
+fi
+
 # zprof
