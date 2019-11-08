@@ -68,3 +68,6 @@
 [submodule "vim/pack/dcloud/start/vim-rhubarb"]
 	path = vim/pack/dcloud/start/vim-rhubarb
 	url = https://github.com/tpope/vim-rhubarb.git
+[submodule "vim/pack/dcloud/start/vim-go"]
+	path = vim/pack/dcloud/start/vim-go
+	url = https://github.com/fatih/vim-go.git
