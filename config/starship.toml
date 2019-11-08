@@ -1,0 +1,11 @@
+# starship.rs config
+
+
+[aws]
+displayed_items = "profile"
+
+[git_status]
+stashed = ""
+
+[package]
+disabled = true
