@@ -52,6 +52,7 @@
     d = --no-pager diff
     diffstat = --no-pager diff --stat -r
     dt = difftool -y
+    diff-words = diff --color-words
     dw = --no-pager diff --color-words
     fix = "!f() { ${EDITOR} $(git diff --name-only); }; f"
     last = --no-pager log -1 HEAD
