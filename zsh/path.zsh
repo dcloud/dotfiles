@@ -43,6 +43,9 @@ if hash yarn 2>/dev/null; then
     path_prepend $YARN_PATH
 fi
 
+RUST_PATH=$HOME/.cargo/bin
+path_prepend $RUST_PATH
+
 # User path
 path_prepend $HOME/.local/bin
 
