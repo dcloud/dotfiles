@@ -34,3 +34,6 @@ nmap <silent> <c-j> <plug>(ale_next_wrap)
 " Mappings for increment and decrement
 nnoremap <leader>i <C-a>
 nnoremap <leader>d <C-x>
+
+" Mapping for adding semicolon to end of line
+nnoremap <leader>; ms:norm A;<CR>`s
