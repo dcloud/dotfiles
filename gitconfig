@@ -67,6 +67,8 @@
     puff = pull --ff-only
     s = status
     sha = "!f() { rev=${1-HEAD}; git rev-parse --short $rev; }; f"
+    stl = "!f() { num=${1-10}; git stash show -n$num; }; f"
+    sts = "!f() { num=$1; git stash show -p stash@{$num}; }; f"
     who = --no-pager shortlog -sne
     words = diff --color-words
 [blame]
