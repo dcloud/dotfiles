@@ -1,9 +1,13 @@
+# wd
+# git clone https://github.com/mfaerevaag/wd.git ~/.local/bin/wd
 # if wd is installed in ~/.local/bin, set it up
 
-WD_PATH="$HOME/.local/bin/wd/wd.sh"
+WDPATH="$HOME/.local/bin/wd"
 
-if [[ -f  "$WD_PATH" ]]; then
+if [[ -d  "$WDPATH" ]]; then
+    fpath=($WDPATH $fpath)
+
     wd() {
-        . "$WD_PATH"
+        . "$WDPATH/wd.sh"
     }
 fi
