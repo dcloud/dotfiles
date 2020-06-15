@@ -56,5 +56,5 @@ alias teachbash='bash --noprofile --rcfile /etc/bashrc'
 alias jrnl='vi $(date +%F).md'
 
 
-# Find running copies of vi/vim
-alias vimrunning='pgrep -l "^vim?$"'
+# Shortcut for finding processes, displaying friendly output
+alias p='pgrep -l'
