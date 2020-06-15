@@ -2,6 +2,7 @@
 
 # Generate a menu of matches when globbing (rather than auto-inserting all matches)
 setopt GLOB_COMPLETE
+setopt PROMPT_SUBST
 
 DOTFILES=$HOME/.dotfiles
 
