@@ -1,5 +1,7 @@
 # zmodload zsh/zprof
 
+autoload -U compinit
+
 # Generate a menu of matches when globbing (rather than auto-inserting all matches)
 setopt GLOB_COMPLETE
 setopt PROMPT_SUBST
@@ -63,5 +65,9 @@ fi
 if hash starship 2>/dev/null; then
     eval "$(starship init zsh)"
 fi
+
+# Enable completions
+# man zshcompsys
+compinit -u
 
 # zprof
