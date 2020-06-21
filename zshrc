@@ -1,6 +1,6 @@
 # zmodload zsh/zprof
 
-autoload -U compinit
+autoload -U compinit && compinit
 
 # Generate a menu of matches when globbing (rather than auto-inserting all matches)
 setopt GLOB_COMPLETE
