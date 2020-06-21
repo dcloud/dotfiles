@@ -1,10 +1,12 @@
 # zmodload zsh/zprof
 
+autoload -U compinit
+
 # Generate a menu of matches when globbing (rather than auto-inserting all matches)
 setopt GLOB_COMPLETE
+setopt PROMPT_SUBST
+setopt NO_NOMATCH
 
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
 DOTFILES=$HOME/.dotfiles
 
 # Set name of the theme to load.
@@ -19,11 +21,6 @@ if [[ -f /etc/paths ]]; then
         export PATH=$DEFAULT_PATH
     fi
 fi
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(catimg docker pip python thefuck vagrant wd xcode)
-
-source $ZSH/oh-my-zsh.sh
 
 export BREW_PREFIX=$(brew --prefix)
 
@@ -67,10 +64,11 @@ fi
 
 # Enable starship.rs prompt, if available
 if hash starship 2>/dev/null; then
-    # Disable ZSH_THEME precmd hook
-    add-zsh-hook -d precmd theme_precmd
-    # Initialize starship prompt
     eval "$(starship init zsh)"
 fi
+
+# Enable completions
+# man zshcompsys
+compinit -u
 
 # zprof
