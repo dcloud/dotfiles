@@ -16,6 +16,8 @@ alias 9='cd -9'
 
 alias reload!='. ~/.zshrc'
 
+alias help='run-help'
+
 alias mkvirtualenv3="mkvirtualenv -p $(which python3)"
 
 alias use_xcode="sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer"

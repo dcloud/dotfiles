@@ -7,6 +7,10 @@ setopt GLOB_COMPLETE
 setopt PROMPT_SUBST
 setopt NO_NOMATCH
 
+# Improve usefulness of run-help. See `man zshcontrib`
+unalias run-help
+autoload run-help
+
 DOTFILES=$HOME/.dotfiles
 
 # Set name of the theme to load.
