@@ -84,3 +84,6 @@ tmtags
 
 # autoenv files
 .env
+
+# Vim project config
+.vimlocal
