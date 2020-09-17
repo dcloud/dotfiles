@@ -37,3 +37,16 @@ nnoremap <leader>d <C-x>
 
 " Mapping for adding semicolon to end of line
 nnoremap <leader>; ms:norm A;<CR>`s
+
+" Shortcuts for de-educating quotation marks
+" char 2018: ‘
+" char 2019: ’
+" char 201A: ‚
+" char 201B: ‛
+" char 201C: “
+" char 201D: ”
+" char 201E: „
+" char 201F: ‟
+nnoremap <leader>' :.s/\(\%u2018\\|\%u2019\)/"/g
+nnoremap <leader>" :.s/\(\%u201C\\|\%u201D\)/"/g
+
