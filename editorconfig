@@ -25,3 +25,6 @@ indent_size = 2
 
 [Makefile]
 indent_style = tab
+
+[*.groovy]
+indent_size = 2
