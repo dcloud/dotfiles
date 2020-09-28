@@ -1,6 +1,9 @@
 # zmodload zsh/zprof
 
+# Enable completions
+# man zshcompsys
 autoload -U compinit && compinit
+autoload -U bashcompinit && bashcompinit
 
 # Generate a menu of matches when globbing (rather than auto-inserting all matches)
 setopt GLOB_COMPLETE
@@ -73,6 +76,6 @@ fi
 
 # Enable completions
 # man zshcompsys
-compinit -u
+# compinit -u
 
 # zprof
