@@ -3,9 +3,10 @@
 " 'silent! so .vimlocal' isn't safe.
 " Message the user that a .vimlocal was detected
 
-silent! so .vimlocal
-
 " Figure out how to detect if file was loaded, and don't show message
-if filereadable('.vimlocal')
-    echom ".vimlocal detected. You may wish to run 'vim -S .vimlocal' to source local configuration."
+if filereadable('.vimlocal') && has('dialog_con')
+    let choice = confirm(".vimlocal detected. Load settings?", "&Yes\n&No", 2)
+    if choice == 1
+        silent! so .vimlocal
+    endif
 endif
