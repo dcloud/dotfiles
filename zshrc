@@ -11,7 +11,9 @@ setopt PROMPT_SUBST
 setopt NO_NOMATCH
 
 # Improve usefulness of run-help. See `man zshcontrib`
-unalias run-help
+if hash run-help 2>/dev/null; then
+    unalias run-help
+fi
 autoload run-help
 
 DOTFILES=$HOME/.dotfiles
