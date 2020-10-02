@@ -2,7 +2,7 @@
 
 
 [aws]
-displayed_items = "profile"
+disabled = true
 
 [git_status]
 stashed = ""
