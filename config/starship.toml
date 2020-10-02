@@ -4,8 +4,5 @@
 [aws]
 disabled = true
 
-[git_status]
-stashed = ""
-
 [package]
 disabled = true
