@@ -1,9 +1,9 @@
 # zmodload zsh/zprof
 
-# Enable completions
-# man zshcompsys
-autoload -U compinit && compinit
-autoload -U bashcompinit && bashcompinit
+# Load completions functions
+# man zshbuiltins (for autoload); man zshcompsys (for completion system)
+autoload -U compinit
+autoload -U bashcompinit
 
 # Generate a menu of matches when globbing (rather than auto-inserting all matches)
 setopt GLOB_COMPLETE
@@ -76,8 +76,9 @@ if hash starship 2>/dev/null; then
     eval "$(starship init zsh)"
 fi
 
-# Enable completions
+# (re)build & initialize completions
+# Do this late since plugins, e.g. wd.zsh, may edit fpath
 # man zshcompsys
-# compinit -u
+compinit && bashcompinit
 
 # zprof
