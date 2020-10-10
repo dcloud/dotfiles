@@ -62,6 +62,7 @@ alias -s jpeg='open -a Preview'
 alias -s jpg=jpeg
 alias -s png='open -a Preview'
 
+alias mux='tmuxinator'
 
 # For teaching bash, don't load customizations
 alias teachbash='bash --noprofile --rcfile /etc/bashrc'
