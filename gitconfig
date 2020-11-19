@@ -66,7 +66,7 @@
     publish = "!f() { branch=${2-$(git rev-parse --abbrev-ref HEAD)}; remote=${1-$(git remote)}; git push -u $remote $branch; }; f"
     puff = pull --ff-only
     s = status
-    sha = "!f() { git rev-parse --short ${1-HEAD}; }; f"
+    sha = rev-parse --short --default HEAD
     stl = !git stash show -n${1-10}
     sts = !git stash show -p
     who = !git --no-pager shortlog -sne
