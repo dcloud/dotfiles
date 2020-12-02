@@ -49,9 +49,16 @@ alias mv='mv -i'
 alias du='du -kh'       # Makes a more readable output.
 alias df='df -kTh'
 
-alias ls='ls -hFG'         # Colors, size units, differentiate files/folders/symlinks
-alias ll='ls -alF'         # long list ls
-alias lr='ls -lR'          # recursive ls
+if hash exa 2> /dev/null; then
+    alias ls='exa'
+    alias ll='exa -l'
+    alias lr='exa -lR'
+else
+    alias ls='ls -hFG'         # Colors, size units, differentiate files/folders/symlinks
+    alias ll='ls -alF'         # long list ls
+    alias lr='ls -lR'          # recursive ls
+fi
+
 alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 
 # Suffix aliases
