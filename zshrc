@@ -76,9 +76,19 @@ if hash starship 2>/dev/null; then
     eval "$(starship init zsh)"
 fi
 
-# (re)build & initialize completions
+# (re)build & initialize completions, only once every 24 hours
 # Do this late since plugins, e.g. wd.zsh, may edit fpath
 # man zshcompsys
-compinit && bashcompinit
+() {
+  setopt extendedglob local_options
+
+  if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+    bashcompinit
+  else
+    compinit -C
+    bashcompinit -C
+  fi
+}
 
 # zprof
