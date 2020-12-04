@@ -96,6 +96,9 @@ endif
 " Add a ~/.vim.user path for local settings we don't want in dotfiles
 set runtimepath+=$HOME/.vim.user
 
+" vim-polyglot requires this come befor plugins are loaded
+let g:polyglot_disabled = ['go']
+
 " After everything else, load all plugins and load all helptags
 " Thanks to https://github.com/w0rp/ale#generating-vim-help-files
 
