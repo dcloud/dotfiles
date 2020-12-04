@@ -38,11 +38,11 @@
     wsErrorHighlight = all
     colorMoved = zebra
 [difftool "fugitive"]
-    cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+    cmd = vim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [merge]
     tool = fugitive
 [mergetool "fugitive"]
-    cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+    cmd = vim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [alias]
     bl = blame
     br = branch
