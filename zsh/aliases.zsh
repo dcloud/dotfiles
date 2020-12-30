@@ -51,7 +51,7 @@ alias df='df -kTh'
 
 if hash exa 2> /dev/null; then
     alias ls='exa'
-    alias ll='exa -l'
+    alias ll='exa -la'
     alias lr='exa -lR'
 else
     alias ls='ls -hFG'         # Colors, size units, differentiate files/folders/symlinks
