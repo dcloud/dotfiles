@@ -47,6 +47,6 @@ nnoremap <leader>; ms:norm A;<CR>`s
 " char 201D: ”
 " char 201E: „
 " char 201F: ‟
-nnoremap <leader>' :.s/\(\%u2018\\|\%u2019\)/"/g
-nnoremap <leader>" :.s/\(\%u201C\\|\%u201D\)/"/g
+nnoremap <leader>' :.s/\(\%u2018\\|\%u2019\)/'/g<CR>
+nnoremap <leader>" :.s/\(\%u201C\\|\%u201D\)/"/g<CR>
 
