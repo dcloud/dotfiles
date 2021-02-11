@@ -11,18 +11,24 @@ let g:ale_linters = {
 " ALE fix-on-save
 let g:ale_fix_on_save = 0
 
+function! EchoALEFixOnSaveStatus()
+    echom 'ALE FixOnSave is:' g:ale_fix_on_save ? 'ON' : 'OFF'
+endfunction
+
 function! ToggleFixOnSave()
     if (g:ale_fix_on_save == 1)
         let g:ale_fix_on_save=0
     else
         let g:ale_fix_on_save=1
     endif
+    call EchoALEFixOnSaveStatus()
 endfunction
 
 command! -nargs=0 ToggleFixOnSave call ToggleFixOnSave()
+command! -nargs=0 ALEFixStatus call EchoALEFixOnSaveStatus()
 
-nnoremap fs :ToggleFixOnSave<CR>
-nnoremap ff :ALEFix<CR>
+nnoremap <F1> :ToggleFixOnSave<CR>
+nnoremap <F3> :ALEFix<CR>
 
 " ALE completion
 let g:ale_completion_enabled = 1
