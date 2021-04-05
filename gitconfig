@@ -47,6 +47,7 @@
     bl = blame
     br = branch
     biff = "!f() { base=${1-main}; rev=${2-HEAD}; git diff $(git merge-base $base $rev) $rev; }; f"
+    blg = "!f() { base=${1-main}; rev=${2-HEAD}; git log --pretty=format:'%Cred%h%Creset %s %C(bold blue)<%an>%Creset' --numstat $(git merge-base $base $rev)..$rev; }; f"
     bog = "!f() { base=${1-main}; rev=${2-HEAD}; git log $(git merge-base $base $rev)..$rev; }; f"
     changes = diff --stat
     ci = commit
@@ -63,7 +64,7 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     new = checkout -b
     pub = publish
-    publish = "!f() { branch=${2-$(git rev-parse --abbrev-ref HEAD)}; remote=${1-$(git remote)}; git push -u $remote $branch; }; f"
+    publish = "!f() { branch=${2-$(git rev-parse --abbrev-ref HEAD)}; remote=${1-$(git remote | head -n 1)}; git push -u $remote $branch; }; f"
     puff = pull --ff-only
     s = status
     sha = rev-parse --short --default HEAD
