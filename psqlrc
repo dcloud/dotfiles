@@ -1,6 +1,21 @@
+\set QUIET 1
+
+\set HISTCONTROL ignoredups
 \set COMP_KEYWORD_CASE upper
+
 \x auto
+\set ON_ERROR_STOP on
+\set ON_ERROR_ROLLBACK interactive
+
 \pset null '[NULL]'
 \pset linestyle unicode
-\pset border 2
-\set HISTCONTROL ignoredups
+
+\pset unicode_border_linestyle single
+\pset unicode_column_linestyle single
+\pset unicode_header_linestyle double
+
+set intervalstyle to 'postgres_verbose';
+
+\setenv LESS '-iMFXSx4R'
+
+\unset QUIET
