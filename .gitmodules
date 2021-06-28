@@ -71,3 +71,9 @@
 [submodule "vim/pack/dcloud/start/vim-go"]
 	path = vim/pack/dcloud/start/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule "vim/pack/dcloud/start/vim-dadbod"]
+	path = vim/pack/dcloud/start/vim-dadbod
+	url = https://github.com/tpope/vim-dadbod
+[submodule "vim/pack/dcloud/start/vim-dispatch"]
+	path = vim/pack/dcloud/start/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
