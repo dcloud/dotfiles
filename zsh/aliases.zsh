@@ -44,3 +44,7 @@ alias pip="noglob pip"
 
 # Shortcut for finding processes, displaying friendly output
 alias p='pgrep -l'
+
+# mdls is a macOS application for listing file metadata attributes
+# mdid for easily getting bundle identifiers, useful with `open` cmd
+alias mdid='mdls -name kMDItemCFBundleIdentifier'
