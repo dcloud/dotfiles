@@ -74,3 +74,6 @@
 [submodule "vim/pack/dcloud/start/vim-dispatch"]
 	path = vim/pack/dcloud/start/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
+[submodule "vim/pack/dcloud/start/fugitive-azure-devops.vim"]
+	path = vim/pack/dcloud/start/fugitive-azure-devops.vim
+	url = https://github.com/cedarbaum/fugitive-azure-devops.vim
