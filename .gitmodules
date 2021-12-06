@@ -77,3 +77,4 @@
 [submodule "vim/pack/dcloud/start/fugitive-azure-devops.vim"]
 	path = vim/pack/dcloud/start/fugitive-azure-devops.vim
 	url = https://github.com/cedarbaum/fugitive-azure-devops.vim
+    ignore = untracked
