@@ -10,7 +10,7 @@ This was created on a computer running macOS, so many pieces are macOS-specific.
 1. Make sure you have developer tools installed: `xcode-select --install && sudo xcodebuild -license accept` or install Xcode and run command line tools installer.
 1. Install [Homebrew](https://brew.sh): `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 1. `cd ~/.dotfiles` and run `brew bundle`. You may need to enter your password. Check out `Brewfile` if you want to see what will be installed.
-1. Use `rcm` (should be installed by `Brewfile`) to install the dotfiles: `rcup -x "README* LICENSE Brewfile iterm2"`
+1. Use `rcm` (should be installed by `Brewfile`) to install the dotfiles: `RCRC=~/.dotfiles/rcrc rcup`
 1. Install Atom packages. There are multiple packages files, split up by purpose. You can get a baseline of packages via: `apm install --packages-file ~/.dotfiles/atom/packages-base.txt`
 1. Install vim packages: `git submodule update --init --recursive vim/pack/dcloud/start`
 1. Install the [`tmux` plugin manager](https://github.com/tmux-plugins/tpm):
