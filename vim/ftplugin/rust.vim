@@ -1,4 +1,4 @@
-" Rush filetype plugin
+" Rust filetype plugin
 
 " Enable ALE fixers
 
