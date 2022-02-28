@@ -17,7 +17,14 @@ set shiftround             " >> indents to next multiple of 'shiftwidth'.
 set backspace   =indent,eol,start  " Make backspace work as you would expect.
 set hidden                 " Switch between buffers without having to save first.
 set laststatus  =2         " Always show statusline.
-set display     =lastline  " Show as much as possible of the last line.
+
+if !&scrolloff
+  set scrolloff=1
+endif
+if !&sidescrolloff
+  set sidescrolloff=5
+endif
+set display     +=lastline  " Show as much as possible of the last line.
 set number                 " Show line numbers
 
 set noshowmode             " Show current mode in command-line.
@@ -42,9 +49,9 @@ set synmaxcol   =400       " Only highlight the first ### columns.
 
 set list                   " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
-  let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±,eol:¬'
+  let &listchars = 'tab:▸\ ,trail:□,extends:❯,precedes:❮,nbsp:±,eol:¬'
 else
-  let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.,eol:¬'
+  let &listchars = 'tab:>\ ,trail:-,extends:>,precedes:<,nbsp:.,eol:¬'
 endif
 
 
