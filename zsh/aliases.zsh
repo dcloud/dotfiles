@@ -32,6 +32,7 @@ if hash exa 2> /dev/null; then
     alias ls='exa'
     alias ll='exa -la'
     alias lr='exa -lR'
+    alias tree='exa -T'
 else
     alias ls='ls -hFG'         # Colors, size units, differentiate files/folders/symlinks
     alias ll='ls -alF'         # long list ls
