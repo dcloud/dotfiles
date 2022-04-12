@@ -90,3 +90,6 @@
 [submodule "vim/pack/dcloud/start/asyncomplete-lsp.vim"]
 	path = vim/pack/dcloud/start/asyncomplete-lsp.vim
 	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim.git
+[submodule "vim/pack/dcloud/start/emmet-vim"]
+	path = vim/pack/dcloud/start/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
