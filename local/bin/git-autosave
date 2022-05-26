@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+HAS_CHANGES=$(git status --porcelain);
+
+if [[ -n "$HAS_CHANGES" ]]; then
+    git pull --ff-only;
+    git add .;
+    commit_message="Saved: $(date '+%Y-%m-%d %H:%M:%S')";
+    git commit -m "$commit_message";
+else
+    echo "Nothing to save";
+fi
