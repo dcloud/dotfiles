@@ -16,9 +16,6 @@
 [submodule "vim/pack/dcloud/start/vim-commentary"]
 	path = vim/pack/dcloud/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule "vim/pack/dcloud/start/plugins/vim-tmux-focus-events"]
-	path = vim/pack/dcloud/start/vim-tmux-focus-events
-	url = https://github.com/tmux-plugins/vim-tmux-focus-events.git
 [submodule "vim/pack/dcloud/start/vim-diminactive"]
 	path = vim/pack/dcloud/start/vim-diminactive
 	url = https://github.com/blueyed/vim-diminactive.git
