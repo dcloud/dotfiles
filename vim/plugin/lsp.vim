@@ -32,3 +32,5 @@ augroup lsp_install
 augroup END
 
 
+" Disable LSP diagnostics: conflicts with ALE
+let g:lsp_diagnostics_enabled = 0
