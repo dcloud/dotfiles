@@ -35,3 +35,5 @@ let g:ale_completion_enabled = 1
 set omnifunc=ale#completion#OmniFunc
 
 
+" Airline status
+let g:airline#extensions#ale#enabled = 1
