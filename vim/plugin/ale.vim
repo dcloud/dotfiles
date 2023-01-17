@@ -31,6 +31,7 @@ nnoremap <F1> :ToggleFixOnSave<CR>
 nnoremap <F3> :ALEFix<CR>
 
 " ALE completion
-" let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
 
 
