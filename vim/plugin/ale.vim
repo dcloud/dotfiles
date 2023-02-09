@@ -3,7 +3,7 @@
 let g:ale_sign_error = '🔥'
 let g:ale_javascript_eslint_suppress_missing_config = 10
 let g:ale_linters = {
-\   'javascript': ['eslint', 'flow'],
+\   'javascript': ['eslint'],
 \   'markdown': [],
 \   'python': ['flake8'],
 \}
