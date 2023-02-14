@@ -1,7 +1,11 @@
 " ALE config
 
 let g:ale_sign_error = '🔥'
+" Turn off virtualtext: messes up rendering sometimes
+let g:ale_virtualtext_cursor=0
 let g:ale_javascript_eslint_suppress_missing_config = 10
+
+" Linter defaults
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'markdown': [],
