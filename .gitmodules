@@ -78,3 +78,6 @@
 [submodule "vim/pack/dcloud/start/emmet-vim"]
 	path = vim/pack/dcloud/start/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "vim/pack/dcloud/start/vim-mermaid"]
+	path = vim/pack/dcloud/start/vim-mermaid
+	url = https://github.com/craigmac/vim-mermaid.git
