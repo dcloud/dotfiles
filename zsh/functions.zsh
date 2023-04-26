@@ -27,7 +27,7 @@ function pynit {
 
 # What's running on a port
 function wop() {
-    cmd="lsof -i -P -n | grep LISTEN | grep :$1"
+    cmd="lsof -i -P :$1 -n"
     echo -e "\e[2m$cmd\e[0m"
     lsof -i -P -n | grep LISTEN | grep :$1
     local exitcode=$?
