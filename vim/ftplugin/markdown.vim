@@ -2,6 +2,9 @@
 
 setlocal spell
 setlocal linebreak
+setlocal breakindent
+setlocal breakindentopt=column:2,sbr
+setlocal showbreak=↪
 
 " vim-markdown
 let g:vim_markdown_conceal = 0
