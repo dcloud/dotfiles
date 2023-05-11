@@ -27,9 +27,9 @@ function pynit {
 
 # What's running on a port
 function wop() {
-    cmd="lsof -i -P :$1 -n"
+    cmd="lsof -P -i :$1 -n"
     echo -e "\e[2m$cmd\e[0m"
-    lsof -i -P -n | grep LISTEN | grep :$1
+    eval "$cmd";
     local exitcode=$?
     if [ $exitcode -ne 0 ]; then
         echo "Nothing listening on port $1";
