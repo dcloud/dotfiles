@@ -8,7 +8,7 @@ let g:ale_javascript_eslint_suppress_missing_config = 10
 " Linter defaults
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'markdown': [],
+\   'markdown': ['vale'],
 \   'python': ['flake8'],
 \}
 
