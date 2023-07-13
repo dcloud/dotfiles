@@ -49,6 +49,7 @@
     biff = "!f() { base=${1-main}; rev=${2-HEAD}; git diff $(git merge-base $base $rev) $rev; }; f"
     blg = "!f() { base=${1-main}; rev=${2-HEAD}; git log --pretty=format:'%Cred%h%Creset %s %C(bold blue)<%an>%Creset' --numstat $(git merge-base $base $rev)..$rev; }; f"
     bog = "!f() { base=${1-main}; rev=${2-HEAD}; git log $(git merge-base $base $rev)..$rev; }; f"
+    byline = "!f() { pat=${1}; git log --graph --all --decorate --branches --author=$pat; }; f"
     changes = diff --stat
     ci = commit
     co = checkout
