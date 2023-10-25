@@ -59,12 +59,12 @@ main() {
         # echo "'${char}'";
         if [[ "$char" =~ ^[A-Z]$ ]]; then
             echo "${nato[$char]}"
+        elif [[ "$char" =~ \s* ]]; then
+            echo;
         else
             echo "$char";
         fi
     done
-
-    echo "FIXME: $nato[Z]"
 }
 
 usage() {
