@@ -1,0 +1,87 @@
+#!/usr/bin/env zsh
+
+# `man zshoptions`
+# -e     ERR_EXIT
+# -u     NO_UNSET
+# -o pipefail | PIPE_FAIL
+set -euo pipefail
+IFS=$'\n\t'
+
+typeset -A nato=(
+A Alfa
+B Bravo
+C Charlie
+D Delta
+E Echo
+F Foxtrot
+G Golf
+H Hotel
+I India
+J Juliett
+K Kilo
+L Lima
+M Mike
+N November
+O Oscar
+P Papa
+Q Quebec
+R Romeo
+S Sierra
+T Tango
+U Uniform
+V Victor
+W Whiskey
+X X-ray
+Y Yankee
+Z Zulu
+);
+
+main() {
+    while getopts "h" opt; do
+        case $opt in
+            h)
+                usage
+                help
+                exit
+                ;;
+            \?)
+                echo "Invalid option" >&2
+                echo
+                ;;
+        esac
+    done
+
+    input="$@";
+    input_len="${#input}";
+
+    for ((i=1; i<$input_len+1; i++)) do
+        char="${input[$i]:u}"
+        # echo "'${char}'";
+        if [[ "$char" =~ ^[A-Z]$ ]]; then
+            echo "${nato[$char]}"
+        else
+            echo "$char";
+        fi
+    done
+
+    echo "FIXME: $nato[Z]"
+}
+
+usage() {
+    # shellcheck disable=SC2086
+    cat <<EOF >&2
+Translates an input string into phonetic spelling
+Usage: $(basename $0) [-h] FIXME
+Options:
+  -h    FIXME: print usage extra help
+EOF
+}
+
+help() {
+    cat <<EOF >&2
+Examples:
+    FIXME: example script usage
+EOF
+}
+
+main "${@:-}"
