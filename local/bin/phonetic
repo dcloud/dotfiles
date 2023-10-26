@@ -155,7 +155,66 @@ W Wednesday
 X Xmas
 Y Yellow
 Z Zebra
-)
+);
+
+local -A royalnavy=(
+A Apples
+B Butter
+C Charlie
+D Duff
+E Edward
+F Freddy
+G George
+H Harry
+I Ink
+J Johnnie
+K King
+L London
+M Monkey
+N Nuts
+O Orange
+P Pudding
+Q Queenie
+R Robert
+S Sugar
+T Tommy
+U Uncle
+V Vinegar
+W Willie
+X Xerxes
+Y Yellow
+Z Zebra
+);
+
+local -A tasmania=(
+A Authority
+B Bills
+C Capture
+D Destroy
+E Englishmen
+F Fractious
+G Galloping
+H High
+I Invariably
+J Juggling
+K Knights
+L Loose
+M Managing
+N Never
+O Owners
+P Play
+Q Queen
+R Remarks
+S Support
+T The
+U Unless
+V Vindictive
+W When
+X eXpeditely
+Y Your
+Z Zigzag
+);
+
 # typeset, then set is necessary for proper array copying
 typeset -A alphabet;
 set -A alphabet ${(kv)nato};
@@ -169,7 +228,7 @@ Translates an input string into phonetic spelling
 Usage:  $cmdname [options] [words to translate...]
 Options:
   -h, --help             print help
-  -a, --alphabet=NAME    select an alphabet. Accepted values: att, ict, nato (default), westernunion
+  -a, --alphabet=NAME    select an alphabet. Accepted values: att, ict, nato (default), royalnavy, tasmania, westernunion
 EOF
     exit 0;
 }
@@ -179,6 +238,8 @@ set_alphabet () {
         att ) set -A alphabet ${(kv)att};;
         itc ) set -A alphabet ${(kv)itc};;
         nato ) set -A alphabet ${(kv)nato};;
+        royalnavy ) set -A alphabet ${(kv)royalnavy};;
+        tasmania ) set -A alphabet ${(kv)tasmania};;
         westernunion ) set -A alphabet ${(kv)westernunion};;
         * ) fail "Unknown alphabet \"$1\"";;
     esac
