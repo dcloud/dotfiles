@@ -230,7 +230,7 @@ Translates an input string into phonetic spelling
 Usage:  $cmdname [options] [words to translate...]
 Options:
   -h, --help             print help
-  -a, --alphabet=NAME    select an alphabet. Accepted values: att, ict, nato (default), royalnavy, tasmania, westernunion
+  -a, --alphabet=NAME    select an alphabet. Accepted values: att, itc, nato (default), royalnavy, tasmania, westernunion
 EOF
     exit 0;
 }
