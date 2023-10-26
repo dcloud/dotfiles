@@ -1,0 +1,296 @@
+#!/usr/bin/env zsh
+
+# Option parsing example: https://gist.github.com/webb/ff380b0eee96dafe1c20c2a136d85ef0
+# Alphabets lifted from: https://en.m.wikipedia.org/wiki/Spelling_alphabet
+
+# `man zshoptions`
+# -e     ERR_EXIT
+# -u     NO_UNSET
+# -o pipefail | PIPE_FAIL
+set -eu
+set -o PIPE_FAIL
+set -o BRACE_CCL
+IFS=$'\n\t'
+
+cmdname=$(basename $0);
+
+local -A nato=(
+A Alfa
+B Bravo
+C Charlie
+D Delta
+E Echo
+F Foxtrot
+G Golf
+H Hotel
+I India
+J Juliett
+K Kilo
+L Lima
+M Mike
+N November
+O Oscar
+P Papa
+Q Quebec
+R Romeo
+S Sierra
+T Tango
+U Uniform
+V Victor
+W Whiskey
+X X-ray
+Y Yankee
+Z Zulu
+);
+
+local -A itc=(
+A Amsterdam
+B Baltimore
+C Casablanca
+D Danemark
+E Edison
+F Florida
+G Gallipoli
+H Havana
+I Italia
+J Jude
+K Kilogramme
+L Liverpool
+M Madagascar
+N New\ York
+O Oslo
+P Paris
+Q Quebec
+R Roma
+S Santiago
+T Tripoli
+U Upsala
+V Valencia
+W Washington
+X Xanthippe
+Y Yokohama
+Z Zurich
+);
+
+local -A westernunion=(
+A Adams
+B Boston
+C Chicago
+D Denver
+E Edward
+F Frank
+G George
+H Henry
+I Ida
+J John
+K King
+L Lincoln
+M Mary
+N New\ York
+O Ocean
+P Peter
+Q Queen
+R Robert
+S Sugar
+T Thomas
+U Union
+V Victory
+W William
+X X-ray
+Y Young
+Z Zero
+);
+
+local -A att=(
+A Alice
+B Bertha
+C Charles
+D David
+E Edward
+F Frank
+G George
+H Henry
+I Ida
+J James
+K Kate
+L Louis
+M Mary
+N Nelly
+O Oliver
+P Peter
+Q Quaker
+R Robert
+S Samuel
+T Thomas
+U Utah
+V Victor
+W William
+X X-Ray
+Y Young
+Z Zebra
+);
+
+local -A britishpo=(
+A Apple
+B Brother
+C Charlie
+D Dover
+E Eastern
+F Father
+G George
+H Harry
+I India
+J Jack
+K King
+L London
+M Mother
+N November
+O October
+P Peter
+Q Queen
+R Robert
+S Sugar
+T Thomas
+U Uncle
+V Victoria
+W Wednesday
+X Xmas
+Y Yellow
+Z Zebra
+);
+
+local -A royalnavy=(
+A Apples
+B Butter
+C Charlie
+D Duff
+E Edward
+F Freddy
+G George
+H Harry
+I Ink
+J Johnnie
+K King
+L London
+M Monkey
+N Nuts
+O Orange
+P Pudding
+Q Queenie
+R Robert
+S Sugar
+T Tommy
+U Uncle
+V Vinegar
+W Willie
+X Xerxes
+Y Yellow
+Z Zebra
+);
+
+local -A tasmania=(
+A Authority
+B Bills
+C Capture
+D Destroy
+E Englishmen
+F Fractious
+G Galloping
+H High
+I Invariably
+J Juggling
+K Knights
+L Loose
+M Managing
+N Never
+O Owners
+P Play
+Q Queen
+R Remarks
+S Support
+T The
+U Unless
+V Vindictive
+W When
+X eXpeditely
+Y Your
+Z Zigzag
+);
+
+# typeset, then set is necessary for proper array copying
+typeset -A alphabet;
+set -A alphabet ${(kv)nato};
+
+fail () { echo "Error: $*" >&2; exit 1;  }
+
+print_help() {
+    # shellcheck disable=SC2086
+    cat <<EOF >&2
+Translates an input string into phonetic spelling
+Usage:  $cmdname [options] [words to translate...]
+Options:
+  -h, --help             print help
+  -a, --alphabet=NAME    select an alphabet. Accepted values: att, ict, nato (default), royalnavy, tasmania, westernunion
+EOF
+    exit 0;
+}
+
+set_alphabet () {
+    case $1 in
+        att ) set -A alphabet ${(kv)att};;
+        itc ) set -A alphabet ${(kv)itc};;
+        nato ) set -A alphabet ${(kv)nato};;
+        royalnavy ) set -A alphabet ${(kv)royalnavy};;
+        tasmania ) set -A alphabet ${(kv)tasmania};;
+        westernunion ) set -A alphabet ${(kv)westernunion};;
+        * ) fail "Unknown alphabet \"$1\"";;
+    esac
+}
+
+main() {
+    while getopts ":a:h-:" opt; do
+        case $opt in
+            h)
+                print_help
+                exit
+                ;;
+            a)
+                set_alphabet "${OPTARG%%=*}";
+                ;;
+            -) case $OPTARG in
+                alphabet=* ) set_alphabet ${OPTARG#*=};;
+                help ) print_help;;
+                * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
+                esac;;
+            : ) fail "Short option \"$OPTARG\" missing argument";;
+            \?)
+                fail "Invalid option"
+                exit
+                ;;
+        esac
+    done
+
+    shift $((OPTIND-1))
+
+    letters=({A..Z});
+
+    input="$@";
+    input="${input:-${(j::)letters}}"
+    input_len="${#input}";
+
+    # echo "$alphabet";
+
+    for ((i=1; i<$input_len+1; i++)) do
+        char="${input[$i]:u}"
+        # echo "'${char}'";
+        if [[ "$char" =~ ^[A-Z]$ ]]; then
+            echo "${alphabet[$char]}"
+        elif [[ "$char" =~ [[:space:]]+ ]]; then
+            echo;
+        else
+            echo "$char";
+        fi
+    done
+}
+
+main "${@:-}"
