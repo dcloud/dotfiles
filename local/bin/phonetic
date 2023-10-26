@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# Option parsing example: https://gist.github.com/webb/ff380b0eee96dafe1c20c2a136d85ef0
+# Alphabets lifted from: https://en.m.wikipedia.org/wiki/Spelling_alphabet
+
 # `man zshoptions`
 # -e     ERR_EXIT
 # -u     NO_UNSET
@@ -67,6 +70,92 @@ Y Yokohama
 Z Zurich
 );
 
+local -A westernunion=(
+A Adams
+B Boston
+C Chicago
+D Denver
+E Edward
+F Frank
+G George
+H Henry
+I Ida
+J John
+K King
+L Lincoln
+M Mary
+N New\ York
+O Ocean
+P Peter
+Q Queen
+R Robert
+S Sugar
+T Thomas
+U Union
+V Victory
+W William
+X X-ray
+Y Young
+Z Zero
+);
+
+local -A att=(
+A Alice
+B Bertha
+C Charles
+D David
+E Edward
+F Frank
+G George
+H Henry
+I Ida
+J James
+K Kate
+L Louis
+M Mary
+N Nelly
+O Oliver
+P Peter
+Q Quaker
+R Robert
+S Samuel
+T Thomas
+U Utah
+V Victor
+W William
+X X-Ray
+Y Young
+Z Zebra
+);
+
+local -A britishpo=(
+A Apple
+B Brother
+C Charlie
+D Dover
+E Eastern
+F Father
+G George
+H Harry
+I India
+J Jack
+K King
+L London
+M Mother
+N November
+O October
+P Peter
+Q Queen
+R Robert
+S Sugar
+T Thomas
+U Uncle
+V Victoria
+W Wednesday
+X Xmas
+Y Yellow
+Z Zebra
+)
 # typeset, then set is necessary for proper array copying
 typeset -A alphabet;
 set -A alphabet ${(kv)nato};
@@ -80,15 +169,17 @@ Translates an input string into phonetic spelling
 Usage:  $cmdname [options] [words to translate...]
 Options:
   -h, --help             print help
-  -a, --alphabet=NAME    select an alphabet
+  -a, --alphabet=NAME    select an alphabet. Accepted values: att, ict, nato (default), westernunion
 EOF
     exit 0;
 }
 
 set_alphabet () {
     case $1 in
-        itc1958 ) set -A alphabet ${(kv)itc};;
+        att ) set -A alphabet ${(kv)att};;
+        itc ) set -A alphabet ${(kv)itc};;
         nato ) set -A alphabet ${(kv)nato};;
+        westernunion ) set -A alphabet ${(kv)westernunion};;
         * ) fail "Unknown alphabet \"$1\"";;
     esac
 }
