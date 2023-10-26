@@ -9,7 +9,7 @@ IFS=$'\n\t'
 
 cmdname=$(basename $0);
 
-typeset -A nato=(
+local -A nato=(
 A Alfa
 B Bravo
 C Charlie
@@ -38,6 +38,35 @@ Y Yankee
 Z Zulu
 );
 
+local -A itc=(
+A Amsterdam
+B Baltimore
+C Casablanca
+D Danemark
+E Edison
+F Florida
+G Gallipoli
+H Havana
+I Italia
+J Jude
+K Kilogramme
+L Liverpool
+M Madagascar
+N New\ York
+O Oslo
+P Paris
+Q Quebec
+R Roma
+S Santiago
+T Tripoli
+U Upsala
+V Valencia
+W Washington
+X Xanthippe
+Y Yokohama
+Z Zurich
+);
+
 fail () { echo "Error: $*" >&2; exit 1;  }
 
 print_help() {
@@ -52,6 +81,10 @@ EOF
 }
 
 main() {
+    # typeset, then set is necessary for proper array copying
+    typeset -A lookup;
+    set -A lookup ${(kv)nato};
+
     while getopts "h-:" opt; do
         case $opt in
             h)
@@ -59,6 +92,7 @@ main() {
                 exit
                 ;;
             -) case $OPTARG in
+                itc1958 ) set -A lookup ${(kv)itc};;
                 help ) print_help;;
                 * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
                 esac;;
@@ -69,14 +103,18 @@ main() {
         esac
     done
 
+    shift $((OPTIND-1))
+
     input="$@";
     input_len="${#input}";
+
+    # echo "$lookup";
 
     for ((i=1; i<$input_len+1; i++)) do
         char="${input[$i]:u}"
         # echo "'${char}'";
         if [[ "$char" =~ ^[A-Z]$ ]]; then
-            echo "${nato[$char]}"
+            echo "${lookup[$char]}"
         elif [[ "$char" =~ [[:space:]]+ ]]; then
             echo;
         else
