@@ -7,7 +7,9 @@
 # -e     ERR_EXIT
 # -u     NO_UNSET
 # -o pipefail | PIPE_FAIL
-set -euo pipefail
+set -eu
+set -o PIPE_FAIL
+set -o BRACE_CCL
 IFS=$'\n\t'
 
 cmdname=$(basename $0);
@@ -270,7 +272,10 @@ main() {
 
     shift $((OPTIND-1))
 
+    letters=({A..Z});
+
     input="$@";
+    input="${input:-${(j::)letters}}"
     input_len="${#input}";
 
     # echo "$alphabet";
