@@ -67,6 +67,10 @@ Y Yokohama
 Z Zurich
 );
 
+# typeset, then set is necessary for proper array copying
+typeset -A alphabet;
+set -A alphabet ${(kv)nato};
+
 fail () { echo "Error: $*" >&2; exit 1;  }
 
 print_help() {
@@ -75,27 +79,36 @@ print_help() {
 Translates an input string into phonetic spelling
 Usage:  $cmdname [options] [words to translate...]
 Options:
-  -h, --help    print help
+  -h, --help             print help
+  -a, --alphabet=NAME    select an alphabet
 EOF
     exit 0;
 }
 
-main() {
-    # typeset, then set is necessary for proper array copying
-    typeset -A lookup;
-    set -A lookup ${(kv)nato};
+set_alphabet () {
+    case $1 in
+        itc1958 ) set -A alphabet ${(kv)itc};;
+        nato ) set -A alphabet ${(kv)nato};;
+        * ) fail "Unknown alphabet \"$1\"";;
+    esac
+}
 
-    while getopts "h-:" opt; do
+main() {
+    while getopts ":a:h-:" opt; do
         case $opt in
             h)
                 print_help
                 exit
                 ;;
+            a)
+                set_alphabet "${OPTARG%%=*}";
+                ;;
             -) case $OPTARG in
-                itc1958 ) set -A lookup ${(kv)itc};;
+                alphabet=* ) set_alphabet ${OPTARG#*=};;
                 help ) print_help;;
                 * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
                 esac;;
+            : ) fail "Short option \"$OPTARG\" missing argument";;
             \?)
                 fail "Invalid option"
                 exit
@@ -108,13 +121,13 @@ main() {
     input="$@";
     input_len="${#input}";
 
-    # echo "$lookup";
+    # echo "$alphabet";
 
     for ((i=1; i<$input_len+1; i++)) do
         char="${input[$i]:u}"
         # echo "'${char}'";
         if [[ "$char" =~ ^[A-Z]$ ]]; then
-            echo "${lookup[$char]}"
+            echo "${alphabet[$char]}"
         elif [[ "$char" =~ [[:space:]]+ ]]; then
             echo;
         else
