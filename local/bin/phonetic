@@ -7,6 +7,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+cmdname=$(basename $0);
+
 typeset -A nato=(
 A Alfa
 B Bravo
@@ -36,17 +38,33 @@ Y Yankee
 Z Zulu
 );
 
+fail () { echo "Error: $*" >&2; exit 1;  }
+
+print_help() {
+    # shellcheck disable=SC2086
+    cat <<EOF >&2
+Translates an input string into phonetic spelling
+Usage:  $cmdname [options] [words to translate...]
+Options:
+  -h, --help    print help
+EOF
+    exit 0;
+}
+
 main() {
-    while getopts "h" opt; do
+    while getopts "h-:" opt; do
         case $opt in
             h)
-                usage
-                help
+                print_help
                 exit
                 ;;
+            -) case $OPTARG in
+                help ) print_help;;
+                * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
+                esac;;
             \?)
-                echo "Invalid option" >&2
-                echo
+                fail "Invalid option"
+                exit
                 ;;
         esac
     done
@@ -65,23 +83,6 @@ main() {
             echo "$char";
         fi
     done
-}
-
-usage() {
-    # shellcheck disable=SC2086
-    cat <<EOF >&2
-Translates an input string into phonetic spelling
-Usage: $(basename $0) [-h] FIXME
-Options:
-  -h    FIXME: print usage extra help
-EOF
-}
-
-help() {
-    cat <<EOF >&2
-Examples:
-    FIXME: example script usage
-EOF
 }
 
 main "${@:-}"
