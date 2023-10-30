@@ -284,7 +284,8 @@ main() {
         char="${input[$i]:u}"
         # echo "'${char}'";
         if [[ "$char" =~ ^[A-Z]$ ]]; then
-            echo "${alphabet[$char]}"
+            word="${alphabet[$char]}";
+            echo "\\033[30;47m${word::1}\\033[0m${word:1}"
         elif [[ "$char" =~ [[:space:]]+ ]]; then
             echo;
         else
