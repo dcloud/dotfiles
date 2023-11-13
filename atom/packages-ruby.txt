@@ -1,3 +1,0 @@
-linter
-linter-ui-default
-linter-rubocop
