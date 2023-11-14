@@ -15,13 +15,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
         {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+        "sheerun/vim-polyglot",
         "neovim/nvim-lspconfig",
+        "ray-x/go.nvim",
         "nvim-lualine/lualine.nvim",
         {
             "romgrk/barbar.nvim",
             init = function() vim.g.barbar_auto_setup = false end,
             opts = { icons = { button = '⨯', filetype = { enabled = false}}}
         },
+        "dense-analysis/ale",
         "tpope/vim-commentary",
         "tpope/vim-dadbod",
         "tpope/vim-fugitive",
@@ -76,6 +79,10 @@ require'lspconfig'.lua_ls.setup {
     return true
   end
 }
+
+
+-- dense-analysis/ale: Linter/Fixer
+vim.g.ale_fixers['*'] = { 'remove_trailing_lines', 'trim_whitespace' }
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

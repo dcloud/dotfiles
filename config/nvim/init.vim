@@ -33,3 +33,8 @@ autocmd InsertEnter,WinLeave * set nocursorline
 
 " Load lua lsp stuff
 lua require('init')
+
+" treesitter folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
