@@ -26,6 +26,7 @@ require("lazy").setup({
         "tpope/vim-dadbod",
         "tpope/vim-fugitive",
         "tpope/vim-surround",
+        "lewis6991/gitsigns.nvim",
         "junegunn/fzf",
         { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
         "junegunn/fzf.vim",
@@ -49,6 +50,32 @@ require'nvim-treesitter.configs'.setup({
 -- lspconfig
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.gopls.setup{}
+require'lspconfig'.lua_ls.setup {
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+    if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
+      client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT'
+          },
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME
+            }
+          }
+        }
+      })
+
+      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+    end
+    return true
+  end
+}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -94,31 +121,35 @@ npairs.setup({
     check_ts = true,
 })
 
+-- gitsigns
+require('gitsigns').setup()
+
 -- ibl
 local highlight = {
     "RosePineHighlightLow",
 }
 
 local hooks = require "ibl.hooks"
+-- import colorscheme palette
+local palette = require('rose-pine.palette')
 -- create the highlight groups in the highlight setup hook, so they are reset
 -- every time the colorscheme changes
 hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-    vim.api.nvim_set_hl(0, "RosePineHighlightLow", { fg = "#21202e" })
+    vim.api.nvim_set_hl(0, "RosePineHighlightLow", { fg = palette.highlight_low })
 end)
 
 require("ibl").setup { indent = { highlight = highlight } }
 
 -- lualine
 -- disable icons as we aren't using a powerline font
-require('lualine').setup({ options = { icons_enabled = false }})
+local theme = require("lualine.themes.rose-pine")
+theme.normal.c.bg = palette.overlay
+theme.inactive.c.bg = palette.surface
+require('lualine').setup({ options = { theme = theme, icons_enabled = false }})
 
 -- configure colorscheme
 require('rose-pine').setup({
     dim_nc_background = true,
-    highlight_groups = {
-		StatusLine = { fg = "love", bg = "love", blend = 10 },
-		StatusLineNC = { fg = "subtle", bg = "surface" },
-	},
 })
 -- set colorscheme after options
 vim.cmd('colorscheme rose-pine')
