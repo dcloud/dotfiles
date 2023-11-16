@@ -113,4 +113,5 @@ let g:polyglot_disabled = ['go']
 
 packloadall
 
-silent! helptags ALL
+" (Re)generate helptags
+" silent! helptags ALL
