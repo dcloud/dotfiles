@@ -81,3 +81,6 @@
 [submodule "vim/pack/dcloud/start/vim-mermaid"]
 	path = vim/pack/dcloud/start/vim-mermaid
 	url = https://github.com/craigmac/vim-mermaid.git
+[submodule "vim/pack/dcloud/start/lsp"]
+	path = vim/pack/dcloud/start/lsp
+	url = https://github.com/yegappan/lsp
