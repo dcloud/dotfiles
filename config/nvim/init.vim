@@ -17,6 +17,9 @@ else
   let &listchars = 'tab:> ,trail:-,extends:>,precedes:<,nbsp:.,eol:↵'
 endif
 
+" Backup and undo options
+set backup
+set undofile
 
 " Add fzf to runtimepath
 set runtimepath+=/usr/local/opt/fzf
