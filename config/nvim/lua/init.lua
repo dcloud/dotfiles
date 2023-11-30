@@ -21,8 +21,11 @@ require("lazy").setup({
         "nvim-lualine/lualine.nvim",
         {
             "romgrk/barbar.nvim",
+            dependencies = {
+                "lewis6991/gitsigns.nvim",
+            },
             init = function() vim.g.barbar_auto_setup = false end,
-            opts = { icons = { button = '⨯', filetype = { enabled = false}}}
+            opts = { icons = { buffer_number = true, button = '⨯', filetype = { enabled = false}}}
         },
         "dense-analysis/ale",
         "hrsh7th/cmp-nvim-lsp",
@@ -36,7 +39,6 @@ require("lazy").setup({
         "tpope/vim-dadbod",
         "tpope/vim-fugitive",
         "tpope/vim-surround",
-        "lewis6991/gitsigns.nvim",
         "junegunn/fzf",
         { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
         "junegunn/fzf.vim",
