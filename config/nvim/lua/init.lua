@@ -37,7 +37,13 @@ require("lazy").setup({
         "hrsh7th/vim-vsnip-integ",
         "tpope/vim-commentary",
         "tpope/vim-dadbod",
-        "tpope/vim-fugitive",
+        {
+            "tpope/vim-fugitive",
+            dependencies = {
+                "tpope/vim-rhubarb"
+            }
+        },
+
         "tpope/vim-surround",
         "junegunn/fzf",
         { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
