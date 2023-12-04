@@ -19,6 +19,7 @@ endif
 
 " Backup and undo options
 set backup
+set backupdir=~/.local/state/nvim/backup//
 set undofile
 
 " Add fzf to runtimepath
