@@ -86,7 +86,7 @@ require("ibl").setup { indent = { highlight = highlight } }
 local theme = require("lualine.themes.rose-pine")
 theme.normal.c.bg = palette.overlay
 theme.inactive.c.bg = palette.surface
-require('lualine').setup({ options = { theme = theme, icons_enabled = false }})
+require('lualine').setup({ options = { show_filename_only = false, theme = theme, icons_enabled = false }})
 
 -- configure colorscheme
 require('rose-pine').setup({
