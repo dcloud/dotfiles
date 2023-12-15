@@ -35,5 +35,8 @@ set cursorline             " Find the current line quickly.
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
 
+" If Ripgrep is installed, use it as :grep program
+if executable('rg') | set grepformat+=%f:%l:%c:%m grepprg=rg\ --vimgrep\ --no-heading\ --smart-case | endif
+
 " Load lua lsp stuff
 lua require('init')

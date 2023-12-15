@@ -7,6 +7,7 @@ endif
 let g:loaded_ripgrep = 1
 
 if executable('rg')
-  let g:ackprg = 'rg --vimgrep'
+    let g:ackprg = 'rg --vimgrep'
+    set grepformat+=%f:%l:%c:%m grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 endif
 
