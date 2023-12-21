@@ -1,3 +1,6 @@
+-- Set mapleader
+vim.g.mapleader = " "
+
 -- lazy.nvim setup
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -13,44 +16,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-        {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
-        "sheerun/vim-polyglot",
-        "neovim/nvim-lspconfig",
-        "ray-x/go.nvim",
-        "nvim-lualine/lualine.nvim",
-        {
-            "romgrk/barbar.nvim",
-            dependencies = {
-                "lewis6991/gitsigns.nvim",
-            },
-            init = function() vim.g.barbar_auto_setup = false end,
-            opts = { icons = { buffer_number = true, button = '⨯', filetype = { enabled = false}}}
-        },
-        "dense-analysis/ale",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-cmdline",
-        "hrsh7th/nvim-cmp",
-        "hrsh7th/cmp-vsnip",
-        "hrsh7th/vim-vsnip",
-        "hrsh7th/vim-vsnip-integ",
-        "tpope/vim-commentary",
-        "tpope/vim-dadbod",
-        {
-            "tpope/vim-fugitive",
-            dependencies = {
-                "tpope/vim-rhubarb"
-            }
-        },
-
-        "tpope/vim-surround",
-        "junegunn/fzf",
-        { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-        "junegunn/fzf.vim",
-        { "windwp/nvim-autopairs", event = "InsertEnter", opts={} },
-        { 'rose-pine/neovim', name = 'rose-pine' },
-    })
+require("lazy").setup("plugins")
 
 -- dense-analysis/ale: Linter/Fixer
 vim.g.ale_fixers['*'] = { 'remove_trailing_lines', 'trim_whitespace' }
