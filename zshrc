@@ -1,4 +1,14 @@
 # zmodload zsh/zprof
+#
+
+# Brew zsh completions
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 
 # Load completions functions
 # man zshbuiltins (for autoload); man zshcompsys (for completion system)
@@ -22,39 +32,6 @@ DOTFILES=$HOME/.dotfiles
 ZSH_THEME="dcloud"
 
 export EDITOR='vim'
-
-if [[ -f /etc/paths ]]; then
-    # Store default value of PATH
-    DEFAULT_PATH=${"$(tr '\n' ':' < /etc/paths)":0:-1}
-    if [[ $PATH != $DEFAULT_PATH ]]; then
-        export PATH=$DEFAULT_PATH
-    fi
-fi
-
-export BREW_PREFIX=$(brew --prefix)
-
-if [[ -d $BREW_PREFIX/sbin && ":$PATH:" != *":$BREW_PREFIX/sbin:"* ]]; then
-    PATH=$BREW_PREFIX/sbin:$PATH
-    export PATH
-fi
-
-# MANPATH
-if [[ -d $BREW_PREFIX/share/man ]]; then
-    MANPATH=$BREW_PREFIX/share/man:$MANPATH
-    export MANPATH
-fi
-
-# NLTK
-export NLTK_DATA=$BREW_PREFIX/share/nltk_data
-
-# Android
-export ANDROID_HOME=$BREW_PREFIX/opt/android-sdk
-
-# Uncrustify
-export UNCRUSTIFY_CONFIG="$HOME/.uncrustify/uncrustify.cfg"
-
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
 
 # Adapted from https://github.com/holman/dotfiles/
 typeset -U config_files
