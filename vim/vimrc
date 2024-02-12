@@ -79,8 +79,6 @@ set runtimepath+=/usr/local/opt/fzf
 
 " Keymaps in vim/plugin/keymaps.vim
 
-" Plugin configs in vim/plugin, vim/after/plugin
-
 " git gutter
 if exists('&signcolumn')
     set signcolumn=yes
@@ -111,7 +109,33 @@ let g:polyglot_disabled = ['go']
 " After everything else, load all plugins and load all helptags
 " Thanks to https://github.com/w0rp/ale#generating-vim-help-files
 
-packloadall
+" Plugin configs in vim/plugin, vim/after/plugin
+call plug#begin()
+Plug 'Yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
+Plug 'blueyed/vim-diminactive'
+Plug 'davidhalter/jedi-vim'
+Plug 'dense-analysis/ale'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ervandew/supertab'
+Plug 'fatih/vim-go'
+Plug 'godlygeek/tabular'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf.vim'
+Plug 'mattn/emmet-vim'
+Plug 'mileszs/ack.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dadbod'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'yegappan/lsp'
+call plug#end()
 
 " (Re)generate helptags
 " silent! helptags ALL
