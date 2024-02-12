@@ -74,9 +74,6 @@ if !has('nvim')
     set viminfo     ='100,n$HOME/.vim/files/info/viminfo
 endif
 
-" Add fzf to runtimepath
-set runtimepath+=/usr/local/opt/fzf
-
 " Keymaps in vim/plugin/keymaps.vim
 
 " git gutter
@@ -121,7 +118,7 @@ Plug 'ervandew/supertab'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'mattn/emmet-vim'
 Plug 'mileszs/ack.vim'
 Plug 'sheerun/vim-polyglot'

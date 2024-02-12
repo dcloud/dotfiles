@@ -31,7 +31,12 @@ DOTFILES=$HOME/.dotfiles
 # Set name of the theme to load.
 ZSH_THEME="dcloud"
 
-export EDITOR='vim'
+EDITOR='vim'
+if type nvim &>/dev/null
+then
+    EDITOR='nvim'
+fi
+export EDITOR
 
 # Adapted from https://github.com/holman/dotfiles/
 typeset -U config_files

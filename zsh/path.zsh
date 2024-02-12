@@ -1,9 +1,6 @@
 # paths
 # Use `$path` array https://zsh.sourceforge.io/Guide/zshguide02.html#l24
 
-#python3
-PYTHON3_PATH=/usr/local/opt/python/libexec/bin
-
 # haskell
 CABAL_BIN=$HOME/.cabal/bin
 
