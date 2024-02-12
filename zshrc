@@ -2,9 +2,10 @@
 #
 
 # Brew zsh completions
+typeset -U fpath
 if type brew &>/dev/null
 then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 
   autoload -Uz compinit
   compinit
