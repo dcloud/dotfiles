@@ -28,11 +28,11 @@ alias mv='mv -i'
 alias du='du -kh'       # Makes a more readable output.
 alias df='df -kTh'
 
-if hash exa 2> /dev/null; then
-    alias ls='exa'
-    alias ll='exa -la'
-    alias lr='exa -lR'
-    alias tree='exa -T'
+if hash eza 2> /dev/null; then
+    alias ls='eza'
+    alias ll='eza -la'
+    alias lr='eza -lR'
+    alias tree='eza -T'
 else
     alias ls='ls -hFG'         # Colors, size units, differentiate files/folders/symlinks
     alias ll='ls -alF'         # long list ls
