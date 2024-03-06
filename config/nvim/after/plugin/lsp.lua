@@ -2,7 +2,7 @@
 local nvim_lsp = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local server_list = { 'pyright', 'rust_analyzer', 'zls' }
+local server_list = { 'ruff_lsp', 'rust_analyzer', 'zls' }
 for _, value in pairs(server_list ) do
   nvim_lsp[value].setup {
       capabilities = capabilities
