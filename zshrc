@@ -6,9 +6,6 @@ typeset -U fpath
 if type brew &>/dev/null
 then
   fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
-
-  autoload -Uz compinit
-  compinit
 fi
 
 # Load completions functions
