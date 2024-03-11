@@ -10,7 +10,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
 # Virtualenvwrapper, lazily
-if [[ -f $BREW_PREFIX/bin/virtualenvwrapper.sh ]]; then
+if [[ -f $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh ]]; then
     export VIRTUALENVWRAPPER_SCRIPT=$BREW_PREFIX/bin/virtualenvwrapper.sh
-    source $BREW_PREFIX/bin/virtualenvwrapper_lazy.sh
+    source $HOMEBREW_PREFIX/bin/virtualenvwrapper_lazy.sh
 fi
