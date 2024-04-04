@@ -39,10 +39,12 @@
     colorMoved = zebra
 [difftool "fugitive"]
     cmd = vim -f -c \"Gdiffsplit!\" \"$MERGED\"
+    layout = LOCAL,MERGED,REMOTE
 [merge]
     tool = fugitive
+    conflictstyle = diff3
 [mergetool "fugitive"]
-    cmd = vim -f -c \"Gdiffsplit!\" \"$MERGED\"
+    cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [alias]
     bl = blame
     br = branch
