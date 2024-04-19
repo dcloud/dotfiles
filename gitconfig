@@ -66,6 +66,7 @@
     lc = log ORIG_HEAD.. --stat --no-merges
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     new = checkout -b
+    old = branch -l --format '* %(color:blue)%(authordate:short) %(color:magenta reverse)%(align:16,left) %(authordate:relative) %(end)%(color:reset normal) %(refname:short)' --sort='-authordate'
     pub = publish
     publish = "!f() { branch=${2-$(git rev-parse --abbrev-ref HEAD)}; remote=${1-$(git remote | head -n 1)}; git push -u $remote $branch; }; f"
     puff = pull --ff-only
