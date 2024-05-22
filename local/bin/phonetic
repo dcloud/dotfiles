@@ -230,7 +230,9 @@ Translates an input string into phonetic spelling
 Usage:  $cmdname [options] [words to translate...]
 Options:
   -h, --help             print help
-  -a, --alphabet=NAME    select an alphabet. Accepted values: att, itc, nato (default), royalnavy, tasmania, westernunion
+  -a, --alphabet=NAME    select an alphabet. Accepted values:
+                            att, britishpo/bp, itc, nato (default),
+                            royalnavy/rn, tasmania/tz, westernunion/wu
 EOF
     exit 0;
 }
@@ -238,11 +240,16 @@ EOF
 set_alphabet () {
     case $1 in
         att ) set -A alphabet ${(kv)att};;
+        britishpo ) set -A alphabet ${(kv)britishpo};;
+        bp ) set -A alphabet ${(kv)britishpo};;
         itc ) set -A alphabet ${(kv)itc};;
         nato ) set -A alphabet ${(kv)nato};;
         royalnavy ) set -A alphabet ${(kv)royalnavy};;
+        rn ) set -A alphabet ${(kv)royalnavy};;
         tasmania ) set -A alphabet ${(kv)tasmania};;
+        tz ) set -A alphabet ${(kv)tasmania};;
         westernunion ) set -A alphabet ${(kv)westernunion};;
+        wu ) set -A alphabet ${(kv)westernunion};;
         * ) fail "Unknown alphabet \"$1\"";;
     esac
 }
