@@ -1,0 +1,111 @@
+#!/usr/bin/env zsh
+
+# Option parsing example: https://gist.github.com/webb/ff380b0eee96dafe1c20c2a136d85ef0
+# Alphabets lifted from: https://en.m.wikipedia.org/wiki/Spelling_alphabet
+
+# `man zshoptions`
+# -e     ERR_EXIT
+# -u     NO_UNSET
+# -o pipefail | PIPE_FAIL
+set -eu
+set -o PIPE_FAIL
+set -o BRACE_CCL
+IFS=$'\n\t'
+
+cmdname=$(basename $0);
+
+fail () { echo "Error: $*" >&2; exit 1;  }
+
+print_help() {
+    # shellcheck disable=SC2086
+    cat <<EOF >&2
+$cmdname - new name
+
+Transforms an input filename into something more command-line friendly. Replaces
+periods and spaces with hyphens, lowercases all letters by default.
+
+Usage:
+    $cmdname [options] source
+
+Options:
+  -h, --help                    print help
+  -L, --no-lowercase            don't lowercase the output
+  -r, --replace=SEARCH/REPLACE  provide a SEARCH regex and a
+                                 REPLACE string, separated by a forward slash
+EOF
+    exit 0;
+}
+
+to_lowercase=1;
+sub_re="[.[:space:]]";
+rep="-";
+user_search='';
+user_rep='';
+
+main() {
+    while getopts ":hLr:-:" opt; do
+        case $opt in
+            h)
+                print_help
+                exit
+                ;;
+            L)
+                to_lowercase=0;
+                ;;
+            r)
+                user_params=(${(s:/:)OPTARG%%=*});
+                user_search="${user_params[1]}";
+                user_rep="${user_params[2]}";
+                ;;
+            -) case $OPTARG in
+                help ) print_help;;
+                no-lowercase ) to_lowercase=0;;
+                * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
+                esac;;
+            : ) fail "Short option \"$OPTARG\" missing argument";;
+            \?)
+                fail "Invalid option"
+                exit
+                ;;
+        esac
+    done
+
+    shift $((OPTIND-1))
+
+
+    input="${1:?You must provide a filename/string to rename}";
+
+    # `man zshexpn`, see 'modifiers'
+    fname="${input:t:r}";
+    fext="${input:e}";
+
+
+    # echo "input: '$input'";
+
+    # If the user provided a -r/--replace arg, replace that text first.
+    if [[ -n "$user_search" && -n "$user_params" ]]; then
+        fname="${fname//${~user_search}/$user_rep}";
+    fi
+
+    # Convert to lowercase, if selected.
+    # On by default
+    if [[ $to_lowercase -eq 1 ]]; then
+        fname="${(L)fname}";
+        fext="${(L)fext}";
+    fi
+
+    if [[ -n "$sub_re" ]]; then
+        fname="${(S)fname//${~sub_re}/$rep}";
+    fi
+
+    # Reconstruct file extension
+    if [[ -n "$fext" ]]; then
+        fext=".$fext";
+    fi
+
+    output="$fname$fext";
+    echo "$output";
+
+}
+
+main "${@:-}"
