@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
 
 # Option parsing example: https://gist.github.com/webb/ff380b0eee96dafe1c20c2a136d85ef0
-# Alphabets lifted from: https://en.m.wikipedia.org/wiki/Spelling_alphabet
+# Zsh expansion
+# - Modifiers: https://zsh.sourceforge.io/Doc/Release/Expansion.html#modifiers
+# - Flags: https://zsh.sourceforge.io/Doc/Release/Expansion.html#Parameter-Expansion-Flags
 
 # `man zshoptions`
 # -e     ERR_EXIT
@@ -31,7 +33,9 @@ Options:
   -h, --help                    print help
   -L, --no-lowercase            don't lowercase the output
   -r, --replace=SEARCH/REPLACE  provide a SEARCH regex and a
-                                 REPLACE string, separated by a forward slash
+                                  REPLACE string, separated by a forward slash.
+                                  Replacement is made before output is lowercased.
+
 EOF
     exit 0;
 }
