@@ -1,6 +1,6 @@
 --- treesitter config
 require'nvim-treesitter.configs'.setup({
-    ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+    ensure_installed = { "c", "lua", "pkl", "vim", "vimdoc", "query" },
     sync_install = false,
     highlight = {
         enable = true,

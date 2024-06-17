@@ -1,6 +1,13 @@
 return {
     {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
     "sheerun/vim-polyglot",
+    { "apple/pkl-neovim", lazy = true,
+        event = {
+             "BufReadPre *.pkl",
+             "BufReadPre *.pcf",
+             "BufReadPre PklProject",
+         },
+    },
     "neovim/nvim-lspconfig",
     "ray-x/go.nvim",
     "nvim-lualine/lualine.nvim",
