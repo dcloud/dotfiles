@@ -1,0 +1,212 @@
+#!/usr/bin/env zsh
+
+# `man zshoptions`
+# -e     ERR_EXIT
+# -u     NO_UNSET
+# -o pipefail | PIPE_FAIL
+set -eu
+set -o PIPE_FAIL
+set -o BRACE_CCL
+IFS=$'\n\t'
+
+cmdname=$(basename $0);
+
+typeset to_format;
+typeset -i verbose=0;
+typeset -A formats=([c]="camelCase" [p]="PascalCase" [s]="snake_case");
+
+fail () { echo "Error: $*" >&2; exit 1;  }
+
+print_help() {
+    # shellcheck disable=SC2086
+    cat <<EOF >&2
+$cmdname
+
+Convert between variable naming conventions. Will detect and convert between
+camelCase and snake_case by default.
+
+Usage:
+    $cmdname [options] input
+
+Options:
+  -t , --to=FORMAT              select an output format. Accepted values:
+                                    s[nake_case], c[amelCase], p[ascalCase]
+  -h, --help                    print help
+  -v, --verbose                 show things like format detection, etc
+  --run-tests                   run tests using predefined data
+
+EOF
+    exit 0;
+}
+
+to_snake_case() {
+    input="$1";
+    local -a out;
+
+    out+="${input:0:1:l}";
+    local -i prev_underscore=0;
+    for c in "${(s::)input:1}"; do
+        local l="";
+        if [[ "$c" =~ "[[:space:]]" ]]; then
+            l="_";
+            prev_underscore=1;
+        elif [[ "$c" =~ "[[:upper:]]" ]]; then
+            if [[ prev_underscore -eq 1 ]]; then
+                l="${c:l}";
+                prev_underscore=0;
+            else
+                l="_${c:l}";
+            fi
+        else
+            l="${c:l}";
+        fi
+        out+="$l";
+    done;
+    echo "${(j::)out:gs/__+/_}";
+}
+
+to_camel_case() {
+    input="$1";
+    local -a out;
+    local -i cap_next=0;
+    out+="${input:0:1:l}";
+    for c in "${(s::)input:1}"; do
+        if [[ "$c" =~ "[^_[:space:]]" ]]; then
+            if [[ $cap_next -eq 1 ]]; then
+                c="${c:u}";
+                cap_next=0;
+            else
+                c="${c}"
+            fi
+            out+="$c";
+        else
+            cap_next=1;
+        fi
+    done;
+    echo "${(j::)out}";
+}
+
+to_pascal_case() {
+    input="$1";
+    local -a out;
+    local -i cap_next=0;
+
+    out+="${input:0:1:u}";
+    for c in "${(s::)input:1}"; do
+        if [[ "$c" =~ "[^_[:space:]]" ]]; then
+            if [[ $cap_next -eq 1 ]]; then
+                c="${c:u}";
+                cap_next=0;
+            else
+                c="${c}"
+            fi
+            out+="$c";
+        else
+            cap_next=1;
+        fi
+    done;
+    echo "${(j::)out}";
+}
+
+function detect_format() {
+    if [[ "$1" =~ ^[[:upper:]] ]]; then
+        # may be PascalCase
+        echo $formats[p];
+    elif [[ "$1" =~ \_ && ! "$1" =~ [[:upper:]] ]]; then
+        # may be snake_case
+        echo $formats[s];
+    elif [[ "$1" =~ [[:upper:]] ]]; then
+        # may be camelCase
+        echo $formats[c];
+    fi
+}
+
+function select_format() {
+    if [[ "$1" == $formats[c] ]]; then
+        # from camelCase to snake_case
+        echo "${formats[s]}";
+    elif [[ "$1" == $formats[s] ]]; then
+        # from snake_case to camelCase
+        echo "${formats[c]}";
+    else
+        # to snake_case, bc why not
+        echo "${formats[s]}";
+    fi
+}
+
+function convert() {
+    input="$1";
+    to_format="$2";
+
+    if [[ "$to_format" = "c" || "$to_format" = "camelCase" ]]; then
+        to_camel_case "$input";
+    elif [[ "$to_format" = "s" || "$to_format" = "snake_case" ]]; then
+        to_snake_case "$input";
+    elif [[ "$to_format" = "p" || "$to_format" = "PascalCase" ]]; then
+        to_pascal_case "$input";
+    fi;
+}
+
+function run_tests() {
+    typeset -a words=("camelCase" "PascalCase" "snake_case" "foo bar" "lets_go USA" "This is a sentence");
+    for w in $words; do
+        echo "'$w'";
+        echo "camelCase: $(to_camel_case $w)";
+        echo "PascalCase: $(to_pascal_case $w)";
+        echo "snake_case: $(to_snake_case $w)";
+        echo;
+    done;
+    exit 1;
+}
+
+main() {
+    while getopts ":t:vh-:" opt; do
+        case $opt in
+            h)
+                print_help
+                exit
+                ;;
+            t)
+                to_format="${OPTARG%%=*}";
+                ;;
+            v)
+                verbose=1;
+                ;;
+            -) case $OPTARG in
+                to=* ) to_format=${OPTARG#*=};;
+                run-tests ) run_tests;;
+                help ) print_help;;
+                verbose ) verbose=1;;
+                * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
+                esac;;
+            : ) fail "Short option \"$OPTARG\" missing argument";;
+            \?)
+                fail "Invalid option"
+                exit
+                ;;
+        esac
+    done
+
+    shift $((OPTIND-1))
+
+    input="${1:?Please provide an input}";
+    output='';
+
+    detected_fmt="$(detect_format "$input")";
+    autoselected_fmt=$(select_format "$detected_fmt");
+    to_format="${to_format:=$autoselected_fmt}";
+
+    if [[ $verbose -eq 1 ]]; then
+        if [[ "$detected_fmt" = "" ]]; then
+            echo "Input Format: not detected"
+        else
+            echo "Input Format: $detected_fmt";
+            echo "Autoselected Output Format: $autoselected_fmt";
+        fi
+        echo "Output Format: $to_format";
+    fi
+
+    convert "$input" "$to_format";
+}
+
+main "${@:-}"
