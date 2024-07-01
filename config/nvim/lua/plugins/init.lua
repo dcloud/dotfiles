@@ -1,12 +1,18 @@
 return {
     {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
     "sheerun/vim-polyglot",
-    { "apple/pkl-neovim", lazy = true,
+    {
+        "https://github.com/apple/pkl-neovim",
+        lazy = true,
         event = {
-             "BufReadPre *.pkl",
-             "BufReadPre *.pcf",
-             "BufReadPre PklProject",
-         },
+            "BufReadPre *.pkl",
+            "BufReadPre *.pcf",
+            "BufReadPre PklProject",
+        },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        build = ":TSInstall! pkl",
     },
     "neovim/nvim-lspconfig",
     "ray-x/go.nvim",
