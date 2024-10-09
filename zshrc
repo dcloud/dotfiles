@@ -51,10 +51,8 @@ then
   source ~/.localrc
 fi
 
-# Enable starship.rs prompt, if available
-if hash starship 2>/dev/null; then
-    eval "$(starship init zsh)"
-fi
+autoload -U promptinit; promptinit
+prompt pure
 
 # (re)build & initialize completions, only once every 24 hours
 # Do this late since plugins, e.g. wd.zsh, may edit fpath
