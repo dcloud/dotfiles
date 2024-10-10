@@ -62,6 +62,14 @@ if vim.fn.executable('lua-language-server') == 1 then
     }
 end
 
+if vim.fn.executable('ruby-lsp') == 1 then
+    nvim_lsp['ruby_lsp'].setup {
+        init_options = {
+            formatter = 'standard',
+            linters = { 'standard' }
+        }
+    }
+end
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
