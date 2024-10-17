@@ -11,4 +11,4 @@ USER_PATH=$HOME/.local/bin
 
 # Enforce uniqueness
 typeset -U path
-path=($USER_PATH $MACGPG_PATH $TEXLIVE_PATH $CABAL_BIN $PYTHON3_PATH $path)
+path=($USER_PATH $MACGPG_PATH $TEXLIVE_PATH $path)
