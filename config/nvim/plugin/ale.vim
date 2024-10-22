@@ -34,3 +34,5 @@ command! -nargs=0 ALEFixStatus call EchoALEFixOnSaveStatus()
 
 nnoremap <F1> :ToggleFixOnSave<CR>
 nnoremap <F3> :ALEFix<CR>
+
+autocmd UIEnter * ++once call EchoALEFixOnSaveStatus()
