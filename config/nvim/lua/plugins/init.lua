@@ -29,9 +29,14 @@ return {
     "tpope/vim-commentary",
     "tpope/vim-dadbod",
     "tpope/vim-surround",
-    "junegunn/fzf",
+    {
+        "ibhagwan/fzf-lua",
+        config = function()
+            -- calling `setup` is optional for customization
+            require("fzf-lua").setup({"fzf-vim"})
+        end
+    },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-    "junegunn/fzf.vim",
     { "windwp/nvim-autopairs", event = "InsertEnter", opts={} },
     { 'rose-pine/neovim', name = 'rose-pine' },
 }
