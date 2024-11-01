@@ -44,6 +44,7 @@ return {
         formatters = {
             rubocop = {
                 args = { "--server", "--auto-correct-all", "--stderr", "--force-exclusion", "--stdin", "$FILENAME" },
+                timeout_ms = 2000,
             },
             shfmt = {
                 prepend_args = { "-i", "2" },
