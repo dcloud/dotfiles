@@ -17,4 +17,3 @@ end)
 vim.keymap.set("n", "<leader>qd", function()
     require("persistence").stop()
 end)
-

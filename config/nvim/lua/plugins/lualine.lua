@@ -4,8 +4,8 @@ return {
         event = "ColorScheme",
         opts = {
             show_filename_only = false,
-            theme = 'rose-pine',
-            icons_enabled = false
-        }
+            theme = "rose-pine",
+            icons_enabled = false,
+        },
     },
 }

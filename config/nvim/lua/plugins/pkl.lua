@@ -11,4 +11,3 @@ return {
     },
     build = ":TSInstall! pkl",
 }
-
