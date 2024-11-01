@@ -31,6 +31,7 @@ return {
             html = { "prettier" },
             javascript = { "deno_fmt", "prettier", stop_after_first = true },
             yaml = { "prettier" },
+            ruby = { "rubocop" },
             sh = { "shfmt" },
         },
         -- Set default options
@@ -38,9 +39,12 @@ return {
             lsp_format = "fallback",
         },
         -- Set up format-on-save
-        format_on_save = { timeout_ms = 500 },
+        format_on_save = { timeout_ms = 750 },
         -- Customize formatters
         formatters = {
+            rubocop = {
+                args = { "--server", "--auto-correct-all", "--stderr", "--force-exclusion", "--stdin", "$FILENAME" },
+            },
             shfmt = {
                 prepend_args = { "-i", "2" },
             },
