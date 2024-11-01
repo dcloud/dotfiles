@@ -23,11 +23,6 @@ tnoremap <leader><Esc> <C-w>N
 " List buffers and switch to a buffer
 nnoremap <F5> :buffers<CR>:buffer<Space>
 
-" Mappings to move around through errors
-nmap <silent> <c-k> <plug>(ale_previous_wrap)
-nmap <silent> <c-j> <plug>(ale_next_wrap)
-
-
 " Mappings for increment and decrement
 nnoremap <leader>i <C-A>
 nnoremap <leader>d <C-X>
