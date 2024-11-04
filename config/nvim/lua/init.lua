@@ -4,6 +4,9 @@ vim.g.mapleader = " "
 -- lazy.nvim config
 require("config.lazy")
 
+-- gitsigns
+require("config.gitsigns")
+
 -- indent-blankline config
 require("config.ibl")
 
