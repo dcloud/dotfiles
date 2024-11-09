@@ -30,7 +30,15 @@ if vim.fn.executable("gopls") == 1 then
 end
 
 if vim.fn.executable("sourcekit-lsp") == 1 then
-    lspconfig["sourcekit"].setup({})
+    lspconfig["sourcekit"].setup({
+        capabilities = {
+            workspace = {
+                didChangeWatchedFiles = {
+                    dynamicRegistration = true
+                }
+            }
+        }
+    })
 end
 
 if vim.fn.executable("lua-language-server") == 1 then
