@@ -2,7 +2,7 @@
 local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local server_list = { "rubocop", "ruff_lsp", "rust_analyzer", "zls" }
+local server_list = { "rubocop", "ruff", "rust_analyzer", "zls" }
 for _, value in pairs(server_list) do
     lspconfig[value].setup({
         capabilities = capabilities,
