@@ -52,6 +52,8 @@ then
 fi
 
 autoload -U promptinit; promptinit
+zstyle :prompt:pure:git:stash show yes
+zstyle :prompt:pure:virtualenv color 220
 prompt pure
 
 # (re)build & initialize completions, only once every 24 hours
