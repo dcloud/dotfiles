@@ -1,5 +1,6 @@
 return {
     "stevearc/conform.nvim",
+    version = "8.*",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     keys = {
@@ -39,7 +40,12 @@ return {
             lsp_format = "fallback",
         },
         -- Set up format-on-save
-        format_on_save = { timeout_ms = 750 },
+        format_on_save = function(bufnr)
+            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                return
+            end
+            return { timeout_ms = 750 }
+        end,
         -- Customize formatters
         formatters = {
             rubocop = {
