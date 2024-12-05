@@ -1,6 +1,9 @@
 -- Set mapleader
 vim.g.mapleader = " "
 
+-- Turn on loading trusted .nvim.lua, .nvimrc, and .exrc files
+vim.go.exrc = true
+
 -- lazy.nvim config
 require("config.lazy")
 
