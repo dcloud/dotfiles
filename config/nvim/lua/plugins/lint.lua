@@ -20,5 +20,8 @@ return {
         vim.keymap.set("n", "<leader>l", function()
             lint.try_lint()
         end, { desc = "Trigger linting for current file" })
+
+        -- Don't show errors with virtual text. See 'Trouble'
+        vim.diagnostic.config({ virtual_text = false })
     end,
 }
