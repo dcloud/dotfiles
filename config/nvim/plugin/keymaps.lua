@@ -2,6 +2,7 @@
 
 -- set <leader>
 vim.g.mapleader = " "
+vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 
 -- Use <C-L> to clear the highlighting of :set hlsearch.
 -- if maparg('<C-L>', 'n') ==# ''
@@ -51,5 +52,5 @@ vim.keymap.set("n", "<leader>;", "ms:norm A;<CR>`s", { desc = "Add a semicolon a
 -- char 201D: ”
 -- char 201E: „
 -- char 201F: ‟
-vim.keymap.set("n", "<leader>'", "<cmd>.s/(%u2018\\|%u2019)/'/g<CR>")
-vim.keymap.set("n", '<leader>"', '<cmd>.s/(%u201C\\|%u201D)/"/g<CR>')
+vim.keymap.set("n", "<leader>'", "<cmd>.s/\\(\\%u2018\\|\\%u2019\\)/'/g<CR>")
+vim.keymap.set("n", '<leader>"', '<cmd>.s/\\(\\%u201C\\|\\%u201D\\)/"/g<CR>')
