@@ -2,11 +2,15 @@
 local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local server_list = { "rubocop", "ruff", "rust_analyzer", "zls" }
+local server_list = { "denols", "rubocop", "ruff", "rust_analyzer", "zls" }
 for _, value in pairs(server_list) do
     lspconfig[value].setup({
         capabilities = capabilities,
     })
+end
+
+if vim.fn.executable("deno") == 1 then
+    lspconfig["denols"].setup({})
 end
 
 if vim.fn.executable("gopls") == 1 then
@@ -34,10 +38,10 @@ if vim.fn.executable("sourcekit-lsp") == 1 then
         capabilities = {
             workspace = {
                 didChangeWatchedFiles = {
-                    dynamicRegistration = true
-                }
-            }
-        }
+                    dynamicRegistration = true,
+                },
+            },
+        },
     })
 end
 
