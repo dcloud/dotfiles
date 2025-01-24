@@ -1,7 +1,6 @@
 
 
 set background=dark
-" colorscheme starkiller
 
 set number                 " Show line numbers
 set ignorecase             " Case insensitive search by default, but see smartcase

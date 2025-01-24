@@ -3,7 +3,6 @@ return {
     "mattn/emmet-vim",
     "neovim/nvim-lspconfig",
     "ray-x/go.nvim",
-    { "rose-pine/neovim", name = "rose-pine", opts = { dim_inactive_windows = true } },
     "tpope/vim-commentary",
     "tpope/vim-dadbod",
     "tpope/vim-surround",
