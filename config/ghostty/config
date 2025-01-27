@@ -1,6 +1,7 @@
+theme = rose-pine
 fullscreen = true
 font-family = "Fira Code"
-font-size = 16
-theme = rose-pine
+font-size = 14
+font-feature = zero
 cursor-color=#c4a7e7
 adjust-cursor-thickness=3
