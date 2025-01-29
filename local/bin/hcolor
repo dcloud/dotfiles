@@ -52,7 +52,7 @@ main() {
         input="#$input";
     fi
 
-    if [[ "$input" =~ ^#[0-9A-F]{6} ]]; then
+    if [[ "$input" =~ ^#[0-9A-Fa-f]{6} ]]; then
         print -P "%K{$input}      %k %F{$input}$input"
     else
         fail "You must supply a 6-digit hex code"
