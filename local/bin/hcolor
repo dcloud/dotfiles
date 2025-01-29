@@ -1,0 +1,66 @@
+#!/usr/bin/env zsh
+
+# man zshmisc
+
+# `man zshoptions`
+# -e     ERR_EXIT
+# -u     NO_UNSET
+# -o pipefail | PIPE_FAIL
+set -eu
+set -o PIPE_FAIL
+set -o BRACE_CCL
+
+cmdname=$(basename $0);
+
+fail () { echo "Error: $*" >&2; exit 1;  }
+
+print_help() {
+    # shellcheck disable=SC2086
+    cat <<EOF >&2
+$cmdname - hex color
+
+Displays a hex color in the terminal
+
+Usage:
+    $cmdname [options] hexcolor
+
+Options:
+  -h, --help                    print help
+
+EOF
+    exit 0;
+}
+
+
+main() {
+    while getopts ":h" opt; do
+        case $opt in
+            h)
+                print_help
+                exit
+                ;;
+            \?)
+                fail "Invalid option"
+                exit
+                ;;
+        esac
+    done
+
+    input="${1:?You must provide a 6-digit hex color, e.g. #941100 (the # may be ommitted)}";
+
+    if [[ "${input:0:1}" != "#" ]]; then
+        input="#$input";
+    fi
+
+    if [[ "$input" =~ ^#[0-9A-F]{6} ]]; then
+        print -P "%K{$input}      %k %F{$input}$input"
+    else
+        fail "You must supply a 6-digit hex code"
+    fi
+
+
+
+}
+
+
+main "${@:-}"
