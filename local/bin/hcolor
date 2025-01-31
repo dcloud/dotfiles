@@ -33,11 +33,14 @@ EOF
 
 
 main() {
-    while getopts ":h" opt; do
+    while getopts ":hl:" opt; do
         case $opt in
             h)
                 print_help
                 exit
+                ;;
+            l)
+                label="${OPTARG%%=*}";
                 ;;
             \?)
                 fail "Invalid option"
@@ -46,14 +49,17 @@ main() {
         esac
     done
 
+    shift $((OPTIND-1))
+
     input="${1:?You must provide a 6-digit hex color, e.g. #941100 (the # may be ommitted)}";
+    label="${label=$input}";
 
     if [[ "${input:0:1}" != "#" ]]; then
         input="#$input";
     fi
 
     if [[ "$input" =~ ^#[0-9A-Fa-f]{6} ]]; then
-        print -P "%K{$input}      %k %F{$input}$input"
+        print -P "%K{$input}      %k %F{$input}$label%f"
     else
         fail "You must supply a 6-digit hex code"
     fi
