@@ -19,7 +19,7 @@ setopt PROMPT_SUBST
 setopt NO_NOMATCH
 
 # Improve usefulness of run-help. See `man zshcontrib`
-if hash run-help 2>/dev/null; then
+if command -v run-help 2>/dev/null; then
     unalias run-help
 fi
 autoload run-help
