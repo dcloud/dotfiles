@@ -13,6 +13,13 @@ if vim.fn.executable("deno") == 1 then
     lspconfig["denols"].setup({})
 end
 
+local elixir_path = vim.fn.exepath("elixir-ls")
+if string.len(elixir_path) ~= 0 then
+    lspconfig["elixirls"].setup({
+        cmd = { elixir_path },
+    })
+end
+
 if vim.fn.executable("gopls") == 1 then
     lspconfig["gopls"].setup({
         cmd = { "gopls" },
