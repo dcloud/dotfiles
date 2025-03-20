@@ -52,5 +52,5 @@ vim.keymap.set("n", "<leader>;", "ms:norm A;<CR>`s", { desc = "Add a semicolon a
 -- char 201D: ”
 -- char 201E: „
 -- char 201F: ‟
-vim.keymap.set("n", "<leader>'", "<cmd>.s/\\(\\%u2018\\|\\%u2019\\)/'/g<CR>")
-vim.keymap.set("n", '<leader>"', '<cmd>.s/\\(\\%u201C\\|\\%u201D\\)/"/g<CR>')
+vim.keymap.set("n", "<leader>'", "<cmd>.s/\\(\\%u2018\\|\\%u2019\\)/'/g<CR>", { desc = "De-educate quotation marks" })
+vim.keymap.set("n", '<leader>"', '<cmd>.s/\\(\\%u201C\\|\\%u201D\\)/"/g<CR>', { desc = "De-educate quotation marks" })
