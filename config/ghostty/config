@@ -1,7 +1,6 @@
 theme = rose-pine
 fullscreen = true
 font-family = "MonoLisa Variable"
-font-variation = wght=500
 font-size = 15
 font-feature = +zero, +ss11
 font-family = "Fira Code"
