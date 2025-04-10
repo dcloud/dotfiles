@@ -93,8 +93,6 @@ end
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set("n", "<leader>ef", vim.diagnostic.open_float, { desc = "Open diagnostic in float" })
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 vim.keymap.set("n", "<leader>el", vim.diagnostic.setloclist, { desc = "Put diagnostic in loclist" })
 
 -- Use LspAttach autocommand to only map the following keys
