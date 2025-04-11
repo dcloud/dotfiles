@@ -24,11 +24,14 @@ DOTFILES=$HOME/.dotfiles
 ZSH_THEME="dcloud"
 
 EDITOR='vim'
+MANPAGER='less'
 if type nvim &>/dev/null
 then
     EDITOR='nvim'
+    MANPAGER='nvim +Man!'
 fi
 export EDITOR
+export MANPAGER
 
 # Adapted from https://github.com/holman/dotfiles/
 typeset -U config_files
