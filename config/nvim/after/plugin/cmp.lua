@@ -35,7 +35,7 @@ cmp.setup({
 
         ["<S-Tab>"] = cmp.mapping(function(original)
             if cmp.visible() then
-                cmp.select_previous_item()
+                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
             elseif luasnip.expand_or_jumpable() then
                 luasnip.jump(-1)
             else
