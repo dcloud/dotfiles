@@ -29,4 +29,17 @@ return {
         config = true,
     },
     { "AndreM222/copilot-lualine" },
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        dependencies = {
+            { "zbirenbaum/copilot.lua" },
+            { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+        },
+        build = "make tiktoken", -- Only on MacOS or Linux
+        opts = {
+            question_header = "## User ",
+            answer_header = "## Copilot ",
+            error_header = "## Error ",
+        },
+    },
 }
