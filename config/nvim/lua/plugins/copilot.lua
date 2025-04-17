@@ -1,11 +1,17 @@
+local function copilotEnabled()
+    return vim.env.COPILOT_ENABLED ~= nil
+end
+
 return {
     {
         "zbirenbaum/copilot.lua",
+        cond = copilotEnabled,
         cmd = "Copilot",
         event = "InsertEnter",
     },
     {
         "zbirenbaum/copilot.lua",
+        cond = copilotEnabled,
         config = function()
             local copilot = require("copilot")
             local asdf_latest = vim.system({ "asdf", "latest", "nodejs" }, { text = true }):wait()
@@ -26,11 +32,16 @@ return {
     },
     {
         "zbirenbaum/copilot-cmp",
+        cond = copilotEnabled,
         config = true,
     },
-    { "AndreM222/copilot-lualine" },
+    {
+        "AndreM222/copilot-lualine",
+        cond = copilotEnabled,
+    },
     {
         "CopilotC-Nvim/CopilotChat.nvim",
+        cond = copilotEnabled,
         dependencies = {
             { "zbirenbaum/copilot.lua" },
             { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
