@@ -45,7 +45,7 @@ done
 # Personal environmental variables
 if [[ -a ~/.localrc ]]
 then
-    set -o allexport; source .localrc; set +o allexport
+    set -o allexport; source ~/.localrc; set +o allexport
 fi
 
 autoload -U promptinit; promptinit
