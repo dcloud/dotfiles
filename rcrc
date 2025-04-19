@@ -1,5 +1,5 @@
 # rcm configuration
 
-EXCLUDES="README* LICENSE Brewfile* iterm2 python"
+EXCLUDES="README* LICENSE Brewfile* iterm2 python *:tests"
 
 SYMLINK_DIRS="config/nvim/lua config/nvim/plugin config/nvim/ftplugin config/nvim/after vim/pack/dcloud vim/autoload vim/plugin vim/ftplugin vim/after zsh"
