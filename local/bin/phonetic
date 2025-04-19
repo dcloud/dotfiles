@@ -12,7 +12,9 @@ set -o PIPE_FAIL
 set -o BRACE_CCL
 IFS=$'\n\t'
 
-cmdname=$(basename $0);
+# Default to colored output
+local color=true
+cmdname=${0:t}
 
 local -A nato=(
 A Alfa
@@ -217,9 +219,8 @@ Y Your
 Z Zigzag
 );
 
-# typeset, then set is necessary for proper array copying
-typeset -A alphabet;
-set -A alphabet ${(kv)nato};
+# Initialize the alphabet associative array with the NATO phonetic alphabet
+typeset -A alphabet=("${(@kv)nato}")
 
 fail () { echo "Error: $*" >&2; exit 1;  }
 
@@ -227,29 +228,28 @@ print_help() {
     # shellcheck disable=SC2086
     cat <<EOF >&2
 Translates an input string into phonetic spelling
-Usage:  $cmdname [options] [words to translate...]
-Options:
-  -h, --help             print help
-  -a, --alphabet=NAME    select an alphabet. Accepted values:
-                            att, britishpo/bp, itc, nato (default),
-                            royalnavy/rn, tasmania/tz, westernunion/wu
+  Options:
+    -h, --help             print help
+    -a, --alphabet=NAME    select an alphabet. Accepted values:
+                              att, britishpo/bp, itc, nato (default),
+                              royalnavy/rn, tasmania/tz, westernunion/wu
+    --no-color             disable colored output
 EOF
     exit 0;
 }
-
 set_alphabet () {
     case $1 in
-        att ) set -A alphabet ${(kv)att};;
-        britishpo ) set -A alphabet ${(kv)britishpo};;
-        bp ) set -A alphabet ${(kv)britishpo};;
-        itc ) set -A alphabet ${(kv)itc};;
-        nato ) set -A alphabet ${(kv)nato};;
-        royalnavy ) set -A alphabet ${(kv)royalnavy};;
-        rn ) set -A alphabet ${(kv)royalnavy};;
-        tasmania ) set -A alphabet ${(kv)tasmania};;
-        tz ) set -A alphabet ${(kv)tasmania};;
-        westernunion ) set -A alphabet ${(kv)westernunion};;
-        wu ) set -A alphabet ${(kv)westernunion};;
+        att ) alphabet=("${(@kv)att}");;
+        britishpo ) alphabet=("${(@kv)britishpo}");;
+        bp ) alphabet=("${(@kv)britishpo}");;
+        itc ) alphabet=("${(@kv)itc}");;
+        nato ) alphabet=("${(@kv)nato}");;
+        royalnavy ) alphabet=("${(@kv)royalnavy}");;
+        rn ) alphabet=("${(@kv)royalnavy}");;
+        tasmania ) alphabet=("${(@kv)tasmania}");;
+        tz ) alphabet=("${(@kv)tasmania}");;
+        westernunion ) alphabet=("${(@kv)westernunion}");;
+        wu ) alphabet=("${(@kv)westernunion}");;
         * ) fail "Unknown alphabet \"$1\"";;
     esac
 }
@@ -265,14 +265,14 @@ main() {
                 set_alphabet "${OPTARG%%=*}";
                 ;;
             -) case $OPTARG in
-                alphabet=* ) set_alphabet ${OPTARG#*=};;
-                help ) print_help;;
-                * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
+                  alphabet=* ) set_alphabet "${OPTARG#*=}";;
+                  help ) print_help;;
+                  no-color ) color=false;;
+                  * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
                 esac;;
             : ) fail "Short option \"$OPTARG\" missing argument";;
             \?)
                 fail "Invalid option"
-                exit
                 ;;
         esac
     done
@@ -280,20 +280,27 @@ main() {
     shift $((OPTIND-1))
 
     letters=({A..Z});
-
     input="$@";
+    # Check for input from pipe
+    if [[ -z "$input" && ! -t 0 ]]; then
+        input=$(<&0)
+    fi
     input="${input:-${(j::)letters}}"
+    input_len="${#input}";
     input_len="${#input}";
 
     # echo "$alphabet";
 
     for ((i=1; i<$input_len+1; i++)) do
         char="${input[$i]:u}"
-        # echo "'${char}'";
-        if [[ "$char" =~ ^[A-Z]$ ]]; then
+          if [[ "$char" == [A-Z] ]]; then
             word="${alphabet[$char]}";
-            echo "\\033[30;47m${word::1}\\033[0m${word:1}"
-        elif [[ "$char" =~ [[:space:]]+ ]]; then
+            if [[ $color == true ]]; then
+                echo "\\033[30;47m${word::1}\\033[0m${word:1}"
+            else
+                echo "$word";
+            fi
+          elif [[ "$char" == [[:space:]] ]]; then
             echo;
         else
             echo "$char";
