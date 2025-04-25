@@ -14,6 +14,7 @@ IFS=$'\n\t'
 
 # Default to colored output
 local color=true
+local separator=$'\n'
 cmdname=${0:t}
 
 local -A nato=(
@@ -234,6 +235,7 @@ Usage: $cmdname [options] [words to translate...]
     -a, --alphabet=NAME    select an alphabet. Accepted values:
                               att, britishpo/bp, itc, nato (default),
                               royalnavy/rn, tasmania/tz, westernunion/wu
+    -s, --separator=CHARS  Set the characters separating phonetic words. Defaults to newline
     --no-color             disable colored output
 EOF
     exit 0;
@@ -256,7 +258,7 @@ set_alphabet () {
 }
 
 main() {
-    while getopts ":a:h-:" opt; do
+    while getopts ":a:s:h-:" opt; do
         case $opt in
             h)
                 print_help
@@ -265,10 +267,14 @@ main() {
             a)
                 set_alphabet "${OPTARG%%=*}";
                 ;;
+            s)
+                separator="${OPTARG%%=*}";
+                ;;
             -) case $OPTARG in
                   alphabet=* ) set_alphabet "${OPTARG#*=}";;
                   help ) print_help;;
                   no-color ) color=false;;
+                  separator=* ) separator="${OPTARG#*=}";;
                   * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
                 esac;;
             : ) fail "Short option \"$OPTARG\" missing argument";;
@@ -290,23 +296,23 @@ main() {
     input_len="${#input}";
     input_len="${#input}";
 
-    # echo "$alphabet";
+    output=()
 
     for ((i=1; i<$input_len+1; i++)) do
         char="${input[$i]:u}"
           if [[ "$char" == [A-Z] ]]; then
             word="${alphabet[$char]}";
             if [[ $color == true ]]; then
-                echo "\\033[30;47m${word::1}\\033[0m${word:1}"
+                output+=("\\033[30;47m${word::1}\\033[0m${word:1}")
             else
-                echo "$word";
+                output+=("$word");
             fi
-          elif [[ "$char" == [[:space:]] ]]; then
-            echo;
-        else
-            echo "$char";
+        elif [[ "$char" != [[:space:]] ]]; then
+            output+=("$char");
         fi
     done
+
+    echo "${(pj:$separator:)output}"
 }
 
 main "${@:-}"

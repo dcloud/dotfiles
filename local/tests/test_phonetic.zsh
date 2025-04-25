@@ -6,7 +6,8 @@
 set -eu
 
 # Path to the phonetic script
-SCRIPT="../bin/phonetic"
+THIS_PATH="${0:A:h}"
+SCRIPT="$THIS_PATH/../bin/phonetic"
 
 # Test helper function
 assert() {
@@ -85,9 +86,18 @@ test_color_output() {
 
 # Test non-letter handling
 test_non_letters() {
-  local result=$(echo "A 1" | $SCRIPT --no-color)
-  local expected=$'Alfa\n\n1'
+  local result=$(echo "A 1 *" | $SCRIPT --no-color)
+  local expected=$'Alfa\n1\n*'
   assert "Non-letter handling" "$expected" "$result"
+}
+
+test_separators() {
+    local result=$(echo "Bad" | $SCRIPT --no-color --separator="|")
+    local expected='Bravo|Alfa|Delta'
+    assert "Seperator set using long option" "$expected" "$result"
+
+    result=$(echo "Nice" | $SCRIPT --no-color -s '-')
+    expecte="November-India-Charlie-Echo"
 }
 
 # Run all tests
@@ -99,6 +109,7 @@ run_tests() {
   test_piped_input
   test_color_output
   test_non_letters
+  test_separators
   echo "All tests completed!"
 }
 
