@@ -16,7 +16,7 @@ This was created on a computer running macOS, so many pieces are macOS-specific.
    2. `tmux source ~/.tmux.conf`
    3. In a session, run `Ctrl-A` <kbd>I</kbd> (capital I)
 1. Create `~/.gitconfig.user` and add your user.name, user.email, etc.
-1. Install runtimes using [asdf runtime version manager](https://asdf-vm.com). `asdf plugin <language> <plugin-url>` and `asdf install <language> <version|latest>`. Homebrew may have installed Python and/or other runtimes that formula depend on, but we should use asdf to manage runtimes wherever possible. Check out the [asdf community plugins](https://github.com/asdf-community) for various plugins.
+1. Install runtimes using [mise](https://mise.jdx.dev/).
 
 You will probably want to exit your session and begin a new one.
 
