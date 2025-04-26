@@ -14,6 +14,8 @@ IFS=$'\n\t'
 
 # Default to colored output
 local color=true
+local colors=("#f6c177" "#eb6f92" "#ebbcba" "#31748f" "#9ccfd8" "#c4a7e7")
+local num_colors="${#colors[@]}"
 local separator=$'\n'
 cmdname=${0:t}
 
@@ -298,21 +300,26 @@ main() {
 
     output=()
 
+    out_num=1
     for ((i=1; i<$input_len+1; i++)) do
         char="${input[$i]:u}"
-          if [[ "$char" == [A-Z] ]]; then
+        if [[ "$char" == [A-Z] ]]; then
             word="${alphabet[$char]}";
             if [[ $color == true ]]; then
-                output+=("\\033[30;47m${word::1}\\033[0m${word:1}")
+                color_idx=$((out_num % num_colors + 1))
+                output+=("%F{${colors[$color_idx]}}%B${word::1}%b${word:1}%f")
+                ((out_num++))
             else
                 output+=("$word");
             fi
-        elif [[ "$char" != [[:space:]] ]]; then
+        elif [[ "$char" = [[:space:]] ]]; then
+            output+=("")
+        else
             output+=("$char");
         fi
     done
 
-    echo "${(pj:$separator:)output}"
+    print -P "${(pj:$separator:)output}"
 }
 
 main "${@:-}"

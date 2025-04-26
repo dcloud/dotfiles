@@ -87,7 +87,7 @@ test_color_output() {
 # Test non-letter handling
 test_non_letters() {
   local result=$(echo "A 1 *" | $SCRIPT --no-color)
-  local expected=$'Alfa\n1\n*'
+  local expected=$'Alfa\n\n1\n\n*'
   assert "Non-letter handling" "$expected" "$result"
 }
 
