@@ -22,6 +22,7 @@ end
 
 return {
     "olimorris/codecompanion.nvim",
+    version = "*",
     cond = aiEnabled,
     opts = function()
         local adapter = aiAdapter()
