@@ -16,6 +16,23 @@ local function aiAdapter()
     return adapter_value
 end
 
+local COPILOT_MODEL_CHOICES = {
+    "gpt-4o",
+    "gemini-2.0-flash--001",
+    "claude-3.5-sonnet",
+    "claude-3.7-sonnet",
+    "claude-3.7-sonnet-thought",
+    "o3-mini",
+}
+
+local function select_copilot_model()
+    local copilot_model_selection = vim.env.NEOVIM_COPILOT_MODEL
+    if not contains(COPILOT_MODEL_CHOICES, copilot_model_selection) then
+        copilot_model_selection = "gpt-4o"
+    end
+    return copilot_model_selection
+end
+
 local function aiEnabled()
     return aiAdapter() ~= nil
 end
@@ -26,18 +43,23 @@ return {
     cond = aiEnabled,
     opts = function()
         local adapter = aiAdapter()
-        local adapterconf = {}
-        if adapter == "anthropic" then
-            adapterconf = {
+        return {
+            adapters = {
                 anthropic = function()
                     return require("codecompanion.adapters").extend("anthropic", {
                         env = { api_key = "ANTHROPIC_API_KEY" },
                     })
                 end,
-            }
-        end
-        return {
-            adapters = adapterconf,
+                copilot = function()
+                    return require("codecompanion.adapters").extend("copilot", {
+                        schema = {
+                            model = {
+                                default = select_copilot_model(),
+                            },
+                        },
+                    })
+                end,
+            },
             strategies = {
                 chat = {
                     adapter = adapter,
