@@ -1,19 +1,11 @@
-local function contains(list, item)
-    for _, value in ipairs(list) do
-        if value == item then
-            return true
-        end
-    end
-    return false
-end
-
-local function aiAdapter()
-    local adapters = { "anthropic", "copilot" }
+local function ai_adapter()
+    local valid_adapters = { "anthropic", "copilot" }
     local adapter_value = vim.env.NEOVIM_AI_ADAPTER
-    if not contains(adapters, adapter_value) then
-        adapter_value = nil
+    if vim.tbl_contains(valid_adapters, adapter_value) then
+        return adapter_value
     end
-    return adapter_value
+    vim.notify("Invalid AI adapter: " .. adapter_value, vim.log.levels.WARN)
+    return nil
 end
 
 local COPILOT_MODEL_CHOICES = {
@@ -26,23 +18,31 @@ local COPILOT_MODEL_CHOICES = {
 }
 
 local function select_copilot_model()
+    local default_copilot_model = COPILOT_MODEL_CHOICES[1]
     local copilot_model_selection = vim.env.NEOVIM_COPILOT_MODEL
-    if not contains(COPILOT_MODEL_CHOICES, copilot_model_selection) then
-        copilot_model_selection = "gpt-4o"
+
+    if copilot_model_selection == nil or copilot_model_selection == "" then
+        return default_copilot_model
+    elseif vim.tbl_contains(COPILOT_MODEL_CHOICES, copilot_model_selection) then
+        return copilot_model_selection
     end
-    return copilot_model_selection
+    vim.notify(
+        "Invalid Copilot model: " .. copilot_model_selection .. "... using " .. default_copilot_model,
+        vim.log.levels.WARN
+    )
+    return default_copilot_model
 end
 
-local function aiEnabled()
-    return aiAdapter() ~= nil
+local function ai_enabled()
+    return ai_adapter() ~= nil
 end
 
 return {
     "olimorris/codecompanion.nvim",
     version = "*",
-    cond = aiEnabled,
+    cond = ai_enabled,
     opts = function()
-        local adapter = aiAdapter()
+        local adapter = ai_adapter()
         return {
             adapters = {
                 anthropic = function()
