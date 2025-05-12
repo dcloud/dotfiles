@@ -10,6 +10,12 @@ vim.diagnostic.config({
     },
 })
 
+-- https://mise.jdx.dev/ide-integration.html
+if vim.fn.executable("mise") == 1 then
+    -- Prepend mise shims to PATH
+    vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+end
+
 -- lazy.nvim config
 require("config.lazy")
 
