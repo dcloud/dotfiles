@@ -54,6 +54,11 @@ if vim.fn.executable("lua-language-server") == 1 then
                     -- (most likely LuaJIT in the case of Neovim)
                     version = "LuaJIT",
                 },
+                diagnostics = {
+                    globals = {
+                        "vim",
+                    },
+                },
                 -- Make the server aware of Neovim runtime files
                 workspace = {
                     checkThirdParty = false,
