@@ -4,22 +4,17 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 
--- Use <C-L> to clear the highlighting of :set hlsearch.
--- if maparg('<C-L>', 'n') ==# ''
---     nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
--- endif
-
 -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines
 vim.keymap.set(
     "n",
     "[<space>",
-    "<cmd>put! =repeat(nr2char(10), v:count1)<cr>'['",
+    "<Cmd>put! =repeat(nr2char(10), v:count1)<cr>'['",
     { noremap = true, desc = "Insert spaces before the current line" }
 )
 vim.keymap.set(
     "n",
     "]<space>",
-    "<cmd>put =repeat(nr2char(10), v:count1)<cr>']'",
+    "<Cmd>put =repeat(nr2char(10), v:count1)<cr>']'",
     { noremap = true, desc = "Insert spaces after the current line" }
 )
 
@@ -35,10 +30,10 @@ vim.keymap.set("n", "<leader>i", "<C-A>", { desc = "Increment number" })
 vim.keymap.set("n", "<leader>d", "<C-X>", { desc = "Decrement number" })
 
 -- Copy file _path_
-vim.keymap.set("n", "<leader>pr", '<cmd>let @*=expand("%")<CR>', { desc = "Copy relative file path" })
-vim.keymap.set("n", "<leader>pa", '<cmd>let @*=expand("%:p")<CR>', { desc = "Copy absolute file path " })
-vim.keymap.set("n", "<leader>pt", '<cmd>let @*=expand("%:t")<CR>', { desc = "Copy file name" })
-vim.keymap.set("n", "<leader>pd", '<cmd>let @*=expand("%:p:h")<CR>', { desc = "Copy file directory path" })
+vim.keymap.set("n", "<leader>pr", '<Cmd>let @*=expand("%")<CR>', { desc = "Copy relative file path" })
+vim.keymap.set("n", "<leader>pa", '<Cmd>let @*=expand("%:p")<CR>', { desc = "Copy absolute file path " })
+vim.keymap.set("n", "<leader>pt", '<Cmd>let @*=expand("%:t")<CR>', { desc = "Copy file name" })
+vim.keymap.set("n", "<leader>pd", '<Cmd>let @*=expand("%:p:h")<CR>', { desc = "Copy file directory path" })
 
 -- Mapping for adding semicolon to end of line
 vim.keymap.set("n", "<leader>;", "ms:norm A;<CR>`s", { desc = "Add a semicolon at the end of the line" })
@@ -52,5 +47,5 @@ vim.keymap.set("n", "<leader>;", "ms:norm A;<CR>`s", { desc = "Add a semicolon a
 -- char 201D: ”
 -- char 201E: „
 -- char 201F: ‟
-vim.keymap.set("n", "<leader>'", "<cmd>.s/\\(\\%u2018\\|\\%u2019\\)/'/g<CR>", { desc = "De-educate quotation marks" })
-vim.keymap.set("n", '<leader>"', '<cmd>.s/\\(\\%u201C\\|\\%u201D\\)/"/g<CR>', { desc = "De-educate quotation marks" })
+vim.keymap.set("n", "<leader>'", "<Cmd>.s/\\(\\%u2018\\|\\%u2019\\)/'/g<CR>", { desc = "De-educate quotation marks" })
+vim.keymap.set("n", '<leader>"', '<Cmd>.s/\\(\\%u201C\\|\\%u201D\\)/"/g<CR>', { desc = "De-educate quotation marks" })

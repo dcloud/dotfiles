@@ -87,8 +87,8 @@ end
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set("n", "<leader>ef", vim.diagnostic.open_float, { desc = "Open diagnostic in float" })
-vim.keymap.set("n", "<leader>el", vim.diagnostic.setloclist, { desc = "Put diagnostic in loclist" })
+vim.keymap.set("n", "<leader>xf", vim.diagnostic.open_float, { desc = "Open diagnostic in float" })
+vim.keymap.set("n", "<leader>xl", vim.diagnostic.setloclist, { desc = "Put diagnostic in loclist" })
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
