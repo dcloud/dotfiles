@@ -144,7 +144,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.buf.code_action,
             { buffer = ev.buf, desc = "Select an available code action" }
         )
-        vim.keymap.set("n", "<leader>f", function()
+        vim.keymap.set("n", "<leader>fl", function()
             vim.lsp.buf.format({ async = true })
         end, { buffer = ev.buf, desc = "Format buffer using lsp" })
     end,

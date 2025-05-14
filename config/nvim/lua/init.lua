@@ -8,6 +8,7 @@ vim.diagnostic.config({
     virtual_lines = {
         current_line = true,
     },
+    signs = true,
 })
 
 -- https://mise.jdx.dev/ide-integration.html
