@@ -1,7 +1,7 @@
 -- LSP configs
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local server_list = { "denols", "ruff", "rust_analyzer", "sourcekit", "zls" }
+local server_list = { "denols", "rust_analyzer", "sourcekit", "zls" }
 for _, value in pairs(server_list) do
     vim.lsp.enable(value)
     vim.lsp.config(value, {
@@ -82,6 +82,14 @@ if vim.fn.executable("ruby-lsp") == 1 then
             formatter = "standard",
             linters = { "standard" },
         },
+    })
+end
+
+if vim.fn.executable("ruff") == 1 then
+    vim.lsp.enable("ruff")
+    vim.lsp.config("ruff", {
+        cmd = { "ruff", "server" },
+        capabilities = capabilities,
     })
 end
 
