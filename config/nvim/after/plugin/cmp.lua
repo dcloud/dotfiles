@@ -19,7 +19,6 @@ cmp.setup({
         { name = "copilot", group_index = 1 },
         { name = "nvim_lsp", group_index = 1 },
         { name = "buffer", group_index = 1 },
-        { name = "cmdline", group_index = 2 },
     }),
     mapping = cmp.mapping.preset.insert({
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
@@ -50,16 +49,7 @@ cmp.setup({
     },
 })
 
--- Set configuration for specific filetype.
-cmp.setup.filetype("gitcommit", {
-    sources = cmp.config.sources({
-        { name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-    }, {
-        { name = "buffer" },
-    }),
-})
-
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+-- Use buffer source for `/` and `?`.
 cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
@@ -67,7 +57,7 @@ cmp.setup.cmdline({ "/", "?" }, {
     },
 })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- Use cmdline & path source for ':'
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
