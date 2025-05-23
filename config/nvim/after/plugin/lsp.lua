@@ -9,6 +9,19 @@ for _, value in pairs(server_list) do
     })
 end
 
+vim.lsp.config("denols", {
+    capabilities = capabilities,
+    filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+        "json",
+    },
+})
+
 local elixir_path = vim.fn.exepath("elixir-ls")
 if string.len(elixir_path) ~= 0 then
     vim.lsp.enable("elixirls")

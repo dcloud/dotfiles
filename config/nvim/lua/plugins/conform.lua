@@ -31,6 +31,7 @@ return {
             go = { "gofmt" },
             html = { "prettier" },
             javascript = { "deno_fmt", "prettier", stop_after_first = true },
+            json = { "deno_fmt" },
             yaml = { "prettier" },
             ruby = { "rubocop" },
             sh = { "shfmt" },
