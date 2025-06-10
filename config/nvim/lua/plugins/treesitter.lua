@@ -13,6 +13,8 @@ return {
       "html",
       "javascript",
       "lua",
+      "markdown",
+      "markdown_inline",
       "pkl",
       "python",
       "query",
