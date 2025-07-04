@@ -11,5 +11,6 @@ macos-option-as-alt = left
 
 keybind = alt+left=unbind
 keybind = alt+right=unbind
+keybind = shift+enter=text:\n
 
 shell-integration-features = sudo
