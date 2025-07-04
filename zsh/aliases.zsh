@@ -41,8 +41,6 @@ fi
 
 alias mux='tmuxinator'
 
-alias pip="noglob pip"
-
 # Shortcut for finding processes, displaying friendly output
 alias p='pgrep -l'
 
