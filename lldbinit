@@ -6,7 +6,7 @@ settings set prompt '[lldb]$ '
 # break on C/C++ method: b -M method
 # break on selector: b -S selector:here:
 # break on address: b -a 0xfeedface
-command alias b breakpoint set
+# command alias b breakpoint set
 command alias bd breakpoint disable
 command alias be breakpoint enable
 command alias bdel breakpoint delete
