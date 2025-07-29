@@ -1,8 +1,6 @@
 
 settings set prompt '[lldb]$ '
 
-command script import /usr/local/opt/chisel/libexec/fblldb.py
-
 # breakpoint shortcuts
 # break on function/method/selector: b -n name
 # break on C/C++ method: b -M method
@@ -14,8 +12,3 @@ command alias be breakpoint enable
 command alias bdel breakpoint delete
 command alias bcommand breakpoint command add
 command alias commands breakpoint command list
-
-command alias reveal_load_sim expr (void*)dlopen("/Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib", 0x2);
-command alias reveal_load_dev expr (void*)dlopen([(NSString*)[(NSBundle*)[NSBundle mainBundle] pathForResource:@"libReveal" ofType:@"dylib"] cStringUsingEncoding:0x4], 0x2);
-command alias reveal_start expr (void)[(NSNotificationCenter*)[NSNotificationCenter defaultCenter] postNotificationName:@"IBARevealRequestStart" object:nil];
-command alias reveal_stop expr (void)[(NSNotificationCenter*)[NSNotificationCenter defaultCenter] postNotificationName:@"IBARevealRequestStop" object:nil];
