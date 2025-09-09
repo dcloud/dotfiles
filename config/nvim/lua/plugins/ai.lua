@@ -45,20 +45,22 @@ return {
     local adapter = ai_adapter()
     return {
       adapters = {
-        anthropic = function()
-          return require("codecompanion.adapters").extend("anthropic", {
-            env = { api_key = "ANTHROPIC_API_KEY" },
-          })
-        end,
-        copilot = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            schema = {
-              model = {
-                default = select_copilot_model(),
+        http = {
+          anthropic = function()
+            return require("codecompanion.adapters").extend("anthropic", {
+              env = { api_key = "ANTHROPIC_API_KEY" },
+            })
+          end,
+          copilot = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              schema = {
+                model = {
+                  default = select_copilot_model(),
+                },
               },
-            },
-          })
-        end,
+            })
+          end,
+        },
       },
       strategies = {
         chat = {
