@@ -1,9 +1,8 @@
-theme = rose-pine
+theme = Rose Pine
 fullscreen = true
 font-family = "MonoLisa Variable"
 font-size = 15
 font-feature = +zero, +ss11
-font-family = "Fira Code"
 cursor-color=#c4a7e7
 adjust-cursor-thickness=3
 
