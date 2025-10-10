@@ -6,16 +6,16 @@ vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 
 -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines
 vim.keymap.set(
-    "n",
-    "[<space>",
-    "<Cmd>put! =repeat(nr2char(10), v:count1)<cr>'['",
-    { noremap = true, desc = "Insert spaces before the current line" }
+  "n",
+  "[<space>",
+  "<Cmd>put! =repeat(nr2char(10), v:count1)<cr>'['",
+  { noremap = true, desc = "Insert spaces before the current line" }
 )
 vim.keymap.set(
-    "n",
-    "]<space>",
-    "<Cmd>put =repeat(nr2char(10), v:count1)<cr>']'",
-    { noremap = true, desc = "Insert spaces after the current line" }
+  "n",
+  "]<space>",
+  "<Cmd>put =repeat(nr2char(10), v:count1)<cr>']'",
+  { noremap = true, desc = "Insert spaces after the current line" }
 )
 
 -- Keymappings for :term
@@ -49,3 +49,38 @@ vim.keymap.set("n", "<leader>;", "ms:norm A;<CR>`s", { desc = "Add a semicolon a
 -- char 201F: ‟
 vim.keymap.set("n", "<leader>'", "<Cmd>.s/\\(\\%u2018\\|\\%u2019\\)/'/g<CR>", { desc = "De-educate quotation marks" })
 vim.keymap.set("n", '<leader>"', '<Cmd>.s/\\(\\%u201C\\|\\%u201D\\)/"/g<CR>', { desc = "De-educate quotation marks" })
+
+-- CodeCompanion
+vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])
+
+-- Conform
+vim.keymap.set({ "n", "v" }, "<leader>ff", function()
+  require("conform").format({ async = true })
+end, { desc = "Format buffer" })
+
+-- Trouble
+vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+vim.keymap.set(
+  "n",
+  "<leader>xx",
+  "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+  { desc = "Buffer Diagnostics (Trouble)" }
+)
+vim.keymap.set("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
+vim.keymap.set(
+  "n",
+  "<leader>xl",
+  "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+  { desc = "LSP Definitions / references / ... (Trouble)" }
+)
+vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
+vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
+
+-- which-key
+vim.keymap.set("n", "<leader>?", function()
+  require("which-key").show({ global = false })
+end, { desc = "Buffer Local Keymaps (which-key)" })
