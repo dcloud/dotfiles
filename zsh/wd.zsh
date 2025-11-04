@@ -4,7 +4,10 @@
 WDPATH="$HOME/.local/wd"
 
 if [[ -d  "$WDPATH" ]]; then
+    WDBIN="$WDPATH/wd.sh"
     wd() {
-        . "$WDPATH/wd.sh"
+        . "$WDBIN"
     }
+    fpath=($WDPATH $fpath)
+    export WD_CONFIG="$HOME/.config/warprc"
 fi
