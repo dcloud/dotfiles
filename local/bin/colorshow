@@ -5,10 +5,10 @@
 color=0;
 col=4;
 
-while [ $color -lt 256 ]; do
-    echo -n -e "$(printf "%03g" $color): \\033[38;5;${color}mhello \\033[48;5;${color}mworld\\033[0m "
+for color in {0..255}; do
+    fg_color=$((255 - $color))
+    print -nP "$color: %F{$color}hello%f %K{$color}world%k "
     if ((color % col == (col-1))); then
         echo "";
     fi
-    ((color++));
 done
