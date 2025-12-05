@@ -3,7 +3,7 @@
 
 # Brew zsh completions
 typeset -U fpath
-if type brew &>/dev/null
+if whence brew &>/dev/null
 then
   fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
@@ -25,7 +25,7 @@ ZSH_THEME="dcloud"
 
 EDITOR='vim'
 MANPAGER='less'
-if type nvim &>/dev/null
+if whence nvim &>/dev/null
 then
     EDITOR='nvim'
     MANPAGER='nvim +Man!'
