@@ -4,7 +4,7 @@ local function ai_adapter()
   if vim.tbl_contains(valid_adapters, adapter_value) then
     return adapter_value
   end
-  adapter_notice = adapter_value or "unspecified"
+  local adapter_notice = adapter_value or "unspecified"
   vim.notify("Invalid AI adapter: " .. adapter_notice, vim.log.levels.WARN)
   return nil
 end
@@ -19,7 +19,7 @@ end
 
 return {
   "olimorris/codecompanion.nvim",
-  version = "17.x.x",
+  version = "18.x.x",
   cond = ai_enabled,
   opts = function()
     local adapter = ai_adapter()
@@ -42,7 +42,7 @@ return {
           end,
         },
       },
-      strategies = {
+      interactions = {
         chat = {
           adapter = adapter,
         },
@@ -67,7 +67,7 @@ return {
     "ravitemer/codecompanion-history.nvim",
     {
       "MeanderingProgrammer/render-markdown.nvim",
-      ft = { "markdown", "codecompanion" }
+      ft = { "markdown", "codecompanion" },
     },
   },
 }
