@@ -20,8 +20,10 @@ bindkey '^d' delete-char
 bindkey '\ew' backward-kill-word
 bindkey '^u' backward-kill-line
 
-bindkey '^r' history-incremental-search-backward
-bindkey '^s' history-incremental-search-forward
+if [[ $(bindkey -M viins "^r") = *"fzf-search-widget"* ]]; then
+  bindkey '^r' history-incremental-search-backward
+  bindkey '^s' history-incremental-search-forward
+fi
 
 # allow v to edit the command line (standard behaviour)
 autoload -Uz edit-command-line
