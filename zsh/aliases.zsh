@@ -3,8 +3,6 @@ alias reload!='. ~/.zshrc'
 
 alias help='run-help'
 
-alias mkvirtualenv3="mkvirtualenv -p $(which python3)"
-
 if hash tmux 2> /dev/null; then
     alias tma='tmux attach -t'
     alias tmad='tmux attach -d -t'
@@ -33,10 +31,12 @@ if hash eza 2> /dev/null; then
     alias ll='eza -la'
     alias lr='eza -lR'
     alias tree='eza -T'
+    alias l='eza -1'
 else
     alias ls='ls -hFG'         # Colors, size units, differentiate files/folders/symlinks
     alias ll='ls -alF'         # long list ls
     alias lr='ls -lR'          # recursive ls
+    alias l='ls -1'
 fi
 
 alias mux='tmuxinator'
