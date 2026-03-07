@@ -1,0 +1,19 @@
+#compdef kagi
+
+_kagi() {
+    local state
+
+    _arguments \
+        '(-b --bang)'{-b,--bang}'[Bang shortcut]:bang:->bang' \
+        '(-h --help)'{-h,--help}'[Show help]' \
+        '(-l --list)'{-l,--list}'[List core Kagi bangs]' \
+        '*:search terms:'
+
+    case $state in
+        bang)
+            _describe 'bang' _kagi_core_bangs
+            ;;
+    esac
+}
+
+_kagi "$@"
