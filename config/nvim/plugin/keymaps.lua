@@ -4,6 +4,11 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 
+-- Search/replace starting with \v magic
+vim.keymap.set("n", "<leader>rr", ":%s/\\v", {
+  desc = "Search with \\v magic",
+})
+
 -- https://github.com/mhinz/vim-galore#quickly-add-empty-lines
 vim.keymap.set(
   "n",

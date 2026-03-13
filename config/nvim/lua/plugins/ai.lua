@@ -28,6 +28,9 @@ return {
     "hrsh7th/nvim-cmp",
     {
       "MeanderingProgrammer/render-markdown.nvim",
+      opts = {
+        heading = { icons = { " ", " ", " " } },
+      },
       ft = { "markdown", "codecompanion" },
     },
   },
