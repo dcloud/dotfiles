@@ -12,6 +12,8 @@ keybind = alt+left=unbind
 keybind = alt+right=unbind
 keybind = shift+enter=text:\n
 
+keybind = global:super+ctrl+\=toggle_quick_terminal
+
 shell-integration-features = sudo
 
 macos-icon = "retro"
