@@ -7,12 +7,12 @@ function httpless {
 # mdid for easily getting bundle identifiers, useful with `open` cmd
 function mdid() {
     if [[ -e "$1" ]]; then
-        cmd="mdls -raw -attr kMDItemCFBundleIdentifier \"$1\"";
-        echo -e "\e[2m$cmd\e[0m";
-        eval "$cmd";
-        echo;
+        local cmd=(mdls -raw -attr kMDItemCFBundleIdentifier "$1")
+        print "\e[2m${(j: :)${(q-)cmd[@]}}\e[0m"
+        "${cmd[@]}"
+        echo
     else
-        echo "Please supply a filepath as an argument";
+        echo "Please supply a filepath as an argument"
     fi
 }
 
