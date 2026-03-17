@@ -1,0 +1,33 @@
+#compdef phonetic
+
+_phonetic() {
+    local state
+    local -a alphabets=(
+        'nato:NATO phonetic alphabet (default)'
+        'att:AT&T alphabet'
+        'britishpo:British Post Office alphabet'
+        'bp:British Post Office alphabet (short)'
+        'itc:ITC alphabet'
+        'royalnavy:Royal Navy alphabet'
+        'rn:Royal Navy alphabet (short)'
+        'tasmania:Tasmania alphabet'
+        'tz:Tasmania alphabet (short)'
+        'westernunion:Western Union alphabet'
+        'wu:Western Union alphabet (short)'
+    )
+
+    _arguments \
+        '(-a --alphabet)'{-a,--alphabet}'[Select phonetic alphabet]:alphabet:->alphabet' \
+        '(-s --separator)'{-s,--separator}'[Set word separator]:separator:' \
+        '--no-color[Disable colored output]' \
+        '(-h --help)'{-h,--help}'[Show help]' \
+        '*:words to translate:'
+
+    case $state in
+        alphabet)
+            _describe 'alphabet' alphabets
+            ;;
+    esac
+}
+
+_phonetic "$@"
