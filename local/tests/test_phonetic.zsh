@@ -97,7 +97,8 @@ test_separators() {
     assert "Seperator set using long option" "$expected" "$result"
 
     result=$(echo "Nice" | $SCRIPT --no-color -s '-')
-    expecte="November-India-Charlie-Echo"
+    expected="November-India-Charlie-Echo"
+    assert "Separator set using short option" "$expected" "$result"
 }
 
 # Run all tests
