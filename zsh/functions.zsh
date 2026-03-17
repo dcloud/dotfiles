@@ -16,15 +16,6 @@ function mdid() {
     fi
 }
 
-function pynit {
-    if [ "x$1" = "x" ]; then
-        DIR="./"
-    else
-        DIR="$1"
-    fi
-    touch ${DIR}/__init__.py
-}
-
 # Core Kagi service bangs — Kagi's own features, not site-specific searches.
 # Shared between kagi() and _kagi completion.
 _kagi_core_bangs=(
