@@ -3,7 +3,7 @@ alias reload!='exec zsh'
 
 alias help='run-help'
 
-if hash tmux 2> /dev/null; then
+if (( $+commands[tmux] )); then
     alias tma='tmux attach -t'
     alias tmad='tmux attach -d -t'
     alias tms='tmux new-session -s'
@@ -26,7 +26,7 @@ alias mv='mv -i'
 alias du='du -kh'       # Makes a more readable output.
 alias df='df -kTh'
 
-if hash eza 2> /dev/null; then
+if (( $+commands[eza] )); then
     alias ls='eza'
     alias ll='eza -la'
     alias lr='eza -lR'

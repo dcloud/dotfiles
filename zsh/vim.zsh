@@ -5,7 +5,7 @@ VIMFILES="$HOME/.vim/files"
 typeset -a SUBDIRS
 SUBDIRS=("backup" "swap" "undo" "info")
 
-if whence vim &> /dev/null; then
+if (( $+commands[vim] )); then
     alias vi=vim
 fi
 

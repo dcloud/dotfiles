@@ -1,5 +1,5 @@
 # This loads completions for akamai cli, if installed
 
-if hash akamai 2>/dev/null; then
+if (( $+commands[akamai] )); then
     eval "$(akamai --zsh)"
 fi
