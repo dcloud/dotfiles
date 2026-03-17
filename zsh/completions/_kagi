@@ -5,6 +5,7 @@ _kagi() {
 
     _arguments \
         '(-b --bang)'{-b,--bang}'[Bang shortcut]:bang:->bang' \
+        '(-p --print)'{-p,--print}'[Print URL instead of opening it]' \
         '(-h --help)'{-h,--help}'[Show help]' \
         '(-l --list)'{-l,--list}'[List core Kagi bangs]' \
         '*:search terms:'

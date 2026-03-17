@@ -54,6 +54,7 @@ _kagi_core_bangs=(
 
 function kagi() {
     local bang=""
+    local print_url=0
     local -a args
 
     while [[ $# -gt 0 ]]; do
@@ -62,12 +63,17 @@ function kagi() {
                 bang="$2"
                 shift 2
                 ;;
+            -p|--print)
+                print_url=1
+                shift
+                ;;
             -h|--help)
-                echo "Usage: kagi [-b <bang>] <search terms>"
+                echo "Usage: kagi [-b <bang>] [-p] <search terms>"
                 echo "       kagi -l"
                 echo ""
                 echo "Options:"
                 echo "  -b, --bang <bang>  Bang shortcut for Kagi or external site"
+                echo "  -p, --print        Print the URL instead of opening it"
                 echo "  -h, --help         Show this help"
                 echo "  -l, --list         List core Kagi bangs"
                 return 0
@@ -91,17 +97,24 @@ function kagi() {
         esac
     done
 
-    local query="${(j:+:)args}"
+    local query=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote_plus(sys.argv[1]),end='')" "${(j: :)args}")
     if [[ -z "$query" && -z "$bang" ]]; then
         echo "Usage: kagi [-b <bang>] <search terms>"
         echo "Run 'kagi -h' for help or 'kagi -l' to list core bangs."
         return 1
     fi
 
+    local url
     if [[ -n "$bang" ]]; then
-        open "https://kagi.com/search?q=!${bang}+${query}"
+        url="https://kagi.com/search?q=!${bang}+${query}"
     else
-        open "https://kagi.com/search?q=${query}"
+        url="https://kagi.com/search?q=${query}"
+    fi
+
+    if [[ $print_url -eq 1 ]]; then
+        print "$url"
+    else
+        open "$url"
     fi
 }
 
