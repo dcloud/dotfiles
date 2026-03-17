@@ -1,5 +1,5 @@
 # Aliases
-alias reload!='. ~/.zshrc'
+alias reload!='exec zsh'
 
 alias help='run-help'
 
