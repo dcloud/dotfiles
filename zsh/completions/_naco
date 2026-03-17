@@ -1,0 +1,28 @@
+#compdef naco
+
+_naco() {
+    local state
+    local -a formats=(
+        'c:camelCase'
+        'camelCase:camelCase'
+        's:snake_case'
+        'snake_case:snake_case'
+        'p:PascalCase'
+        'PascalCase:PascalCase'
+    )
+
+    _arguments \
+        '(-t --to)'{-t,--to}'[Select output format]:format:->format' \
+        '(-v --verbose)'{-v,--verbose}'[Show format detection details]' \
+        '--run-tests[Run tests using predefined data]' \
+        '(-h --help)'{-h,--help}'[Show help]' \
+        ':input:'
+
+    case $state in
+        format)
+            _describe 'format' formats
+            ;;
+    esac
+}
+
+_naco "$@"
