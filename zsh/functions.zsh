@@ -116,12 +116,12 @@ function kagi() {
 
 # What's running on a port
 function wop() {
-    cmd="lsof -P -i :$1 -n"
-    echo -e "\e[2m$cmd\e[0m"
-    eval "$cmd";
+    local cmd=(lsof -P -i ":$1" -n)
+    print "\e[2m${(j: :)${(q-)cmd[@]}}\e[0m"
+    "${cmd[@]}"
     local exitcode=$?
-    if [ $exitcode -ne 0 ]; then
-        echo "Nothing listening on port $1";
+    if [[ $exitcode -ne 0 ]]; then
+        echo "Nothing listening on port $1"
     fi
-    return $exitcode;
+    return $exitcode
 }
