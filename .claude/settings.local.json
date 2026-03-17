@@ -6,7 +6,8 @@
       "WebFetch(domain:help.kagi.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(curl:*)",
-      "Skill(commit-commands:commit)"
+      "Skill(commit-commands:commit)",
+      "Bash(git add:*)"
     ]
   }
 }
