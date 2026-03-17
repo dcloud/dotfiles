@@ -1,8 +1,3 @@
-function httpless {
-    # `httpless example.org'
-    http --pretty=all --verbose "$@" | less -R;
-}
-
 # mdls is a macOS application for listing file metadata attributes
 # mdid for easily getting bundle identifiers, useful with `open` cmd
 function mdid() {
