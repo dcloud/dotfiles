@@ -25,7 +25,6 @@ return {
   dependencies = {
     { "nvim-lua/plenary.nvim", branch = "master" },
     "nvim-treesitter/nvim-treesitter",
-    "hrsh7th/nvim-cmp",
     {
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {

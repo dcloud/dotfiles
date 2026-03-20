@@ -1,16 +1,11 @@
 -- LSP configs
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local server_list = { "denols", "rust_analyzer", "sourcekit", "zls" }
 for _, value in pairs(server_list) do
   vim.lsp.enable(value)
-  vim.lsp.config(value, {
-    capabilities = capabilities,
-  })
 end
 
 vim.lsp.config("denols", {
-  capabilities = capabilities,
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -24,7 +19,6 @@ local elixir_path = vim.fn.exepath("elixir-ls")
 if string.len(elixir_path) ~= 0 then
   vim.lsp.enable("elixirls")
   vim.lsp.config("elixirls", {
-    capabilities = capabilities,
     cmd = { elixir_path },
   })
 end
@@ -33,7 +27,6 @@ if vim.fn.executable("gopls") == 1 then
   vim.lsp.enable("gopls")
   vim.lsp.config("gopls", {
     cmd = { "gopls" },
-    capabilities = capabilities,
     settings = {
       gopls = {
         experimentalPostfixCompletions = true,
@@ -88,7 +81,6 @@ end
 if vim.fn.executable("ruby-lsp") == 1 then
   vim.lsp.enable("ruby_lsp")
   vim.lsp.config("ruby_lsp", {
-    capabilities = capabilities,
     init_options = {
       formatter = "standard",
       linters = { "standard" },
@@ -100,7 +92,6 @@ if vim.fn.executable("ruff") == 1 then
   vim.lsp.enable("ruff")
   vim.lsp.config("ruff", {
     cmd = { "ruff", "server" },
-    capabilities = capabilities,
   })
 end
 
