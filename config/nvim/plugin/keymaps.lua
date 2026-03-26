@@ -23,12 +23,16 @@ vim.keymap.set(
   { noremap = true, desc = "Insert spaces after the current line" }
 )
 
--- Keymappings for :term
-vim.keymap.set("t", "<C-h>", "<C-W>h")
-vim.keymap.set("t", "<C-j>", "<C-W>j")
-vim.keymap.set("t", "<C-k>", "<C-W>k")
-vim.keymap.set("t", "<C-l>", "<C-W>l")
-vim.keymap.set("t", "<leader><Esc>", "<C-w>N")
+-- Keymappings for :term and general winow navigation
+vim.keymap.set({ "t", "i" }, "<A-h>", "<C-\\><C-N><C-w>h")
+vim.keymap.set({ "t", "i" }, "<A-j>", "<C-\\><C-N><C-w>j")
+vim.keymap.set({ "t", "i" }, "<A-k>", "<C-\\><C-N><C-w>k")
+vim.keymap.set({ "t", "i" }, "<A-l>", "<C-\\><C-N><C-w>l")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-N>")
+vim.keymap.set({ "n" }, "<A-h>", "<C-w>h")
+vim.keymap.set({ "n" }, "<A-j>", "<C-w>j")
+vim.keymap.set({ "n" }, "<A-k>", "<C-w>k")
+vim.keymap.set({ "n" }, "<A-l>", "<C-w>l")
 
 -- Mappings for increment and decrement
 vim.keymap.set("n", "<leader>i", "<C-A>", { desc = "Increment number" })
