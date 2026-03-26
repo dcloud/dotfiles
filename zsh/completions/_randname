@@ -1,0 +1,25 @@
+#compdef randname
+
+_randname() {
+    local state
+
+    _arguments \
+        '(-l --list)'{-l,--list}'[List available themes]' \
+        '(-h --help)'{-h,--help}'[Show help]' \
+        '(-t --theme)'{-t,--theme}'[Comma-separated theme spec (e.g. tech or tech:2,mystical:1)]:theme spec:->theme' \
+        ':word count (default\: 3, minimum\: 2):'
+
+    case $state in
+        theme)
+            local theme_dir="${RANDNAME_THEME_DIR:-$HOME/.local/share/randname}"
+            local -a themes=()
+            local f
+            for f in "$theme_dir"/*.txt(N); do
+                themes+=("${f:t:r}")
+            done
+            _describe 'theme' themes
+            ;;
+    esac
+}
+
+_randname "$@"
