@@ -228,21 +228,24 @@ main() {
             [[ $t == $chosen_theme ]] || search_order+=("$t")
         done
 
-        # Find first unused word
+        # Find a random unused word
         found_word=""
         for t in "${search_order[@]}"; do
             [[ -n $found_word ]] && break
             tname_safe="${t//-/_}"
             local arr_name="${pos}s_${tname_safe}"
+            # Build pool of unused words from this theme
+            local -a avail=()
             for w in "${(@P)arr_name}"; do
                 if [[ $pos == adj ]]; then
-                    (( ${+used_adjs[$w]} )) && continue
+                    (( ${+used_adjs[$w]} )) || avail+=("$w")
                 else
-                    (( ${+used_nouns[$w]} )) && continue
+                    (( ${+used_nouns[$w]} )) || avail+=("$w")
                 fi
-                found_word=$w
-                break
             done
+            if (( ${#avail} > 0 )); then
+                found_word="${avail[$(( RANDOM % ${#avail} + 1 ))]}"
+            fi
         done
 
         if [[ $pos == adj ]]; then
