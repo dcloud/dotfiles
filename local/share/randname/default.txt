@@ -243,8 +243,8 @@ torch
 tower
 truss
 valve
-vault
 vane
+vault
 vessel
 wheel
 wrench
