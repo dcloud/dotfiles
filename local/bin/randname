@@ -34,6 +34,10 @@ main() {
                 shift
                 ;;
             -t|--theme)
+                if [[ $# -lt 2 ]]; then
+                    print "unknown option: $1" >&2
+                    return 1
+                fi
                 theme_spec="$2"
                 shift 2
                 ;;
