@@ -1,0 +1,259 @@
+#!/usr/bin/env zsh
+set -eu
+set -o PIPE_FAIL
+
+typeset -r THEME_DIR="${RANDNAME_THEME_DIR:-${HOME}/.local/share/randname}"
+cmdname=${0:t}
+
+print_usage() {
+    print "Usage: $cmdname [N] [-t SPEC] [-l] [-h]
+  N              number of words (default: 3, minimum: 2)
+  -t, --theme    comma-separated themes, e.g. tech or tech:2,mystical:1
+  -l, --list     list available themes
+  -h, --help     show this help"
+}
+
+main() {
+    # Check for -h/--help anywhere in args first
+    local arg
+    for arg in "$@"; do
+        if [[ $arg == -h || $arg == --help ]]; then
+            print_usage
+            return 0
+        fi
+    done
+
+    local n_raw=""
+    local theme_spec="default"
+    local do_list=0
+
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -l|--list)
+                do_list=1
+                shift
+                ;;
+            -t|--theme)
+                theme_spec="$2"
+                shift 2
+                ;;
+            --theme=*)
+                theme_spec="${1#--theme=}"
+                shift
+                ;;
+            --)
+                shift
+                if [[ $# -gt 0 && -z $n_raw ]]; then
+                    n_raw="$1"
+                fi
+                break
+                ;;
+            -*)
+                print "unknown option: $1" >&2
+                return 1
+                ;;
+            *)
+                if [[ -z $n_raw ]]; then
+                    n_raw="$1"
+                fi
+                shift
+                ;;
+        esac
+    done
+
+    # --list
+    if (( do_list )); then
+        local -a theme_files=("${THEME_DIR}"/*.txt(N))
+        local f
+        for f in "${theme_files[@]}"; do
+            print "${f:t:r}"
+        done | sort
+        return 0
+    fi
+
+    # Validate N
+    local n="${n_raw:-3}"
+    if [[ $n != <-> ]]; then
+        print "N must be a positive integer" >&2
+        print_usage >&2
+        return 1
+    fi
+    if (( n < 2 )); then
+        print "N must be at least 2" >&2
+        print_usage >&2
+        return 1
+    fi
+
+    # Parse theme spec into ordered names + weights
+    local -a theme_names=()
+    local -A theme_weights=()
+    local -a raw_specs=("${(@s:,:)theme_spec}")
+    local spec tname tweight_raw tweight tfile
+
+    for spec in "${raw_specs[@]}"; do
+        [[ -z $spec ]] && continue
+
+        tname="${spec%%:*}"
+        if [[ $spec == *:* ]]; then
+            tweight_raw="${spec#*:}"
+        else
+            tweight_raw="1"
+        fi
+
+        # Validate theme name
+        if [[ ! $tname =~ ^[a-z0-9_-]+$ ]]; then
+            print "invalid theme name: $tname" >&2
+            return 1
+        fi
+
+        # Validate weight: all digits, >= 1
+        if [[ $tweight_raw != <-> ]] || (( tweight_raw == 0 )); then
+            print "invalid weight for theme '$tname': must be a positive integer" >&2
+            return 1
+        fi
+        tweight=$tweight_raw
+
+        # Check file exists and is readable
+        tfile="${THEME_DIR}/${tname}.txt"
+        if [[ ! -f $tfile ]]; then
+            print "unknown theme: $tname" >&2
+            return 1
+        fi
+        if [[ ! -r $tfile ]]; then
+            print "cannot read theme file: $tfile" >&2
+            return 1
+        fi
+
+        # Deduplicate: sum weights, preserve first-occurrence order
+        if (( ${+theme_weights[$tname]} )); then
+            theme_weights[$tname]=$(( theme_weights[$tname] + tweight ))
+        else
+            theme_names+=("$tname")
+            theme_weights[$tname]=$tweight
+        fi
+    done
+
+    # Parse theme files
+    # Per-theme word arrays are stored as globals: adjs_<safe> and nouns_<safe>
+    # (hyphens in theme names replaced with underscores for valid zsh identifiers)
+    local tname_safe arr_adjs arr_nouns line section
+
+    for tname in "${theme_names[@]}"; do
+        tfile="${THEME_DIR}/${tname}.txt"
+        tname_safe="${tname//-/_}"
+        arr_adjs="adjs_${tname_safe}"
+        arr_nouns="nouns_${tname_safe}"
+        section=""
+        local -a adjs=() nouns=()
+
+        while IFS= read -r line || [[ -n $line ]]; do
+            [[ -z $line ]]               && continue
+            [[ $line == \#* ]]           && continue
+            [[ $line == *[[:space:]]* ]] && continue
+
+            case $line in
+                '[adjectives]') section=adj  ;;
+                '[nouns]')      section=noun ;;
+                \[*\])          section=""   ;;
+                *)
+                    [[ $section == adj  ]] && adjs+=("$line")
+                    [[ $section == noun ]] && nouns+=("$line")
+                    ;;
+            esac
+        done < "$tfile"
+
+        typeset -ga "$arr_adjs"
+        typeset -ga "$arr_nouns"
+        (( ${#adjs}  )) && set -A "$arr_adjs"  "${adjs[@]}"
+        (( ${#nouns} )) && set -A "$arr_nouns" "${nouns[@]}"
+    done
+
+    # Eager pool-size check: count unique words across all themes
+    local -A seen_adjs=() seen_nouns=()
+    local w
+
+    for tname in "${theme_names[@]}"; do
+        tname_safe="${tname//-/_}"
+        arr_adjs="adjs_${tname_safe}"
+        arr_nouns="nouns_${tname_safe}"
+        for w in "${(@P)arr_adjs}";  do seen_adjs[$w]=1;  done
+        for w in "${(@P)arr_nouns}"; do seen_nouns[$w]=1; done
+    done
+
+    local unique_adjs=${#seen_adjs}
+    local unique_nouns=${#seen_nouns}
+    local need_adjs=$(( n - 1 ))
+
+    if (( need_adjs > 0 && unique_adjs < need_adjs )); then
+        print "adjective pool too small (have ${unique_adjs}, need ${need_adjs})" >&2
+        return 1
+    fi
+    if (( unique_nouns < 1 )); then
+        print "noun pool is empty" >&2
+        return 1
+    fi
+
+    # Word selection: roulette-wheel theme selection per slot
+    local total_weight=0
+    for tname in "${theme_names[@]}"; do
+        total_weight=$(( total_weight + theme_weights[$tname] ))
+    done
+
+    local -A used_adjs=() used_nouns=()
+    local -a result=()
+    local pos r cumulative chosen_theme t found_word
+
+    # Build slot list: N-1 adjective slots then 1 noun slot
+    local -a slots=()
+    local i
+    for (( i = 0; i < n - 1; i++ )); do slots+=(adj); done
+    slots+=(noun)
+
+    for pos in "${slots[@]}"; do
+        # Roulette-wheel theme selection
+        r=$(( RANDOM % total_weight ))
+        cumulative=0
+        chosen_theme=""
+        for t in "${theme_names[@]}"; do
+            cumulative=$(( cumulative + theme_weights[$t] ))
+            if (( r < cumulative )); then
+                chosen_theme=$t
+                break
+            fi
+        done
+
+        # Search order: chosen theme first, then all themes from beginning
+        local -a search_order=("$chosen_theme")
+        for t in "${theme_names[@]}"; do
+            [[ $t == $chosen_theme ]] || search_order+=("$t")
+        done
+
+        # Find first unused word
+        found_word=""
+        for t in "${search_order[@]}"; do
+            [[ -n $found_word ]] && break
+            tname_safe="${t//-/_}"
+            local arr_name="${pos}s_${tname_safe}"
+            for w in "${(@P)arr_name}"; do
+                if [[ $pos == adj ]]; then
+                    (( ${+used_adjs[$w]} )) && continue
+                else
+                    (( ${+used_nouns[$w]} )) && continue
+                fi
+                found_word=$w
+                break
+            done
+        done
+
+        if [[ $pos == adj ]]; then
+            used_adjs[$found_word]=1
+        else
+            used_nouns[$found_word]=1
+        fi
+        result+=("$found_word")
+    done
+
+    print "${(j:-:)result}"
+}
+
+main "$@"
