@@ -7,6 +7,11 @@ TEXLIVE_PATH=/Library/TeX/texbin
 # User path
 USER_PATH=$HOME/.local/bin
 
+# Path for /opt/bin
+# local system administrator use
+OPT_PATH=/opt/bin
+
 # Enforce uniqueness
 typeset -U path
-path=($USER_PATH $TEXLIVE_PATH $path)
+path=($USER_PATH $TEXLIVE_PATH $OPT_PATH $path)
+
