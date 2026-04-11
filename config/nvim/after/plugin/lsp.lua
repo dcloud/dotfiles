@@ -95,6 +95,10 @@ if vim.fn.executable("ruff") == 1 then
   })
 end
 
+if vim.fn.executable("ty") == 1 then
+  vim.lsp.enable("ty")
+end
+
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set("n", "<leader>xf", vim.diagnostic.open_float, { desc = "Open diagnostic in float" })
