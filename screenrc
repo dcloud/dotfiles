@@ -1,3 +1,6 @@
+# Use 256 colors
+term screen-256color
+
 # reset escape key to the default
 escape ^Aa
 
