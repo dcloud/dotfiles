@@ -1,4 +1,4 @@
-
+# vim: set filetype=gitconfig :
 [core]
     excludesfile = ~/.gitignore_global
     attributesfile = ~/.gitattributes_global
@@ -58,6 +58,12 @@
     d = !git --no-pager diff
     diffstat = !git --no-pager diff --stat -r
     dt = difftool -y
+    dlog = -c diff.external=difft log --ext-diff
+    dl = dlog
+    dshow = -c diff.external=difft show --ext-diff
+    ds = dshow
+    ddiff = -c diff.external=difft diff
+    dft = ddiff
     fix = "!f() { ${EDITOR} $(git diff --name-only); }; f"
     hidden = ! git ls-files -v | grep '^h' | cut -c3-
     hide = update-index --assume-unchanged
