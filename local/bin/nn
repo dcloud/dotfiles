@@ -57,13 +57,18 @@ main() {
                 to_lowercase=0;
                 ;;
             r)
-                user_params=(${(s:/:)OPTARG%%=*});
+                user_params=(${(s:/:)OPTARG});
                 user_search="${user_params[1]}";
                 user_rep="${user_params[2]}";
                 ;;
             -) case $OPTARG in
                 help ) print_help;;
                 no-lowercase ) to_lowercase=0;;
+                replace=* )
+                    user_params=(${(s:/:)${OPTARG#*=}});
+                    user_search="${user_params[1]}";
+                    user_rep="${user_params[2]}";
+                    ;;
                 * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
                 esac;;
             : ) fail "Short option \"$OPTARG\" missing argument";;
@@ -82,6 +87,16 @@ main() {
     # `man zshexpn`, see 'modifiers'
     fname="${input:t:r}";
     fext="${input:e}";
+    # `:e` grabs everything after the last dot, including a leading space when the
+    # dot is mid-sentence (e.g. "vs. Jiger").  Strip any surrounding whitespace so
+    # it doesn't leak into the reconstructed extension.
+    # If the captured "extension" starts with a space the dot was mid-sentence
+    # (e.g. "vs. Jiger"), not a file-extension separator.  Fold it back into the
+    # stem so the dot gets treated like any other character to replace.
+    if [[ "$fext" == ' '* ]]; then
+        fname="${fname}.${fext# }"
+        fext=""
+    fi
 
 
     # echo "input: '$input'";
