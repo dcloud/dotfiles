@@ -12,6 +12,7 @@
 set -eu
 set -o PIPE_FAIL
 set -o BRACE_CCL
+set -o EXTENDED_GLOB
 IFS=$'\n\t'
 
 cmdname=$(basename $0);
@@ -21,9 +22,9 @@ fail () { echo "Error: $*" >&2; exit 1;  }
 print_help() {
     # shellcheck disable=SC2086
     cat <<EOF >&2
-$cmdname - new name
+$cmdname - slugify string/filename
 
-Transforms an input filename into something more command-line friendly. Replaces
+Transforms an input string into something more command-line friendly. Removes most punctuation, replaces
 periods and spaces with hyphens, lowercases all letters by default.
 
 Usage:
@@ -32,22 +33,15 @@ Usage:
 Options:
   -h, --help                    print help
   -L, --no-lowercase            don't lowercase the output
-  -r, --replace=SEARCH/REPLACE  provide a SEARCH regex and a
-                                  REPLACE string, separated by a forward slash.
-                                  Replacement is made before output is lowercased.
 
 EOF
     exit 0;
 }
 
 to_lowercase=1;
-sub_re="[.[:space:]]";
-rep="-";
-user_search='';
-user_rep='';
 
 main() {
-    while getopts ":hLr:-:" opt; do
+    while getopts ":hL-:" opt; do
         case $opt in
             h)
                 print_help
@@ -56,19 +50,9 @@ main() {
             L)
                 to_lowercase=0;
                 ;;
-            r)
-                user_params=(${(s:/:)OPTARG});
-                user_search="${user_params[1]}";
-                user_rep="${user_params[2]}";
-                ;;
             -) case $OPTARG in
                 help ) print_help;;
                 no-lowercase ) to_lowercase=0;;
-                replace=* )
-                    user_params=(${(s:/:)${OPTARG#*=}});
-                    user_search="${user_params[1]}";
-                    user_rep="${user_params[2]}";
-                    ;;
                 * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
                 esac;;
             : ) fail "Short option \"$OPTARG\" missing argument";;
@@ -98,14 +82,6 @@ main() {
         fext=""
     fi
 
-
-    # echo "input: '$input'";
-
-    # If the user provided a -r/--replace arg, replace that text first.
-    if [[ -n "$user_search" && -n "$user_params" ]]; then
-        fname="${fname//${~user_search}/$user_rep}";
-    fi
-
     # Convert to lowercase, if selected.
     # On by default
     if [[ $to_lowercase -eq 1 ]]; then
@@ -113,16 +89,27 @@ main() {
         fext="${(L)fext}";
     fi
 
-    if [[ -n "$sub_re" ]]; then
-        fname="${(S)fname//${~sub_re}/$rep}";
+    slug_char='-';
+    slug_elim='_';
+    n_hyphens=${#${fname//[^-]}};
+    n_underscores=${#${fname//[^_]}};
+    if [[ $n_underscores -gt 1 && $n_hyphens -lt $n_underscores ]]; then
+      slug_char='_';
+      slug_elim='-';
     fi
+
+    slug="${fname//[^[:alnum:][:space:]._-]/}"; # Strip punctuation
+    slug="${slug//[[:space:]\.$slug_elim]/$slug_char}"; # Spaces to slug char
+    slug="${slug//$slug_char##/$slug_char}"; # Deduplicate slug char
+    slug="${slug#$slug_char}"; # Trim leading slug
+    slug="${slug%$slug_char}"; # Trim trailing slug
 
     # Reconstruct file extension
     if [[ -n "$fext" ]]; then
         fext=".$fext";
     fi
 
-    output="$fname$fext";
+    output="$slug$fext";
     echo "$output";
 
 }

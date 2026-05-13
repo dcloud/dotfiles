@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 
-# Tests for the nn script
-# Run with: ./test_nn.zsh
+# Tests for the slugify script
+# Run with: ./test_slugify.zsh
 
 set -eu
 
 THIS_PATH="${0:A:h}"
-SCRIPT="$THIS_PATH/../bin/nn"
+SCRIPT="$THIS_PATH/../bin/slugify"
 
 assert() {
     local desc="$1"
@@ -74,19 +74,6 @@ test_no_lowercase() {
         "Hello-World.TXT" "$($SCRIPT --no-lowercase 'Hello World.TXT')"
 }
 
-test_replace_short() {
-    assert "-r replaces in stem" \
-        "gamera-versus-jiger.mkv" "$($SCRIPT -r vs/versus 'gamera vs jiger.mkv')"
-
-    assert "-r replace affects stem only, not extension" \
-        "gamera-versus-jiger.txt" "$($SCRIPT -r vs/versus 'gamera vs jiger.txt')"
-}
-
-test_replace_long() {
-    assert "--replace=SEARCH/REP replaces in stem" \
-        "gamera-versus-jiger.mkv" "$($SCRIPT --replace=vs/versus 'gamera vs jiger.mkv')"
-}
-
 test_help() {
     local out
 
@@ -116,12 +103,10 @@ test_errors() {
 }
 
 run_tests() {
-    print "Running nn tests..."
+    print "Running slugify tests..."
     test_basic_transformations
     test_extension_handling
     test_no_lowercase
-    test_replace_short
-    test_replace_long
     test_help
     test_errors
     print "All tests completed!"
