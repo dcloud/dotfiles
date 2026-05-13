@@ -15,8 +15,12 @@ return {
     --
     -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
-      preset = "default",
-      ["<C-;>"] = { "select_and_accept", "fallback" },
+      preset = "super-tab",
+    },
+    completion = {
+      trigger = {
+        show_in_snippet = false,
+      },
     },
 
     snippets = { preset = "luasnip" },
