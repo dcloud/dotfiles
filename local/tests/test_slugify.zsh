@@ -39,7 +39,11 @@ assert_matches() {
 }
 
 stderr_of() { "$@" 2>&1 >/dev/null || true; }
-get_exit_code() { local code=0; "$@" >/dev/null 2>&1 || code=$?; print $code; }
+get_exit_code() {
+    local code=0
+    "$@" >/dev/null 2>&1 || code=$?
+    print $code
+}
 
 test_basic_transformations() {
     assert "spaces become hyphens" \
@@ -64,6 +68,14 @@ test_extension_handling() {
     # separator — fold it back into the stem so the dot becomes a hyphen.
     assert "period-space mid-sentence: dot becomes hyphen, not extension separator" \
         "gamera-vs-jiger" "$($SCRIPT 'Gamera vs. Jiger')"
+}
+
+test_input_handling() {
+    assert "multiple arguments treated as one string" \
+        "the-quick-brown-fox" "$($SCRIPT the quick brown fox)"
+
+    assert "piped input is handled" \
+        "jumped-over-the-lazy-dog" "$(echo 'jumped over the lazy dog' | $SCRIPT)"
 }
 
 test_no_lowercase() {
@@ -106,6 +118,7 @@ run_tests() {
     print "Running slugify tests..."
     test_basic_transformations
     test_extension_handling
+    test_input_handling
     test_no_lowercase
     test_help
     test_errors

@@ -15,17 +15,21 @@ set -o BRACE_CCL
 set -o EXTENDED_GLOB
 IFS=$'\n\t'
 
-cmdname=$(basename $0);
+cmdname=$(basename $0)
 
-fail () { echo "Error: $*" >&2; exit 1;  }
+fail() {
+    echo "Error: $*" >&2
+    exit 1
+}
 
 print_help() {
     # shellcheck disable=SC2086
     cat <<EOF >&2
 $cmdname - slugify string/filename
 
-Transforms an input string into something more command-line friendly. Removes most punctuation, replaces
-periods and spaces with hyphens, lowercases all letters by default.
+Transforms an input string into something more command-line friendly.
+Removes most punctuation, replaces periods and spaces with
+hyphens, lowercases all letters by default.
 
 Usage:
     $cmdname [options] source
@@ -35,42 +39,54 @@ Options:
   -L, --no-lowercase            don't lowercase the output
 
 EOF
-    exit 0;
+    exit 0
 }
 
-to_lowercase=1;
+to_lowercase=1
 
 main() {
     while getopts ":hL-:" opt; do
         case $opt in
-            h)
-                print_help
-                exit
-                ;;
-            L)
-                to_lowercase=0;
-                ;;
-            -) case $OPTARG in
-                help ) print_help;;
-                no-lowercase ) to_lowercase=0;;
-                * ) fail "Unknown long option \"${OPTARG%%=*}\"";;
-                esac;;
-            : ) fail "Short option \"$OPTARG\" missing argument";;
-            \?)
-                fail "Invalid option"
-                exit
-                ;;
+        h)
+            print_help
+            exit
+            ;;
+        L)
+            to_lowercase=0
+            ;;
+        -) case $OPTARG in
+            help) print_help ;;
+            no-lowercase) to_lowercase=0 ;;
+            *) fail "Unknown long option \"${OPTARG%%=*}\"" ;;
+            esac ;;
+        :) fail "Short option \"$OPTARG\" missing argument" ;;
+        \?)
+            fail "Invalid option"
+            exit
+            ;;
         esac
     done
 
-    shift $((OPTIND-1))
+    shift $((OPTIND - 1))
 
+    if [[ $# -gt 0 ]]; then
+        slugify "${(j: :)@}"
+    elif [[ ! -t 0 ]]; then
+        while IFS= read -r line || [[ -n "$line" ]]; do
+            slugify "$line"
+        done
+    else
+        fail "You must provide a filename/string to rename. Run 'slugify -h' for help."
+    fi
 
-    input="${1:?You must provide a filename/string to rename}";
+}
+
+slugify() {
+    input="$1"
 
     # `man zshexpn`, see 'modifiers'
-    fname="${input:t:r}";
-    fext="${input:e}";
+    fname="${input:t:r}"
+    fext="${input:e}"
     # `:e` grabs everything after the last dot, including a leading space when the
     # dot is mid-sentence (e.g. "vs. Jiger").  Strip any surrounding whitespace so
     # it doesn't leak into the reconstructed extension.
@@ -85,33 +101,33 @@ main() {
     # Convert to lowercase, if selected.
     # On by default
     if [[ $to_lowercase -eq 1 ]]; then
-        fname="${(L)fname}";
-        fext="${(L)fext}";
+        fname="${(L)fname}"
+        fext="${(L)fext}"
     fi
 
-    slug_char='-';
-    slug_elim='_';
-    n_hyphens=${#${fname//[^-]}};
-    n_underscores=${#${fname//[^_]}};
+    slug_char='-'
+    slug_elim='_'
+    n_hyphens=${#${fname//[^-]/}}
+    n_underscores=${#${fname//[^_]/}}
     if [[ $n_underscores -gt 1 && $n_hyphens -lt $n_underscores ]]; then
-      slug_char='_';
-      slug_elim='-';
+        slug_char='_'
+        slug_elim='-'
     fi
 
-    slug="${fname//[^[:alnum:][:space:]._-]/}"; # Strip punctuation
-    slug="${slug//[[:space:]\.$slug_elim]/$slug_char}"; # Spaces to slug char
-    slug="${slug//$slug_char##/$slug_char}"; # Deduplicate slug char
-    slug="${slug#$slug_char}"; # Trim leading slug
-    slug="${slug%$slug_char}"; # Trim trailing slug
+    slug="${fname//[^[:alnum:][:space:]._-]/}"         # Strip punctuation
+    slug="${slug//[[:space:]\.$slug_elim]/$slug_char}" # Spaces to slug char
+    slug="${slug//$slug_char##/$slug_char}"            # Deduplicate slug char
+    slug="${slug#$slug_char}"                          # Trim leading slug
+    slug="${slug%$slug_char}"                          # Trim trailing slug
 
     # Reconstruct file extension
     if [[ -n "$fext" ]]; then
-        fext=".$fext";
+        fext=".$fext"
     fi
 
-    output="$slug$fext";
-    echo "$output";
+    output="$slug$fext"
+    echo "$output"
 
 }
 
-main "${@:-}"
+main "$@"
