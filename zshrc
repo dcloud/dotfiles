@@ -3,9 +3,8 @@
 
 # Brew zsh completions
 typeset -U fpath
-if whence brew &>/dev/null
-then
-  fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
+if whence brew &>/dev/null; then
+    fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
 
 # Load completions functions
@@ -25,8 +24,7 @@ ZSH_THEME="dcloud"
 
 EDITOR='vim'
 MANPAGER='less'
-if whence nvim &>/dev/null
-then
+if whence nvim &>/dev/null; then
     EDITOR='nvim'
     MANPAGER='nvim +Man!'
 fi
@@ -37,35 +35,41 @@ export MANPAGER
 typeset -U config_files
 config_files=($DOTFILES/zsh/**/*.zsh)
 # load config files
-for file in ${config_files}
-do
-  source $file
+for file in ${config_files}; do
+    source $file
 done
 
 # Personal environmental variables
-if [[ -a ~/.localrc ]]
-then
-    set -o allexport; source ~/.localrc; set +o allexport
+if [[ -e ~/.localrc ]]; then
+    set -o allexport
+    source ~/.localrc
+    set +o allexport
 fi
 
-autoload -U promptinit; promptinit
+autoload -U promptinit
+promptinit
 zstyle :prompt:pure:git:stash show yes
-zstyle :prompt:pure:virtualenv color 220
+zstyle :prompt:pure:virtualenv color 3
+zstyle :prompt:pure:git:branch color 5
+zstyle :prompt:pure:custom:suffix color 8
 prompt pure
+prompt_pure_precustom() {
+    psvar[23]=$(date -j "+%r")
+}
 
 # (re)build & initialize completions, only once every 24 hours
 # Do this late since plugins, e.g. wd.zsh, may edit fpath
 # man zshcompsys
 () {
-  setopt extendedglob local_options
+    setopt extendedglob local_options
 
-  if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-    compinit
-    bashcompinit
-  else
-    compinit -C
-    bashcompinit -C
-  fi
+    if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+        compinit
+        bashcompinit
+    else
+        compinit -C
+        bashcompinit -C
+    fi
 }
 
 # zprof
