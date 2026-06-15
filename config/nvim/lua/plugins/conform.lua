@@ -18,10 +18,12 @@ return {
       end,
       go = { "gofmt" },
       html = { "prettier" },
+      htmldjango = { "djlint" },
       javascript = { "deno_fmt", "prettier", stop_after_first = true },
       json = { "deno_fmt" },
       yaml = { "yq", "prettier", stop_after_first = true },
       ruby = { "rubocop" },
+      scss = { "prettier" },
       sh = { "shfmt" },
     },
     -- Set default options
