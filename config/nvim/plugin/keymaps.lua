@@ -47,17 +47,7 @@ vim.keymap.set("n", "<leader>pd", '<Cmd>let @*=expand("%:p:h")<CR>', { desc = "C
 -- Mapping for adding semicolon to end of line
 vim.keymap.set("n", "<leader>;", "ms:norm A;<CR>`s", { desc = "Add a semicolon at the end of the line" })
 
--- Shortcuts for de-educating quotation marks
--- char 2018: ‘
--- char 2019: ’
--- char 201A: ‚
--- char 201B: ‛
--- char 201C: “
--- char 201D: ”
--- char 201E: „
--- char 201F: ‟
-vim.keymap.set("n", "<leader>'", "<Cmd>.s/\\(\\%u2018\\|\\%u2019\\)/'/g<CR>", { desc = "De-educate quotation marks" })
-vim.keymap.set("n", '<leader>"', '<Cmd>.s/\\(\\%u201C\\|\\%u201D\\)/"/g<CR>', { desc = "De-educate quotation marks" })
+-- Smart-quote straightening (:Uncurl) lives in plugin/smartquotes.lua
 
 -- CodeCompanion
 vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
