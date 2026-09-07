@@ -1,0 +1,4 @@
+*.pbxproj -crlf -merge
+*.png binary diff=exif
+*.jpg binary diff=exif
+*.gif binary diff=exif

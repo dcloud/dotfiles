@@ -1,7 +1,5 @@
 # vim: set filetype=gitconfig :
 [core]
-    excludesfile = ~/.gitignore_global
-    attributesfile = ~/.gitattributes_global
     editor = vim
     precomposeunicode = false
 [init]
