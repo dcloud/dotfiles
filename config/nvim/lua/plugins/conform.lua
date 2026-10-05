@@ -8,6 +8,7 @@ return {
   opts = {
     -- Define your formatters
     formatters_by_ft = {
+      css = { "prettier" },
       lua = { "stylua" },
       python = function(bufnr)
         if require("conform").get_formatter_info("ruff_format", bufnr).available then
