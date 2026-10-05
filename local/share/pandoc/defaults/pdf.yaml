@@ -1,0 +1,16 @@
+---
+to: pdf
+pdf-engine: xelatex
+standalone: true
+filters:
+  - table-rules.lua
+include-in-header:
+  - ${USERDATA}/includes/table-spacing.tex
+variables:
+  mainfont: Alegreya
+  papersize: letter
+  geometry:
+    - left=1.25in
+    - right=1.25in
+    - top=0.5in
+    - bottom=0.75in
