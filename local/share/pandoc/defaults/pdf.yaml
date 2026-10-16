@@ -7,7 +7,17 @@ filters:
 include-in-header:
   - ${USERDATA}/includes/table-spacing.tex
 variables:
-  mainfont: Alegreya
+  mainfont: Ysabeau-Regular
+  mainfontoptions:
+    - BoldFont=Ysabeau-SemiBold
+    - ItalicFont=Ysabeau-LightItalic
+    - BoldItalicFont=Ysabeau-MediumItalic
+    - CharacterWidth=Quarter
+    - Kerning=On
+    - Ligatures=Contextual
+    - Numbers=Uppercase
+    - Numbers=SlashedZero
+  fontsize: 12pt
   papersize: letter
   geometry:
     - left=1.25in
