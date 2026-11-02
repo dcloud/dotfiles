@@ -3,15 +3,6 @@ alias reload!='exec zsh'
 
 alias help='run-help'
 
-if (( $+commands[tmux] )); then
-    alias tma='tmux attach -t'
-    alias tmad='tmux attach -d -t'
-    alias tms='tmux new-session -s'
-    alias tml='tmux list-sessions'
-    alias tmksv='tmux kill-server'
-    alias tmkss='tmux kill-session -t'
-fi
-
 # Make sure we have vanilla grep
 alias grep='\grep'
 # grepc can be fun grep
@@ -39,11 +30,7 @@ else
     alias l='ls -1'
 fi
 
-alias mux='tmuxinator'
-
 # Shortcut for finding processes, displaying friendly output
 alias p='pgrep -l'
 
-# mdls is a macOS application for listing file metadata attributes
-# mdid for easily getting bundle identifiers, useful with `open` cmd
-# alias mdid='mdls -raw -attr kMDItemCFBundleIdentifier'
+
