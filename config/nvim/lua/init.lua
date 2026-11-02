@@ -5,16 +5,16 @@ vim.g.mapleader = " "
 vim.go.exrc = true
 
 vim.diagnostic.config({
-    virtual_lines = {
-        current_line = true,
-    },
-    signs = true,
+  virtual_lines = {
+    current_line = true,
+  },
+  signs = true,
 })
 
 -- https://mise.jdx.dev/ide-integration.html
 if vim.fn.executable("mise") == 1 then
-    -- Prepend mise shims to PATH
-    vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+  -- Prepend mise shims to PATH
+  vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 end
 
 -- lazy.nvim config
@@ -25,3 +25,6 @@ require("config.ibl")
 
 -- session persistence
 require("config.persistence")
+
+-- neovide
+require("config.neovide")
