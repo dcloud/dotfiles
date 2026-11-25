@@ -5,8 +5,11 @@ font-size = 15
 font-feature = +zero, +ss11
 cursor-color=#c4a7e7
 adjust-cursor-thickness=3
+adjust-underline-position=2
+adjust-underline-thickness = -1
 
 macos-option-as-alt = left
+macos-titlebar-style = tabs
 
 keybind = alt+left=unbind
 keybind = alt+right=unbind
