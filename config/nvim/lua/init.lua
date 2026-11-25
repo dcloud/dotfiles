@@ -20,9 +20,6 @@ end
 -- lazy.nvim config
 require("config.lazy")
 
--- indent-blankline config
-require("config.ibl")
-
 -- session persistence
 require("config.persistence")
 
